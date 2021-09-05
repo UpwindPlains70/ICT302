@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,5 +37,15 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    internal int totalTimeTaken()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal int totalGivenTime()
+    {
+        throw new NotImplementedException();
     }
 }

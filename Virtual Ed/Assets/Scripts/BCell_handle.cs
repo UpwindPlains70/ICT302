@@ -19,6 +19,7 @@ public class BCell_handle : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject);
+        
         this.GetComponent<ParticleSystem>().Play();
     }
 }
