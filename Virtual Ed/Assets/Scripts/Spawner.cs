@@ -32,8 +32,10 @@ public class Spawner : MonoBehaviour
     public float negativeZ = 2f;
     public float resetScaleFactor = 1.5f;
 
+    private Vector3[] usedLocs;
     void Start()
     {
+        usedLocs = new Vector3[B_Cell_Count];
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         //latePenalty = calcLatePenalty();
@@ -46,7 +48,7 @@ public class Spawner : MonoBehaviour
     }
 
     //to test purpose, attach to default plane and set a gameobject on spawntest variable
-    void Update()
+    void FixedUpdate()
     {        
             //Count cells on screen
         b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
@@ -63,6 +65,9 @@ public class Spawner : MonoBehaviour
                 g.GetComponent<Rigidbody>().isKinematic = true;
             setKinematic = false;
         }
+        else
+          this.transform.DetachChildren();
+        
     }
 
     private void generateCells()
@@ -79,6 +84,10 @@ public class Spawner : MonoBehaviour
             SpawnInside(enemy[1], true);
             covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
         }
+
+        
+        //b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
+        //covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
     }
 
     float calcLatePenalty()
@@ -91,15 +100,17 @@ public class Spawner : MonoBehaviour
     public void SpawnInside(GameObject spawnObject, bool offset)
     {
         Vector3 randpos = Vector3.zero;
+
         randpos.x = Random.Range(-dimX / negativeX, dimX / positiveX);//assume mesh of the plane is centered, view mesh.bounds.min.x and mesh.bounds.max.x if not centered
         randpos.z = Random.Range(-dimZ / negativeY, dimZ / positiveY); //0f;//"level" how much up to the plane spawn the objects
+   
         if (offset)
         {
                 randpos.y = Random.Range(0, dimY / positiveZ);
         }
         Transform instance = Instantiate(spawnObject, transform).transform;
 
-            //Edit child scale to counter parents scale
+        //Edit child scale to counter parents scale
         instance.localScale = new Vector3(instance.localScale.x / transform.localScale.x, instance.localScale.z / transform.localScale.z, instance.localScale.z / transform.localScale.z);
         instance.localScale *= resetScaleFactor;    //Increase scale
 

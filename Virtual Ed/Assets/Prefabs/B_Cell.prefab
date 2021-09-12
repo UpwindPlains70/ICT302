@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 9113581159085526668}
   - component: {fileID: 9113581159085526671}
   - component: {fileID: 9113581159085526670}
-  - component: {fileID: 9113581159085526665}
+  - component: {fileID: 190701061100706925}
   - component: {fileID: 9113581159085526659}
   - component: {fileID: -661780051419282386}
   - component: {fileID: 9113581159085526658}
   - component: {fileID: 9113581159085526669}
+  - component: {fileID: 7033042028356128849}
   m_Layer: 0
   m_Name: B_Cell
   m_TagString: B-Cell
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 9113581159085526664}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.4, y: -6.7, z: -40.73}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9113581159085526664}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &9113581159085526670
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ef40bfdc4d95d9b4dbdd5c6617d168b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &9113581159085526665
-CapsuleCollider:
+--- !u!135 &190701061100706925
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,9 +95,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &9113581159085526659
 ParticleSystem:
@@ -4847,3 +4847,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493a4d0ca999c7f4489f29ed68dfdacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &7033042028356128849
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113581159085526664}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 94cc4faae47e6584bad8fbbef9853a2e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 94cc4faae47e6584bad8fbbef9853a2e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

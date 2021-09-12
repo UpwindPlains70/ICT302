@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BCell_handle : MonoBehaviour
+public class destructor : MonoBehaviour
 {
-    private bool activated = false;
-
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -21,12 +19,5 @@ public class BCell_handle : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject);
-        if (!activated)
-        {
-            this.GetComponent<ParticleSystem>().Play();
-            this.GetComponent<Animation>().Play();
-            activated = true;
-        }
-        
     }
 }
