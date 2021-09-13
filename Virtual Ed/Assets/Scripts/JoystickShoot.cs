@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JoystickShoot : MonoBehaviour
 {
     public Transform player;
     public Transform weapon;
     private float wsPosY;
+    private float wsPosX;
     public Transform bulletSpawn;
     public float speed = 2;
     public GameObject bulletPrefab;
@@ -25,10 +27,14 @@ public class JoystickShoot : MonoBehaviour
     private float minX, maxX, minY, maxY;
     public bool manualYmin = true;
 
+    public Text ammoTxt;
+    public Text gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
         wsPosY = weapon.position.y;
+        wsPosX = weapon.position.x;
         //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         // If you want the min max values to update if the resolution changes 
         // set them in update else set them in Start
@@ -44,13 +50,14 @@ public class JoystickShoot : MonoBehaviour
             minY = -1;
         maxY = topCorner.y;
 
+        ammoTxt.text += ammo;
         //Debug.Log("minX: " + minX + " maxX: " + maxX + " minY: " + minY + " maxY: " + maxY);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ammo < 0)
+        if (ammo == 0)
             GameOver();
 
         i = 0;
@@ -63,7 +70,8 @@ public class JoystickShoot : MonoBehaviour
             {
                 if (t.position.y > Screen.height / 4)
                 {
-                    shootBullet();
+                    if(ammo > 0)
+                        shootBullet();
                 }
                 else
                 {
@@ -91,7 +99,8 @@ public class JoystickShoot : MonoBehaviour
 
     private void GameOver()
     {
-        throw new NotImplementedException();
+        Debug.Log("Game Over");
+        gameOver.gameObject.SetActive(true);
     }
 
     Vector2 getTouchPosition(Vector2 touchPosition)
@@ -106,8 +115,10 @@ public class JoystickShoot : MonoBehaviour
         player.Translate(direction * speed * Time.deltaTime);
 
         Vector3 curr = player.position;
-        curr.x = Mathf.Clamp(curr.x, -9.2f, 8.9f);
-        curr.y = Mathf.Clamp(curr.y, -1, 7);
+        curr.x = Mathf.Clamp(curr.x, -12.6f, 12.4f);
+        curr.y = Mathf.Clamp(curr.y, -1.5f, 8.8f);
+        //curr.x = Mathf.Clamp(curr.x, minX, maxX);
+        //curr.y = Mathf.Clamp(curr.y, minY, maxY);
 
         player.position = curr;
         //if not clamped
@@ -118,21 +129,23 @@ public class JoystickShoot : MonoBehaviour
     private void moveWeapon(Vector2 direction, Vector3 curr)
     {
         if (player.position.y > curr.y)//moving up
-            weapon.position -= new Vector3(0, direction.y * Time.deltaTime / 2f, 0);
+            weapon.position -= new Vector3(0, direction.y * Time.deltaTime / 3f, 0);
         else if (player.position.y < curr.y) //move down
         {
-            if (weapon.position.y < wsPosY) //stop moving when stat point hit
-                weapon.position += new Vector3(0, -direction.y * Time.deltaTime / 2f, 0);
+            //if (weapon.position.y < wsPosY) //stop moving when stat point hit
+                weapon.position += new Vector3(0, -direction.y * Time.deltaTime / 3f, 0);
         }
 
         if (player.position.x > curr.x)
         {//moving left
-            weapon.position -= new Vector3(direction.x * Time.deltaTime / 2.5f, 0, 0);
+            //if (weapon.position.y < wsPosX)
+                weapon.position -= new Vector3(direction.x * Time.deltaTime / 5.5f, 0, 0);
             //weapon.position -= new Vector3(0, direction.y * Time.deltaTime / 10f, 0);
         }
         else if (player.position.x < curr.x)
         {//move right
-            weapon.position += new Vector3(-direction.x * Time.deltaTime / 2.5f, 0, 0);
+            //if (weapon.position.x < wsPosX)
+                weapon.position += new Vector3(-direction.x * Time.deltaTime / 5.5f, 0, 0);
             //weapon.position += new Vector3(0, -direction.y * Time.deltaTime / 10f, 0);
         }
     }
@@ -141,5 +154,8 @@ public class JoystickShoot : MonoBehaviour
     {
         //instantiate bullet
         Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+        --ammo;
+
+        ammoTxt.text = "Ammo: " + ammo;
     }
 }

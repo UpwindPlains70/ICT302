@@ -9,7 +9,9 @@ public class Spawner : MonoBehaviour
     float dimZ;
     public GameObject[] enemy;
     public int B_Cell_Count = 10;
+        //Reduce covid cell count
     public float positivePenalty = 0.5f;
+        //Increase covid cell count
     public float negativePenalty = 1f;
 
     //Assigned by function (increase/decrease percetage for covid cells)
@@ -24,18 +26,18 @@ public class Spawner : MonoBehaviour
     private bool setupPhase = true;
     private bool setKinematic = true;
 
+    public bool dimension3 = false;
     public float positiveX = 2f;
     public float negativeX = 2f;
     public float positiveY = 2f;
     public float negativeY = 2f;
     public float positiveZ = 2f;
     public float negativeZ = 2f;
-    public float resetScaleFactor = 1.5f;
 
-    private Vector3[] usedLocs;
+    private float resetScaleFactor;
+
     void Start()
     {
-        usedLocs = new Vector3[B_Cell_Count];
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         //latePenalty = calcLatePenalty();
@@ -85,9 +87,6 @@ public class Spawner : MonoBehaviour
             covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
         }
 
-        
-        //b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
-        //covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
     }
 
     float calcLatePenalty()
@@ -102,15 +101,19 @@ public class Spawner : MonoBehaviour
         Vector3 randpos = Vector3.zero;
 
         randpos.x = Random.Range(-dimX / negativeX, dimX / positiveX);//assume mesh of the plane is centered, view mesh.bounds.min.x and mesh.bounds.max.x if not centered
-        randpos.z = Random.Range(-dimZ / negativeY, dimZ / positiveY); //0f;//"level" how much up to the plane spawn the objects
+        randpos.z = Random.Range(-dimZ / negativeY, dimZ / positiveY); //"level" how much up to the plane spawn the objects
    
-        if (offset)
+        if (dimension3 || offset)
         {
+            if (dimension3)
+                randpos.y = Random.Range(-dimY / negativeY, dimY / positiveY); //0f;//"level" how much up to the plane spawn the objects
+            else
                 randpos.y = Random.Range(0, dimY / positiveZ);
         }
         Transform instance = Instantiate(spawnObject, transform).transform;
 
         //Edit child scale to counter parents scale
+        resetScaleFactor = instance.localScale.y;
         instance.localScale = new Vector3(instance.localScale.x / transform.localScale.x, instance.localScale.z / transform.localScale.z, instance.localScale.z / transform.localScale.z);
         instance.localScale *= resetScaleFactor;    //Increase scale
 
