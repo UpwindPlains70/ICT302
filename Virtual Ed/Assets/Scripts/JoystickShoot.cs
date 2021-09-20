@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class JoystickShoot : MonoBehaviour
 {
     public Transform player;
+    public float speed = 1.5f;
+
     public Transform weapon;
     private float wsPosY;
     private float wsPosX;
     public Transform bulletSpawn;
-    public float speed = 2;
     public GameObject bulletPrefab;
     public float bulletSpeed = 90;
-    public int ammo = 10;
+    private int ammo;
 
     public Transform circle;
     public Transform outerCircle;
@@ -28,14 +29,19 @@ public class JoystickShoot : MonoBehaviour
     public bool manualYmin = true;
 
     public Text ammoTxt;
-    public Text gameOver;
 
+    private Level4Manager lvl4Manager;
     // Start is called before the first frame update
     void Start()
     {
+        //Orient screen in landscape
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
+        ammo = lvl4Manager.getAmmo();
+
         wsPosY = weapon.position.y;
         wsPosX = weapon.position.x;
-        //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         // If you want the min max values to update if the resolution changes 
         // set them in update else set them in Start
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -58,7 +64,7 @@ public class JoystickShoot : MonoBehaviour
     void Update()
     {
         if (ammo == 0)
-            GameOver();
+            lvl4Manager.GameOver();
 
         i = 0;
         while (i < Input.touchCount)
@@ -75,6 +81,8 @@ public class JoystickShoot : MonoBehaviour
                 }
                 else
                 {
+                    circle.gameObject.SetActive(true);
+                    outerCircle.gameObject.SetActive(true);
                     leftTouch = t.fingerId;
                     startingPoint = touchPos;
                 }
@@ -82,7 +90,7 @@ public class JoystickShoot : MonoBehaviour
             else if (t.phase == TouchPhase.Moved && leftTouch == t.fingerId)
             {
                 Vector2 offset = touchPos - startingPoint;
-                Vector2 direction = Vector2.ClampMagnitude(offset, 9.0f);
+                Vector2 direction = Vector2.ClampMagnitude(offset, 30.0f);
                 moveCharacter(direction);
 
                 circle.transform.position = new Vector2(outerCircle.position.x + direction.x, outerCircle.position.y + direction.y);
@@ -92,16 +100,14 @@ public class JoystickShoot : MonoBehaviour
             {
                 leftTouch = 99;
                 circle.transform.position = new Vector2(outerCircle.position.x, outerCircle.position.y);
+
+                circle.gameObject.SetActive(false);
+                outerCircle.gameObject.SetActive(false);
             }
             ++i;
         }
     }
 
-    private void GameOver()
-    {
-        Debug.Log("Game Over");
-        gameOver.gameObject.SetActive(true);
-    }
 
     Vector2 getTouchPosition(Vector2 touchPosition)
     {
@@ -115,6 +121,10 @@ public class JoystickShoot : MonoBehaviour
         player.Translate(direction * speed * Time.deltaTime);
 
         Vector3 curr = player.position;
+        Debug.Log("bound X: " + screenBounds.x);
+        Debug.Log("bound Y: " + screenBounds.y);
+        //curr.x = Mathf.Clamp(curr.x, screenBounds.x, screenBounds.x * -1);
+        //curr.y = Mathf.Clamp(curr.y, screenBounds.y, screenBounds.y * -1);
         curr.x = Mathf.Clamp(curr.x, -12.6f, 12.4f);
         curr.y = Mathf.Clamp(curr.y, -1.5f, 8.8f);
         //curr.x = Mathf.Clamp(curr.x, minX, maxX);

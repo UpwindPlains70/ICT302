@@ -8,7 +8,8 @@ public class Spawner : MonoBehaviour
     float dimY;
     float dimZ;
     public GameObject[] enemy;
-    public int B_Cell_Count = 10;
+        //Set from GameManager
+    private int B_Cell_Count;
         //Reduce covid cell count
     public float positivePenalty = 0.5f;
         //Increase covid cell count
@@ -23,6 +24,7 @@ public class Spawner : MonoBehaviour
     private const string covid_Cell_Tag = "Covid-Cell";
 
     private GameManager GMScript;
+    private Level4Manager lvl4Manager;
     private bool setupPhase = true;
     private bool setKinematic = true;
 
@@ -39,6 +41,9 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            //Number of game objects to spawn (based on game manager)
+        lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
+        B_Cell_Count = lvl4Manager.getAmmo();
 
         //latePenalty = calcLatePenalty();
 

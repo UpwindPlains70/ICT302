@@ -12,6 +12,10 @@ public class BCell_handle : MonoBehaviour
 
     }
 
+    public bool isActive()
+    { 
+        return activated;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -19,6 +19,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private bool gameOver = false;
+
+    public bool GameOver { 
+        get { return gameOver; }
+        set { gameOver = value; }
+    }
+
     private void Awake()
     {
         Debug.Log("manager started");
@@ -36,16 +43,35 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
-    internal int totalTimeTaken()
+    public void addToServer()
     {
-        throw new NotImplementedException();
+        //add all level information to server
+        Debug.Log("Level data Saved");
     }
 
-    internal int totalGivenTime()
+    public float totalTimeTaken()
     {
-        throw new NotImplementedException();
+        float totalTime = 0;
+        foreach (Level lvl in levels)
+            totalTime += lvl.CompletionTime;
+
+        return totalTime;
+    }
+
+    public float totalGivenTime()
+    {
+        float totalTime = 0;
+        foreach (Level lvl in levels)
+            totalTime += lvl.TimeLimit;
+
+        return totalTime;
+    }
+
+    public Level GetLevel(int n)
+    {
+        return levels[n];
     }
 }

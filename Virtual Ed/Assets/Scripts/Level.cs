@@ -6,11 +6,11 @@ using UnityEngine;
 public class Level
 {
     [SerializeField]
-    [Tooltip("time to finish level")]
+    [Tooltip("Time to finish level")]
     private float timeLimit;
 
     [SerializeField]
-    [Tooltip("time taken to complete level")]
+    [Tooltip("Time taken to complete level")]
     private float completionTime;
 
     [SerializeField]
@@ -18,10 +18,29 @@ public class Level
     private int score;
 
     [SerializeField]
-    [Tooltip("Player support free 'points'")]
+    [Tooltip("Player support 'free points'")]
     private int bonus;
 
 
+    public int Score
+    {
+        get { return score; }
+        set { score = value; }
+    }
 
+    public int Bonus
+    {
+        get { return bonus; }
+    }
 
+    public float TimeLimit
+    { 
+        get { return timeLimit; } 
+    }
+
+    public float CompletionTime
+    {
+        get { return completionTime; }
+        set { completionTime = value; }
+    }
 }
