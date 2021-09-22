@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a3aea66c80209468a4c613fe0c6ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewCamera: {fileID: 0}
   JumpSound: {fileID: 0}
   HitSound: {fileID: 0}
   CoinSound: {fileID: 0}
