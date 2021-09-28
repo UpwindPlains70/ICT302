@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Orbit : MonoBehaviour
 {
-	public float MinX, MaxX, MinY, MaxY, MinZ, MaxZ; //MinDelay, MaxDelay;
-
-	public float rotSpeed;
+	public float MinX, MaxX, MinY, MaxY, MinZ, MaxZ, rotSpeed; //MinDelay, MaxDelay;
 	public bool dimension3 = false;
 	//float MovementTimer;
-	public float speed;
+	public float speed, MinX2D, MaxX2D, MinY2D, MaxY2D;
 	float randomX;
 	float randomY;
 	public float ChangeDirectionEvery = 0;
@@ -77,18 +75,22 @@ public class Orbit : MonoBehaviour
 		{
 			if (Time.time >= ChangeDirectionEvery)
 			{
-				randomX = Random.Range(-2f, 2.0f);
-				randomY = Random.Range(-2f, 2.0f);
+				randomX = Random.Range(MinX2D, MaxX2D);
+				randomY = Random.Range(MinY2D, MaxY2D);
 				ChangeDirectionEvery = Time.time + Random.Range(0.5f, 1.5f);
+				Debug.Log("randomY:" + randomY);
+				Debug.Log("randomX:" + randomX);
 			}
-			transform.Translate(new Vector3(randomX, randomY, 0) * speed * Time.deltaTime);
-			if (transform.position.x >= MaxX || transform.position.x <= MinX)
+			transform.Translate(new Vector3(randomX, 0, randomY) * speed * Time.deltaTime);
+			if (transform.position.x >= MaxX2D || transform.position.x <= MinX2D)
 			{
 				randomX = -randomX;
+				Debug.Log("randomy:" + randomY);
 			}
-			if (transform.position.y >= MaxY || transform.position.y <= MinY)
+			if (transform.position.y >= MaxY2D || transform.position.y <= MinY2D)
 			{
 				randomY = -randomY;
+				Debug.Log("randomy:" + randomY);
 			}
 
 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1744113533246413582}
   - component: {fileID: 4551755081623817547}
   - component: {fileID: 1059669316553077446}
-  - component: {fileID: 1371101319927859170}
   - component: {fileID: 3758725356772055881}
   m_Layer: 8
   m_Name: NP1
@@ -95,29 +94,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee7b4d90f99a9a43a002476a73f1b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinX: 0
-  MaxX: 1
-  MinY: 0
-  MaxY: 1
+  MinX: -10
+  MaxX: 10
+  MinY: -10
+  MaxY: 10
   MinZ: 1.5
   MaxZ: 1.7
   rotSpeed: 0.5
   dimension3: 0
-  speed: 0.05
-  ChangeDirectionEvery: 1
---- !u!135 &1371101319927859170
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264665824970452457}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0261434
-  m_Center: {x: -0.000026934778, y: 0.024998432, z: -0.05989374}
+  speed: 0.01
+  MinX2D: -20
+  MaxX2D: 20
+  MinY2D: -20
+  MaxY2D: 20
+  ChangeDirectionEvery: 3
 --- !u!54 &3758725356772055881
 Rigidbody:
   m_ObjectHideFlags: 0

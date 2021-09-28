@@ -24,7 +24,7 @@ public class NanoParticleSpawner : MonoBehaviour
 
     private GameManager GMScript;
     private bool setupPhase = true;
-    private bool setKinematic = true;
+    //private bool setKinematic = true;
 
     public bool dimension3 = false;
     public float positiveX = 2f;

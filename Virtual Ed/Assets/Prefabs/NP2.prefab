@@ -174,16 +174,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee7b4d90f99a9a43a002476a73f1b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinX: 0
-  MaxX: 1
-  MinY: 0
-  MaxY: 1
-  MinZ: 0
-  MaxZ: 1
+  MinX: 0.3
+  MaxX: 0.9
+  MinY: 0.3
+  MaxY: 0.9
+  MinZ: 0.3
+  MaxZ: 0.9
   rotSpeed: 0.7
   dimension3: 0
-  speed: 0.05
-  ChangeDirectionEvery: 1
+  speed: 0.01
+  MinX2D: -15
+  MaxX2D: 15
+  MinY2D: -15
+  MaxY2D: 15
+  ChangeDirectionEvery: 3
 --- !u!135 &-8672860200363921156
 SphereCollider:
   m_ObjectHideFlags: 0
