@@ -3,8 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+
   tags: []
-  layers:
+  tags:
+  - B-Cell
+  - Covid-Cell
+  - GameManager
+  - NP1
+  - NP2
+  - Center
+  - CP1
+  - CP2
+  - CP3
+  - CP4
   - Default
   - TransparentFX
   - Ignore Raycast
@@ -13,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Movement
+  - Blocker
   - 
   - 
   - 
