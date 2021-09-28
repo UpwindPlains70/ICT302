@@ -7,6 +7,13 @@ TagManager:
   - B-Cell
   - Covid-Cell
   - GameManager
+  - NP1
+  - NP2
+  - Center
+  - CP1
+  - CP2
+  - CP3
+  - CP4
   layers:
   - Default
   - TransparentFX
@@ -16,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Movement
+  - Blocker
   - 
   - 
   - 

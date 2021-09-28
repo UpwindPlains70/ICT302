@@ -553,7 +553,7 @@ MonoBehaviour:
   NanoParticle_Count: 20
   positivePenalty: 0.5
   negativePenalty: 1
-  dimension3: 1
+  dimension3: 0
   positiveX: 2
   negativeX: 2
   positiveY: 2
