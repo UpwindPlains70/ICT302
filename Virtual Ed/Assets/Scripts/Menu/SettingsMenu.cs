@@ -11,4 +11,9 @@ public class SettingsMenu : MonoBehaviour
     {
         audioMixer.SetFloat("volume", volume);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

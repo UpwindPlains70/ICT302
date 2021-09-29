@@ -21,12 +21,6 @@ public class DBUserInterface : MonoBehaviour
         DBInterface = FindObjectOfType<DBInterface>();
     }
 
-
-
-
-
-
-
     public void InsertStudentNumber()
     {
         if (DBInterface == null)

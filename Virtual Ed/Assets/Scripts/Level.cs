@@ -6,6 +6,10 @@ using UnityEngine;
 public class Level
 {
     [SerializeField]
+    [Tooltip("Name of scene")]
+    private string _sceneName;
+
+    [SerializeField]
     [Tooltip("Time to finish level")]
     private float timeLimit;
 
@@ -21,6 +25,11 @@ public class Level
     [Tooltip("Player support 'free points'")]
     private int bonus;
 
+    public string SceneName
+    {
+        get { return _sceneName; }
+        set { _sceneName = value; }
+    }
 
     public int Score
     {

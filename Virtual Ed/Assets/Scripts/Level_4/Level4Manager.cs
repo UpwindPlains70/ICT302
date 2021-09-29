@@ -104,28 +104,4 @@ public class Level4Manager : MonoBehaviour
 
         time -= Time.deltaTime;
     }
-    /*  public void moveWeapon(Transform player, Vector2 direction, Vector3 curr)
-      {
-          if (player.position.y > curr.y)//moving up
-              weapon.position -= new Vector3(0, direction.y * Time.deltaTime / 3f, 0);
-          else if (player.position.y < curr.y) //move down
-          {
-              //if (weapon.position.y < wsPosY) //stop moving when stat point hit
-              weapon.position += new Vector3(0, -direction.y * Time.deltaTime / 3f, 0);
-          }
-
-          if (player.position.x > curr.x)
-          {//moving left
-           //if (weapon.position.y < wsPosX)
-              weapon.position -= new Vector3(direction.x * Time.deltaTime / 5.5f, 0, 0);
-              //weapon.position -= new Vector3(0, direction.y * Time.deltaTime / 10f, 0);
-          }
-          else if (player.position.x < curr.x)
-          {//move right
-           //if (weapon.position.x < wsPosX)
-              weapon.position += new Vector3(-direction.x * Time.deltaTime / 5.5f, 0, 0);
-              //weapon.position += new Vector3(0, -direction.y * Time.deltaTime / 10f, 0);
-          }
-      }
-  */
 }
