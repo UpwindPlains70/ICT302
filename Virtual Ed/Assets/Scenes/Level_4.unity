@@ -377,26 +377,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - _sceneName: 
+  - _sceneName: Level_1
     timeLimit: 120
     completionTime: 0
     score: 0
     bonus: 0
-  - _sceneName: 
+  - _sceneName: Level_2
     timeLimit: 120
     completionTime: 0
     score: 0
     bonus: 0
-  - _sceneName: 
+  - _sceneName: Level_3
+    timeLimit: 120
+    completionTime: 0
+    score: 15
+    bonus: 5
+  - _sceneName: Level_4
     timeLimit: 120
     completionTime: 0
     score: 0
-    bonus: 0
-  - _sceneName: 
-    timeLimit: 120
-    completionTime: 0
-    score: 0
-    bonus: 0
+    bonus: 5
+  MainMenu: 0
 --- !u!4 &228081486
 Transform:
   m_ObjectHideFlags: 0
