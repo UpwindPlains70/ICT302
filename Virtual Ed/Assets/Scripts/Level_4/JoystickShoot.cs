@@ -166,6 +166,6 @@ public class JoystickShoot : MonoBehaviour
         Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         --ammo;
 
-        ammoTxt.text = "Ammo: " + ammo;
+        ammoTxt.text = "" + ammo;
     }
 }
