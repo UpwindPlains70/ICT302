@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoreCubes : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
-    public GameObject cubePrefab;
-
     // Start is called before the first frame update
-    public void Cube()
+    void Start()
     {
-        Instantiate(cubePrefab);
+        
     }
 
-    
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

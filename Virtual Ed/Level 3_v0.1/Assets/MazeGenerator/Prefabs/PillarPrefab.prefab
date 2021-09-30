@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2325300}
   - component: {fileID: -6918170358328517756}
   - component: {fileID: -2630286694116534934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PillarPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
