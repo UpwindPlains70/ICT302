@@ -9,12 +9,12 @@ public class Level2Manager : MonoBehaviour
     private float time;
     private float timeTakenForPastLevels;
     private int score = 0;
+    private int maxScore = 0;
 
     private GameManager GMScript;
     private Level prevLevel;
     public int currLevel = 0;
 
-    public Text gameOver;
     public Text timerTxt;
     public Text scoreTxt;
 
@@ -29,6 +29,9 @@ public class Level2Manager : MonoBehaviour
         time = GMScript.GetLevel(currLevel).TimeLimit;
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
+
+            //Max number of proteins to build
+        maxScore = GMScript.GetLevel(0).Score + GMScript.GetLevel(0).Score;
     }
 
     // Update is called once per frame
@@ -38,17 +41,17 @@ public class Level2Manager : MonoBehaviour
 
         if (time <= 0)
             GameOver();
-
-        //scoreUpdate();
     }
 
-    void scoreUpdate() //Moved to OnProtienFormed func
+    //Spawn protein components (on Spawner), fixed amount available at all times???
+        //CODE...
+
+    void OnProtienFormed() //Moved to OnProtienFormed func
     {
-        //Reset every re-calc
-        score = 0;
-
-        scoreTxt.text = "Score: " + score;
+        score++;
+        scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
+
 
     public void GameOver()
     {

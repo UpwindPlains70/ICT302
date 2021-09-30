@@ -14,9 +14,8 @@ public class Level3Manager : MonoBehaviour
     private Level prevLevel;
     public int currLevel = 0;
 
-    public Text gameOver;
     public Text timerTxt;
-    public Text scoreTxt;
+    public Text currScoreTxt;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +28,11 @@ public class Level3Manager : MonoBehaviour
         time = GMScript.GetLevel(currLevel).TimeLimit;
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
+
+            //store score from previous level
+        score = GMScript.GetLevel(1).Score;
+            //Add bonus to score
+        score += GMScript.GetLevel(1).Bonus;
     }
 
     // Update is called once per frame
@@ -38,18 +42,22 @@ public class Level3Manager : MonoBehaviour
 
         if (time <= 0)
             GameOver();
-
-        //scoreUpdate();
     }
 
-    void scoreUpdate() //Moved to OnCollisionEnter for void holes (decrease score)
+    //Spawn all protiens into maze, based on score (on Spawner)
+        //CODE...
+
+    //Move to bad holes **********************
+    public Level3Manager lvlManager;
+
+    private void OnCollisionEnter(Collision collision)
     {
-        //Reset every re-calc
-        score = 0;
+        if (collision.gameObject.CompareTag("BadHole"))
+            --score;
 
-        scoreTxt.text = "Score: " + score;
+        lvlManager.currScoreTxt.text = "Score: " + score;
     }
-
+        //****************************************
     public void GameOver()
     {
         //Disable in-game UI

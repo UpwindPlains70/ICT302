@@ -78,28 +78,22 @@ public class Orbit : MonoBehaviour
 				randomX = Random.Range(MinX2D, MaxX2D);
 				randomY = Random.Range(MinY2D, MaxY2D);
 				ChangeDirectionEvery = Time.time + Random.Range(0.5f, 1.5f);
-				Debug.Log("randomY:" + randomY);
-				Debug.Log("randomX:" + randomX);
+				//Debug.Log("randomY:" + randomY);
+				//Debug.Log("randomX:" + randomX);
 			}
 			transform.Translate(new Vector3(randomX, 0, randomY) * speed * Time.deltaTime);
 			if (transform.position.x >= MaxX2D || transform.position.x <= MinX2D)
 			{
 				randomX = -randomX;
-				Debug.Log("randomy:" + randomY);
+				//Debug.Log("randomy:" + randomY);
 			}
 			if (transform.position.y >= MaxY2D || transform.position.y <= MinY2D)
 			{
 				randomY = -randomY;
-				Debug.Log("randomy:" + randomY);
+				//Debug.Log("randomy:" + randomY);
 			}
-
-
-
-
 			//transform.position = Vector2.MoveTowards(transform.position, (pos() + centerPoint.position), speed * Time.deltaTime);
 
-
-		
 		}
 	}
 }

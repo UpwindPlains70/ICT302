@@ -56,18 +56,12 @@ public class NanoParticleSpawner : MonoBehaviour
         NP1_List = GameObject.FindGameObjectsWithTag(NP1_Tag);
         NP2_List = GameObject.FindGameObjectsWithTag(NP2_Tag);
 
-        if (NP1_List.Length == NanoParticle_Count && NP2_List.Length == NanoParticle_Count)
-            setupPhase = false;
+        //if (NP1_List.Length == NanoParticle_Count && NP2_List.Length == NanoParticle_Count)
+        //    setupPhase = false;
 
-        if (setupPhase)
+        //if (setupPhase)
             generateCells();
-        //else if (setKinematic)
-        //{
-         //   foreach (GameObject g in NP1_List)
-          //      g.GetComponent<Rigidbody>().isKinematic = true;
-           // setKinematic = false;
-      //  }
-        else
+        //else
             this.transform.DetachChildren();
 
     }
@@ -77,13 +71,13 @@ public class NanoParticleSpawner : MonoBehaviour
         //Populate if not enough
         while (NP1_List.Length < NanoParticle_Count)
         {
-            SpawnInside(enemy[0], false);
+            SpawnInside(enemy[0]);
             NP1_List = GameObject.FindGameObjectsWithTag(NP1_Tag);
         }
 
         while (NP2_List.Length < (NanoParticle_Count * latePenalty))
         {
-            SpawnInside(enemy[1], true);
+            SpawnInside(enemy[1]);
             NP2_List = GameObject.FindGameObjectsWithTag(NP2_Tag);
         }
 
@@ -96,20 +90,19 @@ public class NanoParticleSpawner : MonoBehaviour
         return tmpPenalty > 0.25f ? tmpPenalty + negativePenalty : tmpPenalty + positivePenalty;
     }
 
-    public void SpawnInside(GameObject spawnObject, bool offset)
+    public void SpawnInside(GameObject spawnObject)
     {
         Vector3 randpos = Vector3.zero;
 
         randpos.x = Random.Range(-dimX / negativeX, dimX / positiveX);//assume mesh of the plane is centered, view mesh.bounds.min.x and mesh.bounds.max.x if not centered
         randpos.z = Random.Range(-dimZ / negativeY, dimZ / positiveY); //"level" how much up to the plane spawn the objects
 
-        if (dimension3 || offset)
-        {
-            if (dimension3)
-                randpos.y = Random.Range(-dimY / negativeY, dimY / positiveY); //0f;//"level" how much up to the plane spawn the objects
-            else
-                randpos.y = Random.Range(0, dimY / positiveZ);
-        }
+
+        if (dimension3)
+            randpos.y = Random.Range(-dimY / negativeY, dimY / positiveY); //0f;//"level" how much up to the plane spawn the objects
+        else
+            randpos.y = Random.Range(0, dimY / positiveZ);
+        
         Transform instance = Instantiate(spawnObject, transform).transform;
 
         //Edit child scale to counter parents scale
