@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     float dimZ;
     public GameObject[] enemy;
         //Set from GameManager
-    private int B_Cell_Count;
+    public int B_Cell_Count;
         //Reduce covid cell count
     public float positivePenalty = 0.5f;
         //Increase covid cell count
@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //Number of game objects to spawn (based on game manager)
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
-        B_Cell_Count = lvl4Manager.getAmmo();
+        B_Cell_Count = lvl4Manager.ammo;
 
         //latePenalty = calcLatePenalty();
 
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
         dimY = _mesh.bounds.size.y;
         dimZ = _mesh.bounds.size.z;
     }
-
+    
     //to test purpose, attach to default plane and set a gameobject on spawntest variable
     void FixedUpdate()
     {        
@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
           this.transform.DetachChildren();
         
     }
-
+    
     private void generateCells()
     {
         //Populate if not enough

@@ -40,8 +40,6 @@ public class NanoParticleSpawner : MonoBehaviour
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        //latePenalty = calcLatePenalty();
-
         //Assign size of spawner plane
         Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
         dimX = _mesh.bounds.size.x;
