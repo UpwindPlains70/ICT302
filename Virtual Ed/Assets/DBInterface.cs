@@ -12,6 +12,7 @@ public class DBInterface : MonoBehaviour
     public string UserID;
     public string Password;
     public ulong GameID;
+    public string StudentNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +41,12 @@ public class DBInterface : MonoBehaviour
                 command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
                 // StudentNumber will be assigned as a global variable
 
+
+
                 ulong result = (ulong)command.ExecuteScalar();
 
                 connection.Close();
 
-                //Console.WriteLine(result);
                 ulong GameID = result;
                 // GameID will be assigned as a global variable
 
@@ -102,6 +104,56 @@ public class DBInterface : MonoBehaviour
 
 
 
+    
+    // FinalScore and FinalTimeTaken to be displayed at the main menu
+    public List<System.Tuple<int, int>> DisplayFinalScores(string StudentNumber)
+    {
+        List<System.Tuple<int, int>> topFive = new List<System.Tuple<int, int>>();
+
+        using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
+        {
+            try
+            {
+                connection.Open();
+
+                MySqlCommand command = connection.CreateCommand();
+                //Debug.Log("before SELECT SQL StudentNumber is equal to " + StudentNumber);
+                command.CommandText = "SELECT MAX(FinalScore) AS FinalScore, FinalTimeTaken FROM scoring_details WHERE StudentNumber = @StudentNumber";
+                //Debug.Log("before addwithvalue StudentNumber is equal to " + StudentNumber);
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                //Debug.Log("after addwithvalue StudentNumber is equal to " + StudentNumber);
+                var reader = command.ExecuteReader();
+
+                //Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHH");
+
+                while (reader.Read())
+                {
+                    var ordinal = reader.GetOrdinal("FinalScore");
+                    int FinalScore = reader.IsDBNull(ordinal) ? 0 : reader.GetInt32(ordinal);
+                    ordinal = reader.GetOrdinal("FinalTimeTaken");
+                    int FinalTimeTaken = reader.IsDBNull(ordinal) ? 0 : reader.GetInt32(ordinal);
+                    System.Tuple<int, int> entry = new System.Tuple<int, int>(FinalScore, FinalTimeTaken);
+                    //Debug.Log("FinalScore is equal to " + FinalScore);
+                    //Debug.Log("FinalTimeTaken is equal to " + FinalTimeTaken);
+                    topFive.Add(entry);
+                }
+
+                connection.Close();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("DBInterface: Could not retrieve values in public list DisplayFinalScores " + System.Environment.NewLine + ex.Message);
+            }
+        }
+
+        return topFive;
+    }
+
+
+    
+
+
+
 
 
 
@@ -115,7 +167,7 @@ public class DBInterface : MonoBehaviour
                 connection.Open();
                 
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "UPDATE scoring_details SET ScorelvlOne = '@ScoreLvlOne' WHERE GameID = '@GameID' AND StudentNumber = '@StudentNumber'";
+                command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND StudentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@ScoreLvlOne", ScoreLvlOne);
                 command.Parameters.AddWithValue("@GameID", GameID);
                 command.Parameters.AddWithValue("@StudentNumber", StudentNumber);

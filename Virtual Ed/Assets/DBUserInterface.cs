@@ -6,11 +6,14 @@ using System;
 public class DBUserInterface : MonoBehaviour
 {
     public InputField StudentNumber;
+    public string StudentNumberDisplayText;
     //public InputField Highscore;
 
     public List<Text> PlayerNames = new List<Text>();
     public List<Text> GameIDs = new List<Text>();
     public List<Text> DateAndTimes = new List<Text>();
+    public List<Text> FinalScores = new List<Text>();
+    public List<Text> FinalTimeTakens = new List<Text>();
     //public List<Text> Highscores = new List<Text>();
     DBInterface DBInterface;
 
@@ -34,7 +37,7 @@ public class DBUserInterface : MonoBehaviour
             Debug.LogError("DBUserInterface: Could not insert a highscore. DBIitefrace is not present.");
             return;
         }
-        if (StudentNumber == null/* || Highscore == null*/)
+        if (StudentNumber == null)
         {
             Debug.LogError("DBUserInterface: Could not insert a highscore. StudentNumber or Highscore is not set.");
             return;
@@ -44,22 +47,18 @@ public class DBUserInterface : MonoBehaviour
             Debug.LogError("DBUserInterface: Could not insert a highscore. StudentNumber is empty.");
             return;
         }
-        //int highscore;
-        //if (!System.Int32.TryParse(Highscore.text, out highscore))
-        //{
-        //    Debug.LogError("UserInterface: Could not insert a highscore. Highscore is not an integer.");
-        //    return;
-        //}
-        DBInterface.InsertStudentNumber(StudentNumber.text /*highscore*/);
-        StudentNumber.text = "";
-        //Highscore.text = "";
+
+        DBInterface.InsertStudentNumber(StudentNumber.text);
+        StudentNumberDisplayText = StudentNumber.text;
+       // StudentNumber.text = "";
+
     }
 
 
 
 
     
-
+    
     public void DisplayGameDataFromDB()
     {
         if (DBInterface == null)
@@ -90,7 +89,32 @@ public class DBUserInterface : MonoBehaviour
 
 
 
+    
+    public void DisplayFinalScores()
+    {
+        if (DBInterface == null)
+        {
+            Debug.LogError("DBUserInterface: Could not retrieve data. DBIitefrace is not present.");
+            return;
+        }
 
+        clearScoreboard();
+        //Debug.Log("DisplayFinalScores StudentNumber is equal to " + StudentNumber.text);
+        List<System.Tuple<int, int>> highscores = DBInterface.DisplayFinalScores(StudentNumberDisplayText);
+        
+        for (int i = 0; i < highscores.Count; i++)
+        {
+
+            FinalScores[i].text = highscores[i].Item1.ToString();
+            FinalTimeTakens[i].text = highscores[i].Item2.ToString();
+
+
+        }
+        
+
+    }
+
+    
 
 
 
