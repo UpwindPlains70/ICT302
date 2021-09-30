@@ -644,10 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d4550ad4f653942834d8ee8b387941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: 127.0.0.1
-  Database: ict302gametest1
-  UserID: root
-  Password: Apache77!
+  Server: 10.51.33.8
+  Database: sys
+  UserID: Remote_ICT302
+  Password: murdochuniversity
   GameID: 0
 --- !u!1 &963194225
 GameObject:
