@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6436760}
   - component: {fileID: 2325300}
   - component: {fileID: -6918170358328517756}
+  - component: {fileID: -2630286694116534934}
   m_Layer: 0
   m_Name: PillarPrefab
   m_TagString: Untagged
@@ -110,4 +111,19 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!138 &-2630286694116534934
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142476}
+  m_ConnectedBody: {fileID: 2676279081394214703, guid: e99da500a76bfe248a6bcc8ac79c6041,
+    type: 3}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1

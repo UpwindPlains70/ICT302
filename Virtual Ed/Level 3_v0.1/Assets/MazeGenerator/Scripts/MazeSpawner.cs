@@ -15,13 +15,14 @@ public class MazeSpawner : MonoBehaviour {
 	public GameObject Floor = null;
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
+	public GameObject GoalPrefab = null;
+	public GameObject Hole = null;
 	public int Rows = 5;
 	public int Columns = 5;
 	public float CellWidth = 5;
 	public float CellHeight = 5;
 	public bool AddGaps = false;
-	public GameObject GoalPrefab = null;
-
+	
 	private BasicMazeGenerator mMazeGenerator = null;
 
 	void Start () {

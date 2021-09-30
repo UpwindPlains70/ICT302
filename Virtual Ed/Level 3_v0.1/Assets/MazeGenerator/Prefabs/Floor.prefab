@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -9116542834292322208}
   - component: {fileID: 2383896}
   - component: {fileID: -5815406041095819761}
-  - component: {fileID: -3573621021748965715}
+  - component: {fileID: -2903507823853325769}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
@@ -110,21 +110,19 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &-3573621021748965715
-MonoBehaviour:
+  m_CollisionDetection: 1
+--- !u!138 &-2903507823853325769
+FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
+  m_ConnectedBody: {fileID: 2676279081394214703, guid: e99da500a76bfe248a6bcc8ac79c6041,
+    type: 3}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
