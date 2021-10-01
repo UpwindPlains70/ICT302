@@ -3,19 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
-  tags: []
   tags:
+  - Coin
+  - Floor
+  - GameManager
+  - Level4Manager
   - B-Cell
   - Covid-Cell
-  - GameManager
+  - Maze_Layer
   - NP1
   - NP2
+  - CP3
+  - CP2
+  - CP4
   - Center
   - CP1
-  - CP2
-  - CP3
-  - CP4
+  - Bullet
+  - VacuumDestination
+  - VacuumTrigger
+  layers:
   - Default
   - TransparentFX
   - Ignore Raycast
@@ -24,8 +30,8 @@ TagManager:
   - UI
   - 
   - 
-  - Movement
-  - Blocker
+  - 
+  - 
   - 
   - 
   - 

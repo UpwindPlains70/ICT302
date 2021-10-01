@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4744779606698560842}
   - component: {fileID: 4744779606698560853}
   - component: {fileID: 4744779606698560843}
+  - component: {fileID: 4208613024700616972}
   m_Layer: 0
   m_Name: Coronavirus2
   m_TagString: Covid-Cell
@@ -123,3 +124,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ff5e61d5839714f90b837280f5b18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4208613024700616972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555680764595313856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee7b4d90f99a9a43a002476a73f1b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinX: -10
+  MaxX: 10
+  MinY: -10
+  MaxY: 10
+  MinZ: 1.5
+  MaxZ: 1.7
+  rotSpeed: 0.5
+  dimension3: 0
+  speed: 0.01
+  MinX2D: -20
+  MaxX2D: 20
+  MinY2D: -20
+  MaxY2D: 20
+  ChangeDirectionEvery: 3

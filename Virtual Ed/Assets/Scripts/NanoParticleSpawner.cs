@@ -7,8 +7,10 @@ public class NanoParticleSpawner : MonoBehaviour
     float dimX;
     float dimY;
     float dimZ;
+        //Tag of enemy in enemy[] with same index
+    public string[] enemyTags;
     public GameObject[] enemy;
-    public int NanoParticle_Count = 10;
+    public int maxEnemyCount = 10;
     //Reduce covid cell count
     public float positivePenalty = 0.5f;
     //Increase covid cell count
@@ -17,10 +19,8 @@ public class NanoParticleSpawner : MonoBehaviour
     //Assigned by function (increase/decrease percetage for covid cells)
     private float latePenalty = 1f;
 
-    private GameObject[] NP1_List;
-    private GameObject[] NP2_List;
-    private const string NP1_Tag = "NP1";
-    private const string NP2_Tag = "NP2";
+        //General array containing number of enemies on screen
+    private int[] enemyCounter;
 
     private GameManager GMScript;
     private bool setupPhase = true;
@@ -40,6 +40,9 @@ public class NanoParticleSpawner : MonoBehaviour
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
+            //Set size of counter
+        enemyCounter = new int[enemy.Length];
+
         //Assign size of spawner plane
         Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
         dimX = _mesh.bounds.size.x;
@@ -51,8 +54,8 @@ public class NanoParticleSpawner : MonoBehaviour
     void FixedUpdate()
     {
         //Count cells on screen
-        NP1_List = GameObject.FindGameObjectsWithTag(NP1_Tag);
-        NP2_List = GameObject.FindGameObjectsWithTag(NP2_Tag);
+        for (int i = 0; i < enemy.Length; ++i)
+            enemyCounter[i] = GameObject.FindGameObjectsWithTag(enemyTags[i]).Length;
 
         //if (NP1_List.Length == NanoParticle_Count && NP2_List.Length == NanoParticle_Count)
         //    setupPhase = false;
@@ -67,25 +70,14 @@ public class NanoParticleSpawner : MonoBehaviour
     private void generateCells()
     {
         //Populate if not enough
-        while (NP1_List.Length < NanoParticle_Count)
+        for (int i = 0; i < enemyCounter.Length; ++i)
         {
-            SpawnInside(enemy[0]);
-            NP1_List = GameObject.FindGameObjectsWithTag(NP1_Tag);
+            while(enemyCounter[i] < maxEnemyCount)
+            {
+                SpawnInside(enemy[i]);
+                enemyCounter[i] = GameObject.FindGameObjectsWithTag(enemyTags[i]).Length;
+            }
         }
-
-        while (NP2_List.Length < (NanoParticle_Count * latePenalty))
-        {
-            SpawnInside(enemy[1]);
-            NP2_List = GameObject.FindGameObjectsWithTag(NP2_Tag);
-        }
-
-    }
-
-    float calcLatePenalty()
-    {
-        float tmpPenalty = (GMScript.totalTimeTaken() / GMScript.totalGivenTime());
-
-        return tmpPenalty > 0.25f ? tmpPenalty + negativePenalty : tmpPenalty + positivePenalty;
     }
 
     public void SpawnInside(GameObject spawnObject)

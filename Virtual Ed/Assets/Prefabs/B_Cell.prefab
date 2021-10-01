@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 9113581159085526658}
   - component: {fileID: 9113581159085526669}
   - component: {fileID: 7033042028356128849}
+  - component: {fileID: -4960571797471894810}
   m_Layer: 0
   m_Name: B_Cell
   m_TagString: B-Cell
@@ -4863,3 +4864,29 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &-4960571797471894810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113581159085526664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee7b4d90f99a9a43a002476a73f1b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinX: -10
+  MaxX: 10
+  MinY: -10
+  MaxY: 10
+  MinZ: 1.5
+  MaxZ: 1.7
+  rotSpeed: 0.5
+  dimension3: 0
+  speed: 0.01
+  MinX2D: -20
+  MaxX2D: 20
+  MinY2D: -20
+  MaxY2D: 20
+  ChangeDirectionEvery: 3

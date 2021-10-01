@@ -7,7 +7,7 @@ public class Level1Manager : MonoBehaviour
 {
     private float time;
     private float timeTakenForPastLevels;
-    //private int score = 0;
+    public int Score { get; set; }
 
     private GameManager GMScript;
     private Level prevLevel;
@@ -28,7 +28,7 @@ public class Level1Manager : MonoBehaviour
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
-        scoreTxt.text = "Score: " + score;
+        scoreTxt.text = "Score: " + Score;
     }
 
     // Update is called once per frame
@@ -39,24 +39,6 @@ public class Level1Manager : MonoBehaviour
         if (time <= 0)
             GameOver();
     }
-        //Place on weapon collider***************************
-    public int pointsGood;
-    public int pointsBad;
-
-    private int score = 0;
-    public Level1Manager lvlManager;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("GoodParticle"))
-            score += pointsGood;
-        else
-            score -= pointsBad;
-
-
-        lvlManager.scoreTxt.text = "Score: " + score;
-    }
-        //************************************************
 
     public void GameOver()
     {
@@ -66,7 +48,7 @@ public class Level1Manager : MonoBehaviour
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
         //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = score;
+        GMScript.GetLevel(currLevel).Score = Score;
         //update completion time in game manager
         GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
 

@@ -17,9 +17,13 @@ public class Covid_Handler : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {        
-        Destroy(collision.gameObject); //destroy hit by object
-        Destroy(this.gameObject); //destory hit object
+    {
+            //Only prevent clipping for initial spawning
+        if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
+        {
+            Destroy(collision.gameObject); //destroy hit by object
+            Destroy(this.gameObject); //destory hit object
+        }
     }
 
     private void OnParticleCollision(GameObject other)

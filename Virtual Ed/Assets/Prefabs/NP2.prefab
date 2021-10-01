@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: -8672860200363921156}
   - component: {fileID: 4313196514808179889}
   - component: {fileID: 3082817593933099893}
+  - component: {fileID: 5347476872441898458}
   m_Layer: 8
   m_Name: NP2
   m_TagString: NP2
@@ -234,3 +235,16 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5347476872441898458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732322527008994044}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53c6b47877645743a9363ad62d937c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5

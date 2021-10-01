@@ -24,13 +24,15 @@ public class BCell_handle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(collision.gameObject);
-        if (!activated)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            this.GetComponent<ParticleSystem>().Play();
-            this.GetComponent<Animation>().Play();
-            activated = true;
+            Destroy(collision.gameObject);
+            if (!activated)
+            {
+                this.GetComponent<ParticleSystem>().Play();
+                this.GetComponent<Animation>().Play();
+                activated = true;
+            }
         }
-        
     }
 }
