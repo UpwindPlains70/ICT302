@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Level4Manager : MonoBehaviour
 {
-    private int ammo;
+    public int ammo { get; private set; }
     private float time;
     private float timeTakenForPastLevels;
     private int score = 0;
@@ -14,7 +15,12 @@ public class Level4Manager : MonoBehaviour
     private Level prevLevel;
     public int currLevel = 3;
 
-    public Text gameOver;
+    public Canvas gameOverCanvas;
+    public Canvas HUDCanvas;
+    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI finalTime;
+    public TextMeshProUGUI victoryMessage;
+    public TextMeshProUGUI retryMessage;
     public Text timerTxt;
     public Text scoreTxt;
 
@@ -58,11 +64,6 @@ public class Level4Manager : MonoBehaviour
         scoreTxt.text = "Score: " + score;
     }
 
-    public int getAmmo()
-    {
-        return ammo;
-    }
-
     public float getGivenTime()
     {
         return time;
@@ -73,11 +74,12 @@ public class Level4Manager : MonoBehaviour
         Time.timeScale = 0;
         //Destroy all bullets if any
 
-        //Disable in-game UI
-        Debug.Log("Game Over");
+        HUDCanvas.gameObject.SetActive(false);
 
         //Display scoreboard
-        gameOver.gameObject.SetActive(true);
+        gameOverCanvas.gameObject.SetActive(true);
+
+        finalScore.SetText("Final Score\n" + score);
 
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
@@ -85,6 +87,14 @@ public class Level4Manager : MonoBehaviour
         GMScript.GetLevel(currLevel).Score = score;
             //update completion time in game manager
         GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+
+        finalTime.SetText("Time\n" + GMScript.GetLevel(currLevel).CompletionTime);
+        int prevLevelScore = GMScript.GetLevel(currLevel - 1).Score + GMScript.GetLevel(currLevel - 1).Bonus;
+
+        if (score > prevLevelScore / 2)
+            victoryMessage.gameObject.SetActive(true);
+        else
+            retryMessage.gameObject.SetActive(true);
 
         //Save data to server (can bo done in game manager)
         if (GMScript.GameOver == false)

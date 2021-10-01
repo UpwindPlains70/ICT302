@@ -37,7 +37,7 @@ public class JoystickShoot : MonoBehaviour
         //Orient screen in landscape
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
-        ammo = lvl4Manager.getAmmo();
+        ammo = lvl4Manager.ammo;
 
         wsPosY = weapon.position.y;
         wsPosX = weapon.position.x;
@@ -166,6 +166,6 @@ public class JoystickShoot : MonoBehaviour
         Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         --ammo;
 
-        ammoTxt.text = "Ammo: " + ammo;
+        ammoTxt.text = "" + ammo;
     }
 }
