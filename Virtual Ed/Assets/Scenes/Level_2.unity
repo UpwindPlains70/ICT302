@@ -773,8 +773,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: ad21dd1868d57ee4fac8fbd3099953da, type: 3}
 --- !u!4 &1306358027 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3394187243705500890, guid: ad21dd1868d57ee4fac8fbd3099953da,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 1306358026}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381188526
@@ -843,6 +842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958084619099188352, guid: 1de766ae8e8aeb2409175a9ba81c4680,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8462324981148650837, guid: 1de766ae8e8aeb2409175a9ba81c4680,
         type: 3}
