@@ -69,7 +69,7 @@ public class Level2Manager : MonoBehaviour
         if (GMScript.GameOver == false)
         {
             GMScript.GameOver = true;
-            GMScript.addToServer();
+            //GMScript.addToServer();
         }
     }
 

@@ -74,7 +74,7 @@ public class Level3Manager : MonoBehaviour
         if (GMScript.GameOver == false)
         {
             GMScript.GameOver = true;
-            GMScript.addToServer();
+            //GMScript.addToServer();
         }
     }
 
