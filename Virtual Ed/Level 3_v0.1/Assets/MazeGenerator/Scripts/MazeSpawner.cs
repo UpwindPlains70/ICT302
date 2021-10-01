@@ -16,7 +16,7 @@ public class MazeSpawner : MonoBehaviour {
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
 	public GameObject GoalPrefab = null;
-	public GameObject Hole = null;
+	public GameObject BadGoal= null;
 	public int Rows = 5;
 	public int Columns = 5;
 	public float CellWidth = 5;

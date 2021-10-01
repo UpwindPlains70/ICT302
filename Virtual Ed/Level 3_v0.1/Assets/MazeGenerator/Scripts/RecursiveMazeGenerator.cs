@@ -60,9 +60,10 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited){
 				GetMazeCell(row,column).IsGoal = true;
 			}
+			//if there are two moves available add a bad coin
 			if (movesAvailableCount == 2 && !GetMazeCell(row, column).IsVisited)
 			{
-				GetMazeCell(row, column).IsGoal = true;
+				GetMazeCell(row, column).BadGoal = true;
 			}
 			GetMazeCell(row,column).IsVisited = true;
 			//if there are multiple directions available randomly choose a direction based on the range of moves available.
