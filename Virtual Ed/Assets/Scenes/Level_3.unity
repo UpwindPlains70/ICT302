@@ -2906,7 +2906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d713f858a2a10d44bd5cd3aa613425c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currLevel: 0
+  currLevel: 2
   timerTxt: {fileID: 4808325814892480722}
   currScoreTxt: {fileID: 4808325814529069322}
   lvlManager: {fileID: 1497676674}
@@ -4693,6 +4693,7 @@ MonoBehaviour:
     completionTime: 0
     score: 0
     bonus: 5
+  currLevelIndex: 2
   MainMenu: 0
 --- !u!1 &3444394909231722349
 GameObject:

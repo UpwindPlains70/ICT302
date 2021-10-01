@@ -6,8 +6,8 @@ public class ParticleDecrstuctor : MonoBehaviour
 {
     public Level1Manager lvlManager;
 
-    public int pointsGood;
-    public int pointsBad;
+    public int pointsGood = 10;
+    public int pointsBad = 5;
     // Start is called before the first frame update
     void Start()
     {

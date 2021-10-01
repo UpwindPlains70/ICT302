@@ -1597,6 +1597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2600859734345708691}
+  - component: {fileID: 2600859734345708719}
   m_Layer: 0
   m_Name: Level2Manager
   m_TagString: Level4Manager
@@ -1604,6 +1605,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2600859734345708719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2600859734345708718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1652fd116ac4574b915e3b36c321b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currLevel: 1
+  timerTxt: {fileID: 2756916228313231702}
+  scoreTxt: {fileID: 2756916227946834062}
 --- !u!114 &2756916226966855366
 MonoBehaviour:
   m_ObjectHideFlags: 0

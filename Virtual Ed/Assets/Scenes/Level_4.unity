@@ -332,6 +332,7 @@ MonoBehaviour:
     completionTime: 0
     score: 0
     bonus: 5
+  currLevelIndex: 0
   MainMenu: 0
 --- !u!4 &228081486
 Transform:

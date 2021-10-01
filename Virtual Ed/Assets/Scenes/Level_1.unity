@@ -186,12 +186,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - _sceneName: Level_1
-    timeLimit: 120
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 0
   - _sceneName: Level_2
-    timeLimit: 60
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 5
@@ -5885,8 +5885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currLevel: 0
-  timerTxt: {fileID: 1373465225072166499}
-  scoreTxt: {fileID: 1373465224029924625}
+  timerTxt: {fileID: 2756916227763142728}
+  scoreTxt: {fileID: 2756916228127480208}
 --- !u!33 &7859623873489664895
 MeshFilter:
   m_ObjectHideFlags: 0

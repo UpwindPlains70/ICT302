@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         set { gameOver = value; }
     }
 
-    private int currLevelIndex = 0;
+    public int currLevelIndex = 0;
     private float currLevelTime;
     private float time;
     private bool loading = false;
@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
 
     public Level GetLevel(int n)
     {
-        currLevelIndex = n;
         return levels[n];
     }
 

@@ -7244,17 +7244,17 @@ MonoBehaviour:
     score: 0
     bonus: 0
   - _sceneName: Level_2
-    timeLimit: 90
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 5
   - _sceneName: Level_3
-    timeLimit: 90
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 5
   - _sceneName: Level_4
-    timeLimit: 90
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 5
