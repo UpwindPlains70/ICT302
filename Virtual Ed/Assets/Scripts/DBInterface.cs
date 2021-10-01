@@ -13,6 +13,8 @@ public class DBInterface : MonoBehaviour
     public string Password;
     public ulong GameID;
     public string StudentNumber;
+    public GameManager GMScript;
+    //Place at top (replaces GameID -> GMScript.GameID & StudentNumber-> GMScript.StudentNumber)
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,7 @@ public class DBInterface : MonoBehaviour
     // everything needed to login into the MySQL database ^
 
 
- 
+
     // User enters student number which starts a new row into the mysql database, assigning a sequential 'GameID' and the entered 'StudentNumber', both of these values get assigned as GLOBAL VARIABLES for other scenes to use, to ensure correct records are being updated
     public void InsertStudentNumber(string StudentNumber)
     {
@@ -104,7 +106,7 @@ public class DBInterface : MonoBehaviour
 
 
 
-    
+
     // FinalScore and FinalTimeTaken to be displayed at the main menu
     public List<System.Tuple<int, int>> DisplayFinalScores(string StudentNumber)
     {
@@ -150,7 +152,8 @@ public class DBInterface : MonoBehaviour
     }
 
 
-    
+
+
 
 
 
@@ -158,20 +161,51 @@ public class DBInterface : MonoBehaviour
 
 
     // ScoreLvlOne value is passed into this from another script/person in da group, HOPEFULLY which updates the existing rows 'ScoreLvlOne' which has the correct game ID and student number
-    public void ReceiveScoreLvlOne(string ScoreLvlOne, ulong GameID, string StudentNumber)
+    //UPDATE: Call this function in GameManagers addToServer()
+    //UPDATE: add "private DBInterface DBScript;" to GameManager
+    //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
+    public void ReceiveScoreLvlOne()
     {
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
             try
             {
                 connection.Open();
-                
+
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND StudentNumber = @StudentNumber";
-                command.Parameters.AddWithValue("@ScoreLvlOne", ScoreLvlOne);
                 command.Parameters.AddWithValue("@GameID", GameID);
                 command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
-                
+
+                //Set final score values (lvl 4 vals for now)
+                command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
+                command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.GetLevel(3).Score);
+
+                //Loop through all levels
+                for (int i = 0; i < GMScript.getTotalLevels(); ++i)
+                {
+                    //Based on level assign values to database accordingly (level list is ZERO based)
+                    switch (i)
+                    {
+                        case 0:
+                            command.Parameters.AddWithValue("@ScoreLvlOne", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlOne", GMScript.GetLevel(i).Score);
+                            break;
+                        case 1:
+                            command.Parameters.AddWithValue("@ScoreLvlTwo", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlTwo", GMScript.GetLevel(i).Score);
+                            break;
+                        case 2:
+                            command.Parameters.AddWithValue("@ScoreLvlThree", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlThree", GMScript.GetLevel(i).Score);
+                            break;
+                        case 3:
+                            command.Parameters.AddWithValue("@ScoreLvlFour", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlFour", GMScript.GetLevel(i).Score);
+                            break;
+                    }
+                }
+
                 command.ExecuteNonQuery();
 
                 connection.Close();
@@ -203,52 +237,54 @@ public class DBInterface : MonoBehaviour
 
 
 
-    // not being used
-    public List<System.Tuple<string, int>> RetrieveTopFiveFinalScores()
-    {
-        List<System.Tuple<string, int>> topFive = new List<System.Tuple<string, int>>();
-
-        using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
+        // not being used
+        /*
+        public List<System.Tuple<string, int>> RetrieveTopFiveFinalScores()
         {
-            try
+            List<System.Tuple<string, int>> topFive = new List<System.Tuple<string, int>>();
+
+            using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
             {
-                connection.Open();
-
-                MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT StudentNumber, FinalScore FROM scoring_details ORDER BY FinalScore DESC LIMIT 5";
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
+                try
                 {
-                    var ordinal = reader.GetOrdinal("StudentNumber");
-                    string StudentNumber = reader.GetString(ordinal);
-                    ordinal = reader.GetOrdinal("FinalScore");
-                    int FinalScore = reader.GetInt32(ordinal);
-                    System.Tuple<string, int> entry = new System.Tuple<string, int>(StudentNumber, FinalScore);
-                    topFive.Add(entry);
+                    connection.Open();
+
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "SELECT StudentNumber, FinalScore FROM scoring_details ORDER BY FinalScore DESC LIMIT 5";
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var ordinal = reader.GetOrdinal("StudentNumber");
+                        string StudentNumber = reader.GetString(ordinal);
+                        ordinal = reader.GetOrdinal("FinalScore");
+                        int FinalScore = reader.GetInt32(ordinal);
+                        System.Tuple<string, int> entry = new System.Tuple<string, int>(StudentNumber, FinalScore);
+                        topFive.Add(entry);
+                    }
+
+                    connection.Close();
                 }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError("DBInterface: Could not retrieve the top five highscores! " + System.Environment.NewLine + ex.Message);
+                }
+            }
 
-                connection.Close();
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError("DBInterface: Could not retrieve the top five highscores! " + System.Environment.NewLine + ex.Message);
-            }
+            return topFive;
         }
+        */
 
-        return topFive;
-    }
+
+
+
+
+
+
+
+
+
     
-
-
-
-
-
-
-
-
-
-
 }
 
 

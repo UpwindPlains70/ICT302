@@ -8,9 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public ulong StudentNumber { get; set; }
+    public string StudentNumber { get; set; }
 
     public ulong GameID { get; set; }
+
+    public int getTotalLevels() { return levels.Capacity; }
+
+    private DBInterface DBScript;
 
     private static GameManager comp;
     [SerializeField]
@@ -56,6 +60,10 @@ public class GameManager : MonoBehaviour
             if (comp != this)
                 Destroy(gameObject);
         }
+
+        DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>();
+
+
     }
 
     private void Update()
@@ -78,6 +86,7 @@ public class GameManager : MonoBehaviour
     public void addToServer()
     {
         //add all level information to server
+        DBScript.ReceiveScoreLvlOne();
         Debug.Log("Level data Saved");
     }
 
