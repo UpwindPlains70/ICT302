@@ -21,8 +21,8 @@ public class Level4Manager : MonoBehaviour
     public TextMeshProUGUI finalTime;
     public TextMeshProUGUI victoryMessage;
     public TextMeshProUGUI retryMessage;
-    public Text timerTxt;
-    public Text scoreTxt;
+    public TextMeshProUGUI timerTxt;
+    public TextMeshProUGUI scoreTxt;
 
     // Start is called before the first frame update
     void Awake()

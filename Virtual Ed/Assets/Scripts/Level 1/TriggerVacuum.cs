@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerVacuum : MonoBehaviour
 {
+    private bool active = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +14,18 @@ public class TriggerVacuum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            active = true;
+        }
+        else
+            active = false;
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        //if(active)
         collision.gameObject.GetComponent<Vacuum>().enabled = true;            
     }
 

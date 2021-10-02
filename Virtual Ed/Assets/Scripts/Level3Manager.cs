@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Level3Manager : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class Level3Manager : MonoBehaviour
     private Level prevLevel;
     public int currLevel = 0;
 
-    public Text timerTxt;
-    public Text currScoreTxt;
+    public TextMeshProUGUI timerTxt;
+    public TextMeshProUGUI currScoreTxt;
 
     // Start is called before the first frame update
     void Awake()
