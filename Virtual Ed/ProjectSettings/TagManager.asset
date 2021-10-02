@@ -21,6 +21,12 @@ TagManager:
   - Bullet
   - VacuumDestination
   - VacuumTrigger
+  - aminoAcid
+  - mRNA
+  - tRNA
+  - mRNA_Loc
+  - tRNA_Loc
+  - aminoAcid_Loc
   layers:
   - Default
   - TransparentFX

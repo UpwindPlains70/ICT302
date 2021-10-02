@@ -5,7 +5,8 @@ using UnityEngine;
 public class SnapObject : MonoBehaviour
 {
     //Reference the snap zone collider we'll be using
-    public GameObject SnapLocation;
+    public string snapLocationTag;
+    private GameObject SnapLocation;
 
     //Referemce the game object that the snapped objects will become a part of
     public GameObject rocket;
@@ -18,6 +19,11 @@ public class SnapObject : MonoBehaviour
 
     //boolean variable used to determine if the object is currently being held by the player
     private bool grabbed;
+
+    private void Start()
+    {
+        SnapLocation = GameObject.FindGameObjectWithTag(snapLocationTag);
+    }
 
     //Update is called once per frame
     void Update()

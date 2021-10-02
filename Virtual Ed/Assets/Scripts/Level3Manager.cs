@@ -85,7 +85,7 @@ public class Level3Manager : MonoBehaviour
         int minutes = d / (60 * 100);
         int seconds = (d % (60 * 100)) / 100;
 
-        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerTxt.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
         time -= Time.deltaTime;
     }

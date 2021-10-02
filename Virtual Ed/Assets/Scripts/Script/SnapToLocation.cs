@@ -14,25 +14,30 @@ public class SnapToLocation : MonoBehaviour
     public bool Snapped;
 
     //Set the specific part we want to snap to this location
-    public GameObject RocketPart;
+    public string rocketTag;
     //Reference another Object we can use to set rotation
     public GameObject SnapRotationReference;
+    private GameObject snappedObject;
+
+    public event System.Action<SnapToLocation> OnSnapped;
 
     //Detects when the RocketPart game object has entered the snap zone radius
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == RocketPart.name)
+        if (other.gameObject.CompareTag(rocketTag))
         {
             insideSnapZone = true;
+            snappedObject = other.gameObject;
         }
     }
 
     //Detects when the RocketPart game object has left the snap zone redius
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == RocketPart.name)
+        if (other.gameObject.CompareTag(rocketTag))
         {
             insideSnapZone = false;
+            snappedObject = null;
         }
     }
 
@@ -43,17 +48,30 @@ public class SnapToLocation : MonoBehaviour
     {
         if (grabbed == false && insideSnapZone == true)
         {
-            RocketPart.gameObject.transform.position = SnapRotationReference.transform.position;
-            RocketPart.gameObject.transform.rotation = SnapRotationReference.transform.rotation;
+            snappedObject.gameObject.transform.position = SnapRotationReference.transform.position;
+            snappedObject.gameObject.transform.rotation = SnapRotationReference.transform.rotation;
             Snapped = true;
+                //prevent snapped objects from moving
+            snappedObject.GetComponent<OVRGrabbable>().enabled = false;
+            snappedObject.GetComponent<Orbit>().enabled = false;
+
+            OnSnapped?.Invoke(this);
         }
+    }
+
+    public void DestroySnappedObject()
+    {
+        if (!Snapped)
+            return;
+
+        Destroy(snappedObject.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
         //Set grabbed to equal the boolean value "isGrabbed" from the OVRGrabble script
-        grabbed = RocketPart.GetComponent<OVRGrabbable>().isGrabbed;
+        grabbed = snappedObject.GetComponent<OVRGrabbable>().isGrabbed;
         //Call our snap object script
         SnapObject();
     }

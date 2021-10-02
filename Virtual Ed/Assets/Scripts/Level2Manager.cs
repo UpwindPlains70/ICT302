@@ -6,6 +6,14 @@ using TMPro;
 
 public class Level2Manager : MonoBehaviour
 {
+    [SerializeField]
+    SnapToLocation redSnap;
+
+    [SerializeField]
+    SnapToLocation greenSnap;
+
+    [SerializeField]
+    SnapToLocation blueSnap;
 
     private float time;
     private float timeTakenForPastLevels;
@@ -32,7 +40,8 @@ public class Level2Manager : MonoBehaviour
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
             //Max number of proteins to build
-        maxScore = GMScript.GetLevel(0).Score + GMScript.GetLevel(0).Score;
+        maxScore = (GMScript.GetLevel(0).Score / 5) + GMScript.GetLevel(0).Bonus;
+        scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
 
     // Update is called once per frame
@@ -42,17 +51,38 @@ public class Level2Manager : MonoBehaviour
 
         if (time <= 0)
             GameOver();
+        OnSnapped();
     }
 
-    //Spawn protein components (on Spawner), fixed amount available at all times???
-        //CODE...
-
-    void OnProtienFormed() //Moved to OnProtienFormed func
+    /*private void OnEnable()
     {
-        score++;
-        scoreTxt.text = "Score: " + score + " / " + maxScore;
+        redSnap.OnSnapped += OnSnapped;
+        greenSnap.OnSnapped += OnSnapped;
+        blueSnap.OnSnapped += OnSnapped;
     }
 
+    private void OnDisable()
+    {
+        redSnap.OnSnapped -= OnSnapped;
+        greenSnap.OnSnapped -= OnSnapped;
+        blueSnap.OnSnapped -= OnSnapped;
+    }*/
+
+    private void OnSnapped()
+    {
+        if (redSnap.Snapped && greenSnap.Snapped && blueSnap.Snapped)
+        {
+            //Debug.Log("enter");
+            ++score;
+            scoreTxt.text = "Score: " + score + " / " + maxScore;
+            
+            redSnap.DestroySnappedObject();
+            greenSnap.DestroySnappedObject();
+            blueSnap.DestroySnappedObject();
+
+            redSnap.Snapped = greenSnap.Snapped = blueSnap.Snapped = false;
+        }
+    }
 
     public void GameOver()
     {
@@ -80,7 +110,7 @@ public class Level2Manager : MonoBehaviour
         int minutes = d / (60 * 100);
         int seconds = (d % (60 * 100)) / 100;
 
-        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerTxt.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
         time -= Time.deltaTime;
     }
