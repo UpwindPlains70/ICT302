@@ -29,7 +29,7 @@ public class SnapObject : MonoBehaviour
     void Update()
     {
         //Set grabbed to equal the boolean value "isGrabbed" from the OVRGrabbable script
-        grabbed = GetComponent<OVRGrabbable>().isGrabbed;
+        //grabbed = GetComponent<>().isGrabbed;
 
         //Set objectSnapped equal to the Snapped boolean from SnapToLocation
         objectSnapped = SnapLocation.GetComponent<SnapToLocation>().Snapped;
@@ -45,7 +45,7 @@ public class SnapObject : MonoBehaviour
         }
 
         //Makes sure that the object can still be grabbed by the OVRGrabber script. We get bugs without this.
-        if (objectSnapped == false && grabbed == false)
+        if (objectSnapped == false)
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }

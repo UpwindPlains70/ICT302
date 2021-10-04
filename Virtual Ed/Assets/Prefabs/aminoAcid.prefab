@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8828270448601348983}
   - component: {fileID: 2730582580907740369}
   - component: {fileID: 6053025014029262285}
-  - component: {fileID: 2210097943274591411}
   - component: {fileID: 2542807726122418481}
   - component: {fileID: 4967974054098001747}
+  - component: {fileID: -8978838655867681535}
   m_Layer: 0
   m_Name: aminoAcid
   m_TagString: aminoAcid
@@ -120,23 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2210097943274591411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7026931821130128034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
 --- !u!65 &2542807726122418481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,3 +159,21 @@ MonoBehaviour:
   MinY2D: -20
   MaxY2D: 20
   ChangeDirectionEvery: 3
+--- !u!114 &-8978838655867681535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026931821130128034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
+  m_materialColorField: 

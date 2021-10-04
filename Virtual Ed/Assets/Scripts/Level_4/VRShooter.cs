@@ -24,7 +24,7 @@ public class VRShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             if (ammo > 0)
             {

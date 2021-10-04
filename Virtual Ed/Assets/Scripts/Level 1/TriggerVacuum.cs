@@ -23,15 +23,14 @@ public class TriggerVacuum : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //if(active)
-        collision.gameObject.GetComponent<Vacuum>().enabled = true;            
+        other.gameObject.GetComponent<Vacuum>().enabled = true;            
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        collision.gameObject.GetComponent<Vacuum>().enabled = false;
+        other.gameObject.GetComponent<Vacuum>().enabled = false;
     }
 }
 

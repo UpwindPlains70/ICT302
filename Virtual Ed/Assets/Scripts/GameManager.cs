@@ -72,8 +72,7 @@ public class GameManager : MonoBehaviour
         { 
             StartCoroutine(LoadFirstLevelAsyncScene());
         }
-
-        if (currScene.buildIndex != 0)
+        else
         {
             time += Time.deltaTime;
             if (time >= (currLevelTime / 3) && !loading)
