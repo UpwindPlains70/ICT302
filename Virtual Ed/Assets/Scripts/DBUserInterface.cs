@@ -2,10 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class DBUserInterface : MonoBehaviour
 {
-    public InputField StudentNumber;
+    public TextMeshPro StudentNumber;
     public string StudentNumberDisplayText;
     //public InputField Highscore;
 

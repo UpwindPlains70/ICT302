@@ -62,10 +62,6 @@ public class DBInterface : MonoBehaviour
         }
     }
 
-
-
-
-
     // After student number is entered, the GameID, StudentNumber and DateAndTime is displayed with a welcome screen
     public List<System.Tuple<ulong, string, DateTime>> DisplayGameDataFromDB()
     {

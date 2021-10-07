@@ -27,6 +27,8 @@ TagManager:
   - mRNA_Loc
   - tRNA_Loc
   - aminoAcid_Loc
+  - Key
+  - Pointer
   layers:
   - Default
   - TransparentFX
@@ -38,7 +40,7 @@ TagManager:
   - 
   - Background
   - Grabbable
-  - 
+  - Snap
   - 
   - 
   - 
