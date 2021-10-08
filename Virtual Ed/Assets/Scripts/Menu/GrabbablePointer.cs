@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomLaserPointer : MonoBehaviour
+public class GrabbablePointer : MonoBehaviour
 {
-
-    public static CustomLaserPointer instance;
+    public static GrabbablePointer instance;
 
     public Transform rightHandTransform;
     public Transform leftHandTransform;
@@ -19,13 +18,13 @@ public class CustomLaserPointer : MonoBehaviour
         instance = this;
     }
 
-   public bool LaserHit()
+    public bool LaserHit()
     {
         //ray is cast that follows laser's line renderer, Hit is from collision on ray
-        if (Physics.Raycast (rightHandTransform.transform.position, rightHandTransform.forward, out hit))
+        if (Physics.Raycast(rightHandTransform.transform.position, rightHandTransform.forward, out hit))
         {
             //if laser hits the right layer then true
-            if(hit.collider.gameObject.tag == "Maze_Layer")
+            if (hit.collider.gameObject.tag == "Grabbable")
             {
                 return true;
             }
@@ -35,7 +34,7 @@ public class CustomLaserPointer : MonoBehaviour
         if (Physics.Raycast(leftHandTransform.transform.position, leftHandTransform.forward, out hit))
         {
             //if laser hits the right layer then true
-            if (hit.collider.gameObject.tag == "Maze_Layer")
+            if (hit.collider.gameObject.tag == "Grabbable")
             {
                 return true;
             }

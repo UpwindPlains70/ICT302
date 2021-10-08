@@ -222,6 +222,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 868674060}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &243334890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243334892}
+  - component: {fileID: 243334891}
+  m_Layer: 0
+  m_Name: laser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &243334891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243334890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086c00d7c616b454180e2c2ac58bab49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 0}
+  mRNA: {fileID: 0}
+  tRNA: {fileID: 0}
+  aminoAcid: {fileID: 0}
+  speed: 0
+  post: {fileID: 0}
+--- !u!4 &243334892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243334890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9606664, y: 0.88511145, z: -0.6072037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252113057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1564,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
+--- !u!1 &1922156895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922156897}
+  - component: {fileID: 1922156896}
+  m_Layer: 0
+  m_Name: Grabbablepointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922156896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922156895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eca7a8cf1df24445be9a26b8db36382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandTransform: {fileID: 126133678403490686}
+  leftHandTransform: {fileID: 126133678403486480}
+--- !u!4 &1922156897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922156895}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4276664, y: -3.2098885, z: -6.7412033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 126133678479700613}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &24764446380302870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,6 +2331,7 @@ Transform:
   - {fileID: 126133678403575412}
   - {fileID: 126133680033158224}
   - {fileID: 1907223766633014220}
+  - {fileID: 1922156897}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4712,7 +4807,7 @@ GameObject:
   - component: {fileID: 1991391068628816337}
   - component: {fileID: 3174206734148214388}
   - component: {fileID: 858493717921557182}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mRNA
   m_TagString: mRNA
   m_Icon: {fileID: 0}
@@ -9928,7 +10023,7 @@ GameObject:
   - component: {fileID: 7389190626229446204}
   - component: {fileID: 5705807702921175970}
   - component: {fileID: 6410612931479509411}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: tRNA
   m_TagString: tRNA
   m_Icon: {fileID: 0}
@@ -12587,7 +12682,7 @@ GameObject:
   - component: {fileID: 3923826647526831449}
   - component: {fileID: 133947036210002684}
   - component: {fileID: 2755947160512204342}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: aminoAcid
   m_TagString: aminoAcid
   m_Icon: {fileID: 0}
