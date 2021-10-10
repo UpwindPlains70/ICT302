@@ -57,7 +57,7 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 				GetMazeCell(row,column).WallBack = true;
 			}
 			//if there are no moves available directions place a goal 
-			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited){
+			if(movesAvailableCount == 1 && !GetMazeCell(row,column).IsVisited){
 				GetMazeCell(row,column).IsGoal = true;
 			}
 			//if there are two moves available add a bad coin
