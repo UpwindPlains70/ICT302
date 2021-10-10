@@ -7,27 +7,29 @@ using TMPro;
 public class Level1Manager : MonoBehaviour
 {
     private float time;
-    private float timeTakenForPastLevels;
     public int Score { get; set; }
 
     private GameManager GMScript;
-    private Level prevLevel;
     public int currLevel = 0;
 
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI scoreTxt;
 
+    public GameObject HUD;
+    //Game over variables
+    public GameObject gameOver;
+    public int goodScore = 100;
+    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI goodMsg;
+    public TextMeshProUGUI badMsg;
+
     // Start is called before the first frame update
     void Awake()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        //level 3 & 4 (zero base)
-        prevLevel = GMScript.GetLevel(2);
 
         //Get level time limit
         time = GMScript.GetLevel(currLevel).TimeLimit;
-        //Get time taken to reach current level
-        timeTakenForPastLevels = GMScript.totalTimeTaken();
 
         scoreTxt.text = "Score: " + Score;
     }
@@ -36,15 +38,26 @@ public class Level1Manager : MonoBehaviour
     void FixedUpdate()
     {
         updateTimer();
-     
+
         if (time <= 0)
             GameOver();
     }
 
     public void GameOver()
     {
+        Time.timeScale = 0;
+
+        HUD.SetActive(false);
+
         //Disable in-game UI
-        Debug.Log("Level Over");
+        gameOver.SetActive(true);
+
+        finalScore.SetText("Final Score\n" + Score);
+
+        if (Score > goodScore)
+            goodMsg.gameObject.SetActive(true);
+        else
+            badMsg.gameObject.SetActive(true);
 
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;

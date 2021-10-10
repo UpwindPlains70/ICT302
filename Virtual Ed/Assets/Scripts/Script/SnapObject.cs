@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OculusSampleFramework;
 
 public class SnapObject : MonoBehaviour
 {
@@ -18,18 +19,28 @@ public class SnapObject : MonoBehaviour
     private bool objectSnapped;
 
     //boolean variable used to determine if the object is currently being held by the player
-    private bool grabbed;
+    private bool grabbed = false;
 
-    private void Start()
+    private DistanceGrabbable myDistGrabbable;
+    private Rigidbody myRBody;
+    private Orbit myOrbit;
+
+    private void Awake()
     {
         SnapLocation = GameObject.FindGameObjectWithTag(snapLocationTag);
+        myDistGrabbable = GetComponent<DistanceGrabbable>();
+        myRBody = GetComponent<Rigidbody>();
+        myOrbit = GetComponent<Orbit>();
     }
 
     //Update is called once per frame
     void Update()
     {
         //Set grabbed to equal the boolean value "isGrabbed" from the OVRGrabbable script
-        //grabbed = GetComponent<>().isGrabbed;
+        if (!grabbed)
+            grabbed = myDistGrabbable.isGrabbed;
+        else
+            myOrbit.enabled = false;
 
         //Set objectSnapped equal to the Snapped boolean from SnapToLocation
         objectSnapped = SnapLocation.GetComponent<SnapToLocation>().Snapped;
@@ -48,6 +59,20 @@ public class SnapObject : MonoBehaviour
         if (objectSnapped == false)
         {
             GetComponent<Rigidbody>().isKinematic = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (myRBody.velocity.magnitude < 0.2f)
+        { 
+            if (grabbed && !myDistGrabbable.isGrabbed && !isSnapped)
+                Destroy(gameObject);
+        }
+        else
+        {
+            grabbed = false;
+            myOrbit.enabled = true;
         }
     }
 }

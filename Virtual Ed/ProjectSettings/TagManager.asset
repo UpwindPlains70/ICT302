@@ -29,6 +29,7 @@ TagManager:
   - aminoAcid_Loc
   - Key
   - Pointer
+  - Destructor
   layers:
   - Default
   - TransparentFX
@@ -41,7 +42,7 @@ TagManager:
   - Background
   - Grabbable
   - Snap
-  - 
+  - Near
   - 
   - 
   - 

@@ -16,6 +16,7 @@ public class Level2Manager : MonoBehaviour
     SnapToLocation blueSnap;
 
     private float time;
+    private float timeGiven;
     private float timeTakenForPastLevels;
     private int score = 0;
     private int maxScore = 0;
@@ -27,6 +28,16 @@ public class Level2Manager : MonoBehaviour
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI scoreTxt;
 
+
+    public GameObject HUD;
+    //Game over variables
+    public GameObject gameOver;
+    public int goodScore = 100;
+    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI finalTime;
+    public TextMeshProUGUI goodMsg;
+    public TextMeshProUGUI badMsg;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,22 +46,23 @@ public class Level2Manager : MonoBehaviour
         prevLevel = GMScript.GetLevel(2);
 
         //Get level time limit
-        time = GMScript.GetLevel(currLevel).TimeLimit;
+        timeGiven = time = GMScript.GetLevel(currLevel).TimeLimit;
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
             //Max number of proteins to build
-        maxScore = (GMScript.GetLevel(0).Score / 5) + GMScript.GetLevel(0).Bonus;
+        maxScore = (GMScript.GetLevel(0).Score / 10) + GMScript.GetLevel(0).Bonus;
         scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         updateTimer();
 
-        if (time <= 0)
+        if (time <= 0 || score == maxScore)
             GameOver();
+
         OnSnapped();
     }
 
@@ -86,8 +98,25 @@ public class Level2Manager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0;
+
         //Disable in-game UI
-        Debug.Log("Level Over");
+        HUD.SetActive(false);
+
+        gameOver.SetActive(true);
+
+        finalScore.SetText("Final Score\n" + score);
+            //Final time for level
+        int d;
+        if (time <= 0)
+            d = (int)(timeGiven * 100.0f);
+        else
+            d = (int)(time - timeGiven * 100.0f);
+
+        int minutes = d / (60 * 100);
+        int seconds = (d % (60 * 100)) / 100;
+
+        finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;

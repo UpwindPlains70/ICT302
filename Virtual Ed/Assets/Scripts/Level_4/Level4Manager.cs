@@ -87,8 +87,14 @@ public class Level4Manager : MonoBehaviour
         GMScript.GetLevel(currLevel).Score = score;
             //update completion time in game manager
         GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        
+        int d = (int)(GMScript.GetLevel(currLevel).CompletionTime * 100.0f);
 
-        finalTime.SetText("Time\n" + GMScript.GetLevel(currLevel).CompletionTime);
+        int minutes = d / (60 * 100);
+        int seconds = (d % (60 * 100)) / 100;
+
+        finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+
         int prevLevelScore = GMScript.GetLevel(currLevel - 1).Score + GMScript.GetLevel(currLevel - 1).Bonus;
 
         if (score > prevLevelScore / 2)

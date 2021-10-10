@@ -27,6 +27,10 @@ public class ParticleDecrstuctor : MonoBehaviour
         else
             lvlManager.Score -= pointsBad;
 
+            //Prevent negative score
+        if (lvlManager.Score < 0)
+            lvlManager.Score = 0;
+
         lvlManager.scoreTxt.text = "Score: " + lvlManager.Score;
 
 

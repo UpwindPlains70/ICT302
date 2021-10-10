@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 1353421700496451559}
   - component: {fileID: 911099317536991155}
   - component: {fileID: -592343420396546948}
-  - component: {fileID: 760168587086816813}
-  - component: {fileID: -3125546803553312497}
   m_Layer: 9
   m_Name: mRNA
   m_TagString: mRNA
@@ -179,32 +177,3 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
   m_materialColorField: 
---- !u!114 &760168587086816813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097964541675274455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7fb7ab99944454da1d6871b48895bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-3125546803553312497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097964541675274455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []

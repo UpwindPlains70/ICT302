@@ -5,9 +5,6 @@ using OculusSampleFramework;
 
 public class SnapToLocation : MonoBehaviour
 {
-    //boolean variable used to determine if the object is currentl being held by the player
-    private bool grabbed;
-
     //Returns true when the object is within the SnapZone radius
     private bool insideSnapZone;
 
@@ -25,7 +22,7 @@ public class SnapToLocation : MonoBehaviour
     //Detects when the RocketPart game object has entered the snap zone radius
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger enter: " + other.gameObject.name);
+        //Debug.Log("trigger enter: " + other.gameObject.name);
         if (other.gameObject.CompareTag(rocketTag))
         {
             insideSnapZone = true;
@@ -54,11 +51,10 @@ public class SnapToLocation : MonoBehaviour
             snappedObject.gameObject.transform.rotation = SnapRotationReference.transform.rotation;
             Snapped = true;
                 //prevent snapped objects from moving
-            snappedObject.GetComponent<DistanceGrabbable>().enabled = false;
             snappedObject.GetComponent<Orbit>().enabled = false;
             snappedObject.GetComponent<Collider>().enabled = false;
 
-            OnSnapped?.Invoke(this);
+            //OnSnapped?.Invoke(this);
         }
     }
 
