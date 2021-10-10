@@ -111,12 +111,17 @@ public class Level2Manager : MonoBehaviour
         if (time <= 0)
             d = (int)(timeGiven * 100.0f);
         else
-            d = (int)(time - timeGiven * 100.0f);
+            d = (int)((timeGiven - time) * 100.0f);
 
         int minutes = d / (60 * 100);
         int seconds = (d % (60 * 100)) / 100;
 
         finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+
+        if (score == maxScore)
+            goodMsg.gameObject.SetActive(true);
+        else
+            badMsg.gameObject.SetActive(true);
 
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;

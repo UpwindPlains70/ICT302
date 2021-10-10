@@ -52,7 +52,7 @@ public class SnapToLocation : MonoBehaviour
             Snapped = true;
                 //prevent snapped objects from moving
             snappedObject.GetComponent<Orbit>().enabled = false;
-            snappedObject.GetComponent<Collider>().enabled = false;
+            //snappedObject.GetComponent<Collider>().enabled = false;
 
             //OnSnapped?.Invoke(this);
         }

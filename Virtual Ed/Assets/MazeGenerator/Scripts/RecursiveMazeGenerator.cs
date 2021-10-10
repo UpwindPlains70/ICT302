@@ -6,6 +6,9 @@ using System.Collections;
 //Use carefully for large mazes.
 //</summary>
 public class RecursiveMazeGenerator : BasicMazeGenerator {
+		
+		//Ensures only one goal object is created
+	bool goalSet = false;
 
 	public RecursiveMazeGenerator(int rows, int columns):base(rows,columns){
 
@@ -56,9 +59,10 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 			}else if(!GetMazeCell(row,column).IsVisited && moveMade != Direction.Front){
 				GetMazeCell(row,column).WallBack = true;
 			}
-			//if there are no moves available directions place a goal 
-			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited){
+			//if there are no moves available directions & a goal is not placed, place a goal 
+			if(movesAvailableCount == 0 && !GetMazeCell(row,column).IsVisited && !goalSet){
 				GetMazeCell(row,column).IsGoal = true;
+				goalSet = true; //Sets unique goal
 			}
 			//if there are two moves available add a bad coin
 			if (movesAvailableCount == 2 && !GetMazeCell(row, column).IsVisited)

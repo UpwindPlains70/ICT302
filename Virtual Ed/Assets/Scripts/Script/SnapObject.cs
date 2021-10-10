@@ -38,10 +38,10 @@ public class SnapObject : MonoBehaviour
     {
         //Set grabbed to equal the boolean value "isGrabbed" from the OVRGrabbable script
         if (!grabbed)
+        {
             grabbed = myDistGrabbable.isGrabbed;
-        else
-            myOrbit.enabled = false;
-
+            myOrbit.enabled = !myDistGrabbable.isGrabbed;
+        }
         //Set objectSnapped equal to the Snapped boolean from SnapToLocation
         objectSnapped = SnapLocation.GetComponent<SnapToLocation>().Snapped;
 
@@ -56,10 +56,10 @@ public class SnapObject : MonoBehaviour
         }
 
         //Makes sure that the object can still be grabbed by the OVRGrabber script. We get bugs without this.
-        if (objectSnapped == false)
+        /*if (objectSnapped == false)
         {
             GetComponent<Rigidbody>().isKinematic = false;
-        }
+        }*/
     }
 
     private void OnTriggerStay(Collider other)
@@ -70,9 +70,6 @@ public class SnapObject : MonoBehaviour
                 Destroy(gameObject);
         }
         else
-        {
             grabbed = false;
-            myOrbit.enabled = true;
-        }
     }
 }
