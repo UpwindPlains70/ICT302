@@ -9330,6 +9330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
+  HUD_UI: {fileID: 0}
 --- !u!114 &1578747279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10512,7 +10513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d4550ad4f653942834d8ee8b387941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: 10.51.33.8
+  Server: 13.73.103.131
   Database: sys
   UserID: Remote_ICT302
   Password: murdochuniversity
@@ -13490,7 +13491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d4550ad4f653942834d8ee8b387941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: 10.51.33.8
+  Server: 13.73.103.131
   Database: sys
   UserID: Remote_ICT302
   Password: murdochuniversity

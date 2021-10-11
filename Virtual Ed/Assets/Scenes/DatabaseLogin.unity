@@ -801,12 +801,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d4550ad4f653942834d8ee8b387941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: 10.51.33.8
+  Server: 13.73.103.131
   Database: sys
   UserID: Remote_ICT302
   Password: murdochuniversity
   GameID: 0
   StudentNumber: 
+  GMScript: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0e881accc47644fbd23314cc7e854b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StudentNumber: {fileID: 1760778947}
+  StudentNumber: {fileID: 0}
   StudentNumberDisplayText: 
   PlayerNames:
   - {fileID: 1537482563}
