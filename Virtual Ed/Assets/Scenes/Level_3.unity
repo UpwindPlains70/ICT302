@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  stopRange: 1
+  stopRange: 5
 --- !u!4 &803019549
 Transform:
   m_ObjectHideFlags: 0
