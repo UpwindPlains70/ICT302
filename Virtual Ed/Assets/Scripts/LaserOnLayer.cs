@@ -18,14 +18,14 @@ public class LaserOnLayer : MonoBehaviour
     void Awake()
     {
         //move ball position
-    
+    layer = GameObject.FindGameObjectWithTag("Maze_Layer");
+        Floor = GameObject.FindGameObjectWithTag("Floor");
+        target = GameObject.FindGameObjectWithTag("Ball").transform;
     }
     void Start()
     {
         //find objects in scene
-        layer = GameObject.FindGameObjectWithTag("Maze_Layer");
-        Floor = GameObject.FindGameObjectWithTag("Floor");
-        target = GameObject.FindGameObjectWithTag("Ball").transform;
+        
     }
 
     // Update is called once per frame

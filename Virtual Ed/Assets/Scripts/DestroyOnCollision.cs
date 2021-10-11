@@ -21,6 +21,7 @@ public class DestroyOnCollision : MonoBehaviour
         if (collision.gameObject.name == "BallPrefab")
         {
             Destroy(collision.gameObject);
+            
         }
     }
 }

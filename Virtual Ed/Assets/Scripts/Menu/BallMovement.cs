@@ -11,7 +11,7 @@ public class BallMovement : MonoBehaviour
     private bool moveAllowed = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Target").transform;
     }
