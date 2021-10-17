@@ -19,15 +19,19 @@ public class SnapObject : MonoBehaviour
     private bool objectSnapped;
 
     //boolean variable used to determine if the object is currently being held by the player
-    private bool grabbed = false;
+    public bool grabbed { get; private set; }
 
     private DistanceGrabbable myDistGrabbable;
     private Rigidbody myRBody;
     private Orbit myOrbit;
 
+    private SnapToLocation mySnapTo;
+    private Vector3 currGrabPos;
     private void Awake()
     {
+        grabbed = false;
         SnapLocation = GameObject.FindGameObjectWithTag(snapLocationTag);
+        mySnapTo = SnapLocation.GetComponent<SnapToLocation>();
         myDistGrabbable = GetComponent<DistanceGrabbable>();
         myRBody = GetComponent<Rigidbody>();
         myOrbit = GetComponent<Orbit>();
@@ -42,34 +46,45 @@ public class SnapObject : MonoBehaviour
             grabbed = myDistGrabbable.isGrabbed;
             myOrbit.enabled = !myDistGrabbable.isGrabbed;
         }
+        else
+            //Prevent stationary objects
+            currGrabPos = transform.position;
+        
         //Set objectSnapped equal to the Snapped boolean from SnapToLocation
-        objectSnapped = SnapLocation.GetComponent<SnapToLocation>().Snapped;
+        objectSnapped = mySnapTo.Snapped;
 
         //Set object Rigibody to be Kinematic after it has been snapped into position
         //Set object to be a parent of the Rocket object after it has been snapped
         //Set isSnapped variable to true to alert the RocketLaunch script
         if (objectSnapped == true)
         {
-            GetComponent<Rigidbody>().isKinematic = true;
-            transform.SetParent(rocket.transform);
             isSnapped = true;
+            myRBody.isKinematic = true;
+            transform.SetParent(rocket.transform);
         }
 
         //Makes sure that the object can still be grabbed by the OVRGrabber script. We get bugs without this.
-        /*if (objectSnapped == false)
+        if (objectSnapped == false)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-        }*/
+            myRBody.isKinematic = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (myRBody.velocity.magnitude < 0.2f)
-        { 
+        {
             if (grabbed && !myDistGrabbable.isGrabbed && !isSnapped)
                 Destroy(gameObject);
+            else
+            {
+                if (currGrabPos == transform.position)
+                    Destroy(gameObject);
+            }
         }
         else
+        {
             grabbed = false;
+        }
     }
 }

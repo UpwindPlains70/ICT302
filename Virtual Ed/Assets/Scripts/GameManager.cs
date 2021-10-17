@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     public bool MainMenu = false;
 
     private Scene currScene;
+    public bool autoLoading = true;
+
     private void Awake()
     {
         currScene = SceneManager.GetActiveScene();
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
         { 
             StartCoroutine(LoadFirstLevelAsyncScene());
         }
-        else
+        else if(autoLoading)
         {
             time += Time.deltaTime;
             if (time >= (currLevelTime / 3) && !loading)

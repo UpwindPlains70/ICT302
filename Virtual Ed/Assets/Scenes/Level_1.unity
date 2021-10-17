@@ -454,6 +454,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 0
   MainMenu: 0
+  autoLoading: 0
 --- !u!4 &434349440
 Transform:
   m_ObjectHideFlags: 0
@@ -7444,7 +7445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvlManager: {fileID: 7604940492079010031}
   pointsGood: 10
-  pointsBad: 5
+  pointsBad: 0
 --- !u!33 &5867835638191898504
 MeshFilter:
   m_ObjectHideFlags: 0

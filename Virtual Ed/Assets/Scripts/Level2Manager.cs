@@ -50,8 +50,8 @@ public class Level2Manager : MonoBehaviour
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
-            //Max number of proteins to build
-        maxScore = (GMScript.GetLevel(0).Score / 10) + GMScript.GetLevel(0).Bonus;
+            //Max number of proteins to build (5 protiens per nano particle
+        maxScore = (GMScript.GetLevel(0).Score / 2) + GMScript.GetLevel(0).Bonus;
         scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
 
@@ -66,25 +66,10 @@ public class Level2Manager : MonoBehaviour
         OnSnapped();
     }
 
-    /*private void OnEnable()
-    {
-        redSnap.OnSnapped += OnSnapped;
-        greenSnap.OnSnapped += OnSnapped;
-        blueSnap.OnSnapped += OnSnapped;
-    }
-
-    private void OnDisable()
-    {
-        redSnap.OnSnapped -= OnSnapped;
-        greenSnap.OnSnapped -= OnSnapped;
-        blueSnap.OnSnapped -= OnSnapped;
-    }*/
-
     private void OnSnapped()
     {
         if (redSnap.Snapped && greenSnap.Snapped && blueSnap.Snapped)
         {
-            //Debug.Log("enter");
             ++score;
             scoreTxt.text = "Score: " + score + " / " + maxScore;
             
@@ -118,6 +103,7 @@ public class Level2Manager : MonoBehaviour
 
         finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
+            //Display success or failure message based on score
         if (score == maxScore)
             goodMsg.gameObject.SetActive(true);
         else
@@ -138,6 +124,7 @@ public class Level2Manager : MonoBehaviour
         }
     }
 
+    private float halfLife = 2;
     void updateTimer()
     {
         int d = (int)(time * 100.0f);
@@ -146,6 +133,12 @@ public class Level2Manager : MonoBehaviour
 
         timerTxt.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
+            //Reduce max score based on nano particle half life
+        if(time >= halfLife && maxScore > 0)
+        {
+            halfLife += time;
+            --maxScore;
+        }
         time -= Time.deltaTime;
     }
 }

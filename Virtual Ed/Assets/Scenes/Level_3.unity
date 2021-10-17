@@ -4735,6 +4735,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 2
   MainMenu: 0
+  autoLoading: 0
 --- !u!1 &3444394909231722349
 GameObject:
   m_ObjectHideFlags: 0

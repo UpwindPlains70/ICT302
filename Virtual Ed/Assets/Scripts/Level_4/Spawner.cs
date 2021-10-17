@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
         B_Cell_Count = lvl4Manager.ammo;
 
-        //latePenalty = calcLatePenalty();
+        latePenalty = calcLatePenalty();
 
         //Assign size of spawner plane
         Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
@@ -68,8 +68,8 @@ public class Spawner : MonoBehaviour
             generateCells();
         else if (setKinematic)
         {
-            foreach (GameObject g in b_Cell_List)
-                g.GetComponent<Rigidbody>().isKinematic = true;
+            //foreach (GameObject g in b_Cell_List)
+            //    g.GetComponent<Rigidbody>().isKinematic = true;
             setKinematic = false;
         }
         else
