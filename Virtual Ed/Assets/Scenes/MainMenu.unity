@@ -5387,7 +5387,7 @@ GameObject:
   - component: {fileID: 875830973}
   - component: {fileID: 875830972}
   m_Layer: 5
-  m_Name: Date Started
+  m_Name: User Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5431,7 +5431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Date Started:'
+  m_text: User Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -9072,14 +9072,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0e881accc47644fbd23314cc7e854b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StudentNumber: {fileID: 310104760}
+  StudentNumber: {fileID: 1678785114}
+  UserName: {fileID: 0}
   StudentNumberDisplayText: 
+  UserNameDisplayText: 
   PlayerNames:
   - {fileID: 535578248}
+  UserNames:
+  - {fileID: 1793504237}
   GameIDs:
   - {fileID: 203748153}
-  DateAndTimes:
-  - {fileID: 1793504237}
+  DateAndTimes: []
   FinalScores:
   - {fileID: 81343596}
   FinalTimeTakens:
@@ -10519,6 +10522,7 @@ MonoBehaviour:
   Password: murdochuniversity
   GameID: 0
   StudentNumber: 
+  UserName: 
   GMScript: {fileID: 4776334584276399553}
 --- !u!4 &1719764290
 Transform:
@@ -10758,7 +10762,7 @@ GameObject:
   - component: {fileID: 1793504236}
   - component: {fileID: 1793504237}
   m_Layer: 5
-  m_Name: InsertDateAndTime
+  m_Name: InsertUserName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13497,6 +13501,7 @@ MonoBehaviour:
   Password: murdochuniversity
   GameID: 0
   StudentNumber: 
+  UserName: 
   GMScript: {fileID: 4776334584276399553}
 --- !u!114 &5524407325197665698
 MonoBehaviour:

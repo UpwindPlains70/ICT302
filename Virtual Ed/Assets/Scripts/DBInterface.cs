@@ -13,6 +13,7 @@ public class DBInterface : MonoBehaviour
     public string Password;
     public ulong GameID;
     public string StudentNumber;
+    public string UserName;
     public GameManager GMScript;
     //Place at top (replaces GameID -> GMScript.GameID & StudentNumber-> GMScript.StudentNumber)
 
@@ -30,7 +31,7 @@ public class DBInterface : MonoBehaviour
 
 
     // User enters student number which starts a new row into the mysql database, assigning a sequential 'GameID' and the entered 'StudentNumber', both of these values get assigned as GLOBAL VARIABLES for other scenes to use, to ensure correct records are being updated
-    public void InsertStudentNumber(string StudentNumber)
+    public void InsertStudentNumber(string StudentNumber, string UserName)
     {
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
@@ -39,8 +40,9 @@ public class DBInterface : MonoBehaviour
                 connection.Open();
 
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO scoring_details (StudentNumber) VALUES (@StudentNumber) ;SELECT LAST_INSERT_ID()";
+                command.CommandText = "INSERT INTO scoring_details (StudentNumber, UserName) VALUES (@StudentNumber, @UserName) ;SELECT LAST_INSERT_ID()";
                 command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.Parameters.AddWithValue("@UserName", UserName);
                 // StudentNumber will be assigned as a global variable
 
 
@@ -63,9 +65,9 @@ public class DBInterface : MonoBehaviour
     }
 
     // After student number is entered, the GameID, StudentNumber and DateAndTime is displayed with a welcome screen
-    public List<System.Tuple<ulong, string, DateTime>> DisplayGameDataFromDB()
+    public List<System.Tuple<ulong, string, DateTime, string>> DisplayGameDataFromDB()
     {
-        List<System.Tuple<ulong, string, DateTime>> topFive = new List<System.Tuple<ulong, string, DateTime>>();
+        List<System.Tuple<ulong, string, DateTime, string>> topFive = new List<System.Tuple<ulong, string, DateTime, string>>();
 
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
@@ -74,7 +76,7 @@ public class DBInterface : MonoBehaviour
                 connection.Open();
 
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT GameID, StudentNumber, DateAndTime FROM scoring_details ORDER BY GameID DESC LIMIT 1";
+                command.CommandText = "SELECT GameID, StudentNumber, DateAndTime, UserName FROM scoring_details ORDER BY GameID DESC LIMIT 1";
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -85,7 +87,9 @@ public class DBInterface : MonoBehaviour
                     string StudentNumber = reader.GetString(ordinal);
                     ordinal = reader.GetOrdinal("DateAndTime");
                     DateTime DateAndTime = reader.GetDateTime(ordinal);
-                    System.Tuple<ulong, string, DateTime> entry = new System.Tuple<ulong, string, DateTime>(GameID, StudentNumber, DateAndTime);
+                    ordinal = reader.GetOrdinal("UserName");
+                    string UserName = reader.GetString(ordinal);
+                    System.Tuple<ulong, string, DateTime, string> entry = new System.Tuple<ulong, string, DateTime, string>(GameID, StudentNumber, DateAndTime, UserName);
                     topFive.Add(entry);
                 }
 
