@@ -709,7 +709,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.5993662
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 802945897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a3aea66c80209468a4c613fe0c6ccb, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &797559403
@@ -1639,8 +1639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa46f204282e5614aad953ce71285339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  stopRange: 5
+  speed: 5
+  stopRange: 0
 --- !u!4 &803019549
 Transform:
   m_ObjectHideFlags: 0
@@ -1649,7 +1649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802945897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.68, y: 3.98, z: 0.08}
+  m_LocalPosition: {x: 6.74, y: 4.68, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Algorithm: 0
-  FullRandom: 0
+  FullRandom: 1
   RandomSeed: 12345
   Floor: {fileID: 165842, guid: 8d3b36f175a633f429d7bda54c76550d, type: 3}
   Wall: {fileID: 144206, guid: 9de82ec743bb24449a99f5cf1e325d61, type: 3}
@@ -3924,14 +3924,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110215608}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb2efae20338de14080e3eab60a57994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layer: {fileID: 0}
   Floor: {fileID: 165842, guid: 8d3b36f175a633f429d7bda54c76550d, type: 3}
-  speed: 0
+  speed: 10
   post: {fileID: 142476, guid: f3f97a2401feba4479a301d6181e9da6, type: 3}
 --- !u!4 &2110215610
 Transform:
@@ -4357,7 +4357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525748753819087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.36, y: 36.39, z: 8.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4897607655020909}
@@ -5011,6 +5011,7 @@ GameObject:
   - component: {fileID: 8458227464941247300}
   - component: {fileID: 8458227464941247303}
   - component: {fileID: 8458227464941247302}
+  - component: {fileID: 8458227464941247298}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -5018,6 +5019,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8458227464941247298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458227464941247297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb40e077fbf4d06429fbf726545a983b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8458227464941247300
 RectTransform:
   m_ObjectHideFlags: 0
