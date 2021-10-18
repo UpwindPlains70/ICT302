@@ -17,6 +17,7 @@ public class Level3Manager : MonoBehaviour
 
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI currScoreTxt;
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,8 +42,10 @@ public class Level3Manager : MonoBehaviour
     {
         updateTimer();
 
-        if (time <= 0)
+        if ((time <= 0 || score <= 0) && gameOver)
             GameOver();
+        else if ((time <= 0 || score <= 0) && !gameOver)
+            UpdateGameManager();
     }
 
     //Spawn all protiens into maze, based on score (on Spawner)
@@ -64,12 +67,7 @@ public class Level3Manager : MonoBehaviour
         //Disable in-game UI
         Debug.Log("Level Over");
 
-        //Update gameManager
-        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
-        //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = score;
-        //update completion time in game manager
-        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
         if (GMScript.GameOver == false)
@@ -77,6 +75,18 @@ public class Level3Manager : MonoBehaviour
             GMScript.GameOver = true;
             //GMScript.addToServer();
         }
+    }
+    //store end level values in game manager
+    private void UpdateGameManager()
+    {
+        //Update gameManager
+        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
+        //Update level score in game manager
+        GMScript.GetLevel(currLevel).Score = score;
+        //update completion time in game manager
+        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+
+        GMScript.LoadNextScene();
     }
 
     void updateTimer()

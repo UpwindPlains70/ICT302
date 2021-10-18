@@ -6732,7 +6732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1104959426
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9316,7 +9316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1578747278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9330,6 +9330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
+  HUD_UI: {fileID: 0}
 --- !u!114 &1578747279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13443,12 +13444,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - _sceneName: Level_1
-    timeLimit: 60
+    timeLimit: 10
     completionTime: 0
     score: 0
     bonus: 0
   - _sceneName: Level_2
-    timeLimit: 60
+    timeLimit: 40
     completionTime: 0
     score: 0
     bonus: 5
@@ -13458,12 +13459,13 @@ MonoBehaviour:
     score: 15
     bonus: 5
   - _sceneName: Level_4
-    timeLimit: 60
+    timeLimit: 40
     completionTime: 0
     score: 0
     bonus: 5
   currLevelIndex: 0
   MainMenu: 1
+  autoLoading: 1
 --- !u!4 &4776334584276399554
 Transform:
   m_ObjectHideFlags: 0

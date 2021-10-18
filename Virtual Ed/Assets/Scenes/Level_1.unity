@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - _sceneName: Level_1
-    timeLimit: 60
+    timeLimit: 20
     completionTime: 0
     score: 0
     bonus: 0
@@ -454,7 +454,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 0
   MainMenu: 0
-  autoLoading: 0
+  autoLoading: 1
 --- !u!4 &434349440
 Transform:
   m_ObjectHideFlags: 0
@@ -1180,6 +1180,66 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4464550143227747328}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1979630004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1979630007}
+  - component: {fileID: 1979630006}
+  - component: {fileID: 1979630005}
+  m_Layer: 0
+  m_Name: Destructor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1979630005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979630004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 0
+  level4: 0
+  lvl4ExclusionTag: 
+--- !u!135 &1979630006
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979630004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1979630007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979630004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.9, z: -3.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2122160402
 GameObject:
   m_ObjectHideFlags: 0
@@ -7705,11 +7765,12 @@ MonoBehaviour:
   timerTxt: {fileID: 1728470463}
   scoreTxt: {fileID: 372016436}
   HUD: {fileID: 2756916226978820051}
-  gameOver: {fileID: 833771566422428498}
+  gameOverCanvas: {fileID: 833771566422428498}
   goodScore: 100
   finalScore: {fileID: 833771565671679572}
   goodMsg: {fileID: 833771565220150200}
   badMsg: {fileID: 833771565556908102}
+  gameOver: 0
 --- !u!33 &7859623873489664895
 MeshFilter:
   m_ObjectHideFlags: 0

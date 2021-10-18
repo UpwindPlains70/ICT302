@@ -195,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 1
-  level2Close: 0
 --- !u!1 &190320104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9,
@@ -605,7 +604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 0
-  level2Close: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 0
-  level2Close: 1
 --- !u!1 &126133678403404380
 GameObject:
   m_ObjectHideFlags: 0
@@ -11620,12 +11617,13 @@ MonoBehaviour:
   timerTxt: {fileID: 4018859884192617548}
   scoreTxt: {fileID: 4018859885519473863}
   HUD: {fileID: 1263069988127581728}
-  gameOver: {fileID: 459554974954644099}
+  gameOverCanvas: {fileID: 459554974954644099}
   goodScore: 5
   finalScore: {fileID: 459554975260864389}
   finalTime: {fileID: 459554976586036226}
   goodMsg: {fileID: 459554975883055721}
   badMsg: {fileID: 459554975011711383}
+  gameOver: 0
 --- !u!1 &3267626244698601977
 GameObject:
   m_ObjectHideFlags: 0

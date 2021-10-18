@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level2: 0
 --- !u!4 &2141553173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 414912, guid: e6ba3498ffa1e534b91a07264266e6b8,
@@ -720,6 +721,7 @@ MonoBehaviour:
   retryMessage: {fileID: 7985168532637317600}
   timerTxt: {fileID: 3932973750250068111}
   scoreTxt: {fileID: 3932973750537781252}
+  gameOver: 1
 --- !u!4 &211377550876321795
 Transform:
   m_ObjectHideFlags: 0
@@ -5854,6 +5856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level2: 0
 --- !u!4 &2738375547165308150
 Transform:
   m_ObjectHideFlags: 0
@@ -6533,6 +6536,7 @@ MonoBehaviour:
   retryMessage: {fileID: 2738375548215187725}
   timerTxt: {fileID: 2738375547144459978}
   scoreTxt: {fileID: 2738375548186787256}
+  gameOver: 0
 --- !u!4 &2738375547837640395
 Transform:
   m_ObjectHideFlags: 0

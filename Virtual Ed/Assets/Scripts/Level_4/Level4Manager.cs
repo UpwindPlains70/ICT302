@@ -24,6 +24,8 @@ public class Level4Manager : MonoBehaviour
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI scoreTxt;
 
+    public bool gameOver = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,10 +42,10 @@ public class Level4Manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         updateTimer();
-        if (time <= 0 && Time.timeScale != 0)
+        if ((time <= 0 || ammo <= 0) && gameOver)
             GameOver();
 
         scoreUpdate();
@@ -81,13 +83,8 @@ public class Level4Manager : MonoBehaviour
 
         finalScore.SetText("Final Score\n" + score);
 
-        //Update gameManager
-        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
-            //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = score;
-            //update completion time in game manager
-        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
-        
+        UpdateGameManager();
+
         int d = (int)(GMScript.GetLevel(currLevel).CompletionTime * 100.0f);
 
         int minutes = d / (60 * 100);
@@ -110,6 +107,16 @@ public class Level4Manager : MonoBehaviour
         }
     }
 
+    //store end level values in game manager
+    private void UpdateGameManager()
+    {
+        //Update gameManager
+        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
+        //Update level score in game manager
+        GMScript.GetLevel(currLevel).Score = score;
+        //update completion time in game manager
+        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+    }
     void updateTimer()
     {
         int d = (int)(time * 100.0f);

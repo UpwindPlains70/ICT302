@@ -8,7 +8,7 @@ public class BallMovement : MonoBehaviour
     //Make sure to add a value if set to zero in inspector
     public float speed = 10;
     public float stopRange = 1;
-    private bool moveAllowed = true;
+    public bool moveAllowed = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,9 +33,9 @@ public class BallMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor") == false)
         {
-            moveAllowed = false;
+            moveAllowed = true;
         }
         else
-            moveAllowed = true;
+            moveAllowed = false;
     }
 }

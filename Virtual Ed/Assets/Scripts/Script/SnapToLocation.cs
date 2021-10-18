@@ -45,7 +45,7 @@ public class SnapToLocation : MonoBehaviour
     //Set the public boolean snapped to true for reference by SnapObject script
     void SnapObject()
     {
-        if (insideSnapZone == true)
+        if (insideSnapZone == true && snappedObject != null)
         {
             snappedObject.gameObject.transform.position = SnapRotationReference.transform.position;
             snappedObject.gameObject.transform.rotation = SnapRotationReference.transform.rotation;
@@ -64,6 +64,7 @@ public class SnapToLocation : MonoBehaviour
             return;
 
         Destroy(snappedObject.gameObject);
+        snappedObject = null;
     }
 
     // Update is called once per frame

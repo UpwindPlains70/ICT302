@@ -136,20 +136,23 @@ public class GameManager : MonoBehaviour
     {
         ++currLevelIndex;
         loading = true;
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levels[currLevelIndex].SceneName);
+        asyncLoad = SceneManager.LoadSceneAsync(levels[currLevelIndex].SceneName);
         asyncLoad.allowSceneActivation = false;
 
         while (!asyncLoad.isDone)
         {
-            if (time >= currLevelTime)
-            {
-                currLevelTime = levels[currLevelIndex].TimeLimit;
-                time = 0;
-                loading = false;
-                asyncLoad.allowSceneActivation = true;
-            }
+            
             yield return null;
         }
 
+    }
+
+    public void LoadNextScene()
+    {
+        if (autoLoading)
+        {
+            loading = false;
+            asyncLoad.allowSceneActivation = true;
+        }
     }
 }
