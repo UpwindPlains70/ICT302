@@ -33,6 +33,8 @@ TagManager:
   - Ball
   - Target
   - grab
+  - badGoal
+  - Score
   layers:
   - Default
   - TransparentFX
