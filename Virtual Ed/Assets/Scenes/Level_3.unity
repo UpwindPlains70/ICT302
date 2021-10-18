@@ -4821,7 +4821,8 @@ PrefabInstance:
       propertyPath: lvlManager
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4277009656783090368, guid: 1541020713ea9ed4da3769b6de1bfeaf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1541020713ea9ed4da3769b6de1bfeaf, type: 3}
 --- !u!114 &3444394909231722348
 MonoBehaviour:

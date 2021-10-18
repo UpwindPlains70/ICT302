@@ -10,7 +10,6 @@ public class Scorechanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lvlManager = GameObject.FindGameObjectsWithTag("Score");
     }
 
     // Update is called once per frame
