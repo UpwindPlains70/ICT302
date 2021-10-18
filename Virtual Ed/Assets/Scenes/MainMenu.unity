@@ -13444,7 +13444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - _sceneName: Level_1
-    timeLimit: 10
+    timeLimit: 40
     completionTime: 0
     score: 0
     bonus: 0
@@ -13454,7 +13454,7 @@ MonoBehaviour:
     score: 0
     bonus: 5
   - _sceneName: Level_3
-    timeLimit: 60
+    timeLimit: 20
     completionTime: 0
     score: 15
     bonus: 5

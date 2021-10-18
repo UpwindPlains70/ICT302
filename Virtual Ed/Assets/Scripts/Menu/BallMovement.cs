@@ -33,9 +33,10 @@ public class BallMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor") == false)
         {
-            moveAllowed = true;
+            moveAllowed = false;
         }
         else
-            moveAllowed = false;
+            moveAllowed = true;
+        
     }
 }

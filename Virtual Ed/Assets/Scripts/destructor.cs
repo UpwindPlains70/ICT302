@@ -22,6 +22,7 @@ public class destructor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Col");
             Destroy(collision.gameObject);
     }
 
@@ -33,9 +34,14 @@ public class destructor : MonoBehaviour
             if (snapScript.grabbed == false && snapScript.isSnapped == false)
                 Destroy(other.gameObject);
         }
-        else if (level4 && other.gameObject.CompareTag(lvl4ExclusionTag))
-            Destroy(other.gameObject);
+        else if (level4)
+        {
+            if(!other.gameObject.CompareTag(lvl4ExclusionTag))
+                Destroy(other.gameObject);
+        }
         else
+        {
             Destroy(other.gameObject);
+        }
     }
 }

@@ -148,7 +148,7 @@ public class Level2Manager : MonoBehaviour
             //Reduce max score based on nano particle half life
         if(time >= halfLife && maxScore > 0)
         {
-            halfLife += time;
+            halfLife += halfLife*2 - halfLife;
             --maxScore;
         }
         time -= Time.deltaTime;

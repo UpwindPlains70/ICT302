@@ -8,7 +8,6 @@ public class Level3Manager : MonoBehaviour
 {
 
     private float time;
-    private float timeTakenForPastLevels;
     public int score = 0;
 
     private GameManager GMScript;
@@ -24,21 +23,22 @@ public class Level3Manager : MonoBehaviour
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //level 3 & 4 (zero base)
-        prevLevel = GMScript.GetLevel(2);
+        prevLevel = GMScript.GetLevel(1);
 
         //Get level time limit
         time = GMScript.GetLevel(currLevel).TimeLimit;
-        //Get time taken to reach current level
-        timeTakenForPastLevels = GMScript.totalTimeTaken();
 
             //store score from previous level
-        score = GMScript.GetLevel(1).Score;
+        score = prevLevel.Score;
             //Add bonus to score
-        score += GMScript.GetLevel(1).Bonus;
+        score += prevLevel.Bonus;
+
+            //Display starting score
+        currScoreTxt.text = "Score: " + score;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         updateTimer();
 
@@ -48,20 +48,6 @@ public class Level3Manager : MonoBehaviour
             UpdateGameManager();
     }
 
-    //Spawn all protiens into maze, based on score (on Spawner)
-        //CODE...
-
-    //Move to bad holes **********************
-    public Level3Manager lvlManager;
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("badGoal"))
-            --score;
-
-        lvlManager.currScoreTxt.text = "Score: " + score;
-    }
-        //****************************************
     public void GameOver()
     {
         //Disable in-game UI

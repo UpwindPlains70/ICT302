@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Scorechanger : MonoBehaviour
 {
-    public Level3Manager lvlManager;
+    private Level3Manager lvlManager;
 
     public int pointsBad = 1;
     // Start is called before the first frame update
     void Start()
     {
+        lvlManager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level3Manager>();
     }
 
     // Update is called once per frame
@@ -17,20 +18,20 @@ public class Scorechanger : MonoBehaviour
     {
         
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("badGoal"))
+        //Debug.Log(other.gameObject.name);
+            //BallWorth currBallWorth = other.gameObject.GetComponent<BallWorth>();
+        //Debug.Log(currBallWorth.score);
+                //Reduce score and ball worth
+            //currBallWorth.score -= pointsBad;
             lvlManager.score -= pointsBad;
 
-        //Prevent negative score
-        if (lvlManager.score < 0)
-            lvlManager.score = 0;
+            //Prevent negative score
+            //if (currBallWorth.score < 0)
+            //    Destroy(other.gameObject);
 
-        lvlManager.currScoreTxt.text = "score: " + lvlManager.score;
-
-
-        Destroy(collision.gameObject);
+            lvlManager.currScoreTxt.text = "Score: " + lvlManager.score;
     }
 }
 
