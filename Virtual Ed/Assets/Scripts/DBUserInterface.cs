@@ -7,10 +7,14 @@ using TMPro;
 public class DBUserInterface : MonoBehaviour
 {
     public TextMeshProUGUI StudentNumber;
+    public TextMeshProUGUI UserName;
     public string StudentNumberDisplayText;
+    public string UserNameDisplayText;
     //public InputField Highscore;
 
     public List<Text> PlayerNames = new List<Text>();
+    public List<Text> UserNames = new List<Text>();
+
     public List<Text> GameIDs = new List<Text>();
     public List<Text> DateAndTimes = new List<Text>();
     public List<Text> FinalScores = new List<Text>();
@@ -32,28 +36,39 @@ public class DBUserInterface : MonoBehaviour
             Debug.LogError("DBUserInterface: Could not insert a highscore. DBIitefrace is not present.");
             return;
         }
-        if (StudentNumber == null)
+        if (StudentNumber == null || UserName == null)
         {
-            Debug.LogError("DBUserInterface: Could not insert a highscore. StudentNumber or Highscore is not set.");
+            Debug.LogError("DBUserInterface: Could not insert a StudentNumber or UserName. StudentNumber or UserName is not set.");
             return;
         }
         if (string.IsNullOrEmpty(StudentNumber.text) || string.IsNullOrWhiteSpace(StudentNumber.text))
         {
-            Debug.LogError("DBUserInterface: Could not insert a highscore. StudentNumber is empty.");
+            Debug.LogError("DBUserInterface: Could not insert a StudentNumber. StudentNumber is empty.");
+            return;
+        }
+        if (string.IsNullOrEmpty(UserName.text) || string.IsNullOrWhiteSpace(UserName.text))
+        {
+            Debug.LogError("DBUserInterface: Could not insert a Username. UserName is empty.");
             return;
         }
 
-        DBInterface.InsertStudentNumber(StudentNumber.text);
+        DBInterface.InsertStudentNumber(StudentNumber.text, UserName.text);
         StudentNumberDisplayText = StudentNumber.text;
-       // StudentNumber.text = "";
+        UserNameDisplayText = UserName.text;
+
+
+
+
+        // StudentNumber.text = "";
 
     }
 
 
 
 
-    
-    
+
+
+
     public void DisplayGameDataFromDB()
     {
         if (DBInterface == null)
@@ -66,25 +81,26 @@ public class DBUserInterface : MonoBehaviour
             Debug.LogError("DBUserInterface: Could not retrieve data. Not all StudentNumber labels are present.");
             return;
         }
-        
+
         clearScoreboard();
-        List<System.Tuple<ulong, string, DateTime>> highscores = DBInterface.DisplayGameDataFromDB();
+        List<System.Tuple<ulong, string, DateTime, string>> highscores = DBInterface.DisplayGameDataFromDB();
         for (int i = 0; i < highscores.Count; i++)
         {
 
             GameIDs[i].text = highscores[i].Item1.ToString();
             PlayerNames[i].text = highscores[i].Item2;
             DateAndTimes[i].text = highscores[i].Item3.ToString();
+            UserNames[i].text = highscores[i].Item4.ToString();
 
-        
+
         }
-        
-        
+
+
     }
 
 
 
-    
+
     public void DisplayFinalScores()
     {
         if (DBInterface == null)
