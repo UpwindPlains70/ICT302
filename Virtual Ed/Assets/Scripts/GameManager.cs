@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(MainMenu)
+        if(MainMenu && !loading)
         { 
             StartCoroutine(LoadFirstLevelAsyncScene());
         }
@@ -94,8 +94,19 @@ public class GameManager : MonoBehaviour
     public float totalTimeTaken()
     {
         float totalTime = 0;
+            //negative 1 to exclude level 4
+        for (int i = 0; i < levels.Count - 1; ++i)
+        {
+            totalTime += levels[i].TimeLimit;
+        }
+        return totalTime;
+    }
+    public float getFullCompletionTime()
+    {
+        float totalTime = 0;
+            //loop through all levels for grand total time
         foreach (Level lvl in levels)
-            totalTime += lvl.CompletionTime;
+            totalTime += lvl.TimeLimit;
 
         return totalTime;
     }
@@ -103,9 +114,10 @@ public class GameManager : MonoBehaviour
     public float totalGivenTime()
     {
         float totalTime = 0;
-        foreach (Level lvl in levels)
-            totalTime += lvl.TimeLimit;
-
+        for(int i = 0; i < levels.Count-1; ++i)
+        {
+            totalTime += levels[i].TimeLimit;
+        }
         return totalTime;
     }
 
@@ -118,11 +130,12 @@ public class GameManager : MonoBehaviour
     {
         asyncLoad.allowSceneActivation = true;
         MainMenu = false;
+        loading = false;
     }
 
     private IEnumerator LoadFirstLevelAsyncScene()
     {
-        MainMenu = false;
+        loading = true;
         asyncLoad = SceneManager.LoadSceneAsync(levels[currLevelIndex].SceneName);
         asyncLoad.allowSceneActivation = false;
 
@@ -152,6 +165,7 @@ public class GameManager : MonoBehaviour
         if (autoLoading)
         {
             loading = false;
+            currLevelTime = levels[currLevelIndex].TimeLimit;
             asyncLoad.allowSceneActivation = true;
         }
     }

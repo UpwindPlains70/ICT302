@@ -6,7 +6,7 @@ using TMPro;
 
 public class Level4Manager : MonoBehaviour
 {
-    public int ammo { get; private set; }
+    public int ammo { get; set; }
     private float time;
     private float timeTakenForPastLevels;
     private int score = 0;

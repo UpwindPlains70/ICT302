@@ -175,7 +175,7 @@ public class DBInterface : MonoBehaviour
 
                 //Set final score values (lvl 4 vals for now)
                 command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
-                command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.GetLevel(3).Score);
+                command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.getFullCompletionTime());
 
                 //Loop through all levels
                 for (int i = 0; i < GMScript.getTotalLevels(); ++i)

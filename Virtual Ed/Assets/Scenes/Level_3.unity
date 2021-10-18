@@ -1551,18 +1551,18 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683003166}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -47.95, y: 17.6, z: 27.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8498793197525985168}
   - {fileID: 1497676675}
+  - {fileID: 8498793197525985168}
   - {fileID: 1580688731}
   - {fileID: 4897607655020909}
   - {fileID: 1266769873}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &789923061
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2950,7 +2950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 683003167}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1580187597
 Camera:
@@ -3299,8 +3299,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580267893}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 66.07, y: -10.24, z: -34.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 62.8, y: -6.4, z: -32.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580688735}
@@ -4713,7 +4713,7 @@ MonoBehaviour:
     score: 0
     bonus: 5
   - _sceneName: Level_3
-    timeLimit: 60
+    timeLimit: 30
     completionTime: 0
     score: 15
     bonus: 5
@@ -4724,7 +4724,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 2
   MainMenu: 0
-  autoLoading: 0
+  autoLoading: 1
 --- !u!1 &3444394909231722349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,13 +5147,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8498793197525985169}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59.012997, y: -11.217098, z: 81.64654}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: 49.8, y: -11.217102, z: 81.64655}
+  m_LocalScale: {x: 50, y: 50.00001, z: 50.00001}
   m_Children:
   - {fileID: 5990668914973946278}
   - {fileID: 1940573532}
   m_Father: {fileID: 683003167}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8498793197525985169
 GameObject:

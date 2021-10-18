@@ -6,7 +6,7 @@ using TMPro;
 
 public class DBUserInterface : MonoBehaviour
 {
-    public TextMeshPro StudentNumber;
+    public TextMeshProUGUI StudentNumber;
     public string StudentNumberDisplayText;
     //public InputField Highscore;
 

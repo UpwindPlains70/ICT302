@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2122160403}
-  m_IndirectSpecularColor: {r: 0.3517761, g: 0.57806706, b: 0.76798236, a: 1}
+  m_IndirectSpecularColor: {r: 0.35239303, g: 0.5784324, b: 0.76843244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7579,7 +7579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvlManager: {fileID: 7604940492079010031}
   pointsGood: 10
-  pointsBad: 0
+  pointsBad: 5
 --- !u!33 &5867835638191898504
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7839,11 +7839,12 @@ MonoBehaviour:
   timerTxt: {fileID: 1728470463}
   scoreTxt: {fileID: 372016436}
   HUD: {fileID: 2756916226978820051}
-  gameOver: {fileID: 833771566422428498}
+  gameOverCanvas: {fileID: 0}
   goodScore: 100
   finalScore: {fileID: 833771565671679572}
   goodMsg: {fileID: 833771565220150200}
   badMsg: {fileID: 833771565556908102}
+  gameOver: 0
 --- !u!33 &7859623873489664895
 MeshFilter:
   m_ObjectHideFlags: 0

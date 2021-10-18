@@ -195,6 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 1
+  level4: 0
+  lvl4ExclusionTag: 
 --- !u!1 &190320104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9,
@@ -604,6 +606,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 0
+  level4: 0
+  lvl4ExclusionTag: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +1994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level2: 0
+  level4: 0
+  lvl4ExclusionTag: 
 --- !u!1 &126133678403404380
 GameObject:
   m_ObjectHideFlags: 0
@@ -9207,10 +9213,10 @@ MonoBehaviour:
   - _sceneName: Level_1
     timeLimit: 60
     completionTime: 0
-    score: 0
+    score: 50
     bonus: 5
   - _sceneName: Level_2
-    timeLimit: 60
+    timeLimit: 200
     completionTime: 0
     score: 0
     bonus: 5
