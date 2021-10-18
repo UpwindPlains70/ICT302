@@ -10,13 +10,11 @@ public class Spawner : MonoBehaviour
     public GameObject[] enemy;
         //Set from GameManager
     public int B_Cell_Count;
+    private float Covid_Count;
         //Reduce covid cell count
     public float positivePenalty = 0.5f;
         //Increase covid cell count
     public float negativePenalty = 1f;
-
-    //Assigned by function (increase/decrease percetage for covid cells)
-    private float latePenalty = 1f;
 
     private GameObject[] b_Cell_List;
     private GameObject[] covid_Cell_List;
@@ -43,9 +41,9 @@ public class Spawner : MonoBehaviour
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //Number of game objects to spawn (based on game manager)
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
-        B_Cell_Count = lvl4Manager.ammo;
+        Covid_Count = B_Cell_Count = lvl4Manager.ammo;
 
-        latePenalty = calcLatePenalty();
+        Covid_Count *= calcLatePenalty();
 
         //Assign size of spawner plane
         Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
@@ -53,7 +51,6 @@ public class Spawner : MonoBehaviour
         dimY = _mesh.bounds.size.y;
         dimZ = _mesh.bounds.size.z;
     }
-    
     //to test purpose, attach to default plane and set a gameobject on spawntest variable
     void FixedUpdate()
     {        
@@ -61,11 +58,14 @@ public class Spawner : MonoBehaviour
         b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
         covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
 
-        if (b_Cell_List.Length == B_Cell_Count && covid_Cell_List.Length == B_Cell_Count * latePenalty)
+        if (b_Cell_List.Length == B_Cell_Count && covid_Cell_List.Length == Covid_Count)
             setupPhase = false;
 
         if (setupPhase)
+        {
+            //latePenalty = calcLatePenalty();
             generateCells();
+        }
         else if (setKinematic)
         {
             foreach (GameObject g in b_Cell_List)
@@ -73,7 +73,7 @@ public class Spawner : MonoBehaviour
             setKinematic = false;
         }
         else
-          this.transform.DetachChildren();
+            this.transform.DetachChildren();
         
     }
     
@@ -86,7 +86,7 @@ public class Spawner : MonoBehaviour
             b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
         }
 
-        while (covid_Cell_List.Length < (B_Cell_Count * latePenalty))
+        while (covid_Cell_List.Length < Covid_Count)
         {
             SpawnInside(enemy[1], true);
             covid_Cell_List = GameObject.FindGameObjectsWithTag(covid_Cell_Tag);
@@ -96,8 +96,8 @@ public class Spawner : MonoBehaviour
 
     float calcLatePenalty()
     {
-        float tmpPenalty = (GMScript.totalTimeTaken() / GMScript.totalGivenTime());
-        
+        float tmpPenalty = GMScript.totalTimeTaken() / GMScript.totalGivenTime();
+
         return tmpPenalty > 0.25f ? tmpPenalty + negativePenalty : tmpPenalty + positivePenalty;
     }
 

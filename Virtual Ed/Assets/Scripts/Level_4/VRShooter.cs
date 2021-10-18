@@ -9,7 +9,7 @@ public class VRShooter : MonoBehaviour
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
     public float bulletSpeed = 90;
-    private int ammo;
+    //private int ammo;
 
     public Text ammoTxt;
 
@@ -18,7 +18,7 @@ public class VRShooter : MonoBehaviour
     void Start()
     {
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
-        ammo = lvl4Manager.ammo;
+        //ammo = ;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class VRShooter : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            if (ammo > 0)
+            if (lvl4Manager.ammo > 0)
             {
                 shootBullet();
             }
@@ -37,8 +37,8 @@ public class VRShooter : MonoBehaviour
     {
         //instantiate bullet
         Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-        --ammo;
+        --lvl4Manager.ammo;
 
-        ammoTxt.text = "" + ammo;
+        ammoTxt.text = "" + lvl4Manager.ammo;
     }
 }
