@@ -9,7 +9,7 @@ public class Level3Manager : MonoBehaviour
 
     private float time;
     private float timeTakenForPastLevels;
-    private int score = 0;
+    public int score = 0;
 
     private GameManager GMScript;
     private Level prevLevel;
@@ -51,9 +51,9 @@ public class Level3Manager : MonoBehaviour
     //Move to bad holes **********************
     public Level3Manager lvlManager;
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("BadHole"))
+        if (collision.gameObject.CompareTag("badGoal"))
             --score;
 
         lvlManager.currScoreTxt.text = "Score: " + score;
