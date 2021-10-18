@@ -81,8 +81,6 @@ public class JoystickShoot : MonoBehaviour
                 }
                 else
                 {
-                    circle.gameObject.SetActive(true);
-                    outerCircle.gameObject.SetActive(true);
                     leftTouch = t.fingerId;
                     startingPoint = touchPos;
                 }
@@ -100,9 +98,6 @@ public class JoystickShoot : MonoBehaviour
             {
                 leftTouch = 99;
                 circle.transform.position = new Vector2(outerCircle.position.x, outerCircle.position.y);
-
-                circle.gameObject.SetActive(false);
-                outerCircle.gameObject.SetActive(false);
             }
             ++i;
         }

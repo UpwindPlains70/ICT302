@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 159552189}
   - component: {fileID: 159552191}
   - component: {fileID: 159552190}
+  - component: {fileID: 159552192}
   m_Layer: 10
   m_Name: Grabmanager
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,6 +182,19 @@ MonoBehaviour:
   OutlineColorInRange: {r: 0.49056602, g: 0.04396581, b: 0.04396581, a: 1}
   OutlineColorHighlighted: {r: 0.8301887, g: 0.47930875, b: 0, a: 1}
   OutlineColorOutOfRange: {r: 0.2502427, g: 1, b: 0, a: 1}
+--- !u!114 &159552192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159552188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 1
 --- !u!1 &190320104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9,
@@ -495,7 +509,6 @@ GameObject:
   - component: {fileID: 672327310}
   - component: {fileID: 672327309}
   - component: {fileID: 672327313}
-  - component: {fileID: 672327312}
   - component: {fileID: 672327308}
   m_Layer: 0
   m_Name: Plane
@@ -513,7 +526,7 @@ BoxCollider:
   m_GameObject: {fileID: 672327307}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
@@ -578,22 +591,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &672327312
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672327307}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &672327313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level2: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,13 +1968,28 @@ GameObject:
   - component: {fileID: 126133678410408954}
   - component: {fileID: 126133678410311332}
   - component: {fileID: 126133679485921975}
+  - component: {fileID: 126133678403404381}
+  - component: {fileID: 126133678403404379}
   m_Layer: 0
   m_Name: OVRPlayerController
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &126133678403404379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126133678403404378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f330c47ba0bfbb41a89dec67a82aec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 0
 --- !u!1 &126133678403404380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,6 +2007,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &126133678403404381
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126133678403404378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &126133678403404382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7478,7 +7504,7 @@ GameObject:
   - component: {fileID: 1632958613659406981}
   m_Layer: 0
   m_Name: GrabVolumeBig
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7580,7 +7606,7 @@ GameObject:
   - component: {fileID: 1632958613658702235}
   m_Layer: 0
   m_Name: GrabVolumeSmall
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9200,6 +9226,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 1
   MainMenu: 0
+  autoLoading: 0
 --- !u!23 &2755947160512204342
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10092,7 +10119,7 @@ GameObject:
   - component: {fileID: 3136827676175303630}
   m_Layer: 0
   m_Name: GrabVolumeBig
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10415,7 +10442,7 @@ GameObject:
   - component: {fileID: 3136827676175302780}
   m_Layer: 0
   m_Name: GrabVolumeSmall
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11590,12 +11617,13 @@ MonoBehaviour:
   timerTxt: {fileID: 4018859884192617548}
   scoreTxt: {fileID: 4018859885519473863}
   HUD: {fileID: 1263069988127581728}
-  gameOver: {fileID: 459554974954644099}
+  gameOverCanvas: {fileID: 459554974954644099}
   goodScore: 5
   finalScore: {fileID: 459554975260864389}
   finalTime: {fileID: 459554976586036226}
   goodMsg: {fileID: 459554975883055721}
   badMsg: {fileID: 459554975011711383}
+  gameOver: 0
 --- !u!1 &3267626244698601977
 GameObject:
   m_ObjectHideFlags: 0
@@ -14408,7 +14436,7 @@ GameObject:
   - component: {fileID: 4267966306419775892}
   m_Layer: 2
   m_Name: GrabVolumeCone
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15889,7 +15917,7 @@ GameObject:
   - component: {fileID: 8307910296520065799}
   m_Layer: 2
   m_Name: GrabVolumeCone
-  m_TagString: Untagged
+  m_TagString: grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

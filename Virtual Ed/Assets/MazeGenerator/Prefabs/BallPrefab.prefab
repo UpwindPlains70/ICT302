@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5492230}
   - component: {fileID: 11471494}
   - component: {fileID: -6286064961354189741}
+  - component: {fileID: 88363894923949995}
   m_Layer: 0
   m_Name: BallPrefab
   m_TagString: Untagged
@@ -121,12 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 130820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a3aea66c80209468a4c613fe0c6ccb, type: 3}
+  m_Script: {fileID: 11500000, guid: aa46f204282e5614aad953ce71285339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpSound: {fileID: 0}
-  HitSound: {fileID: 0}
-  CoinSound: {fileID: 0}
+  speed: 5
+  stopRange: 0.9
+  moveAllowed: 1
 --- !u!114 &-6286064961354189741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,3 +141,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 5492230}
+--- !u!114 &88363894923949995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6623ac78096827243af70e82c298be3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

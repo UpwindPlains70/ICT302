@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Covid_Handler : MonoBehaviour
 {
+    public Material newMaterialRef;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,14 @@ public class Covid_Handler : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Destroy(this.gameObject);
+        //destroy hit object
+        ParticleSystem ps = other.GetComponent<ParticleSystem>();
+
+        if(ps.subEmitters.enabled)
+            //Change material
+            GetComponent<Renderer>().material = newMaterialRef;
+        else
+            //destroy object
+            Destroy(gameObject);
     }
 }

@@ -31,12 +31,14 @@ public class Level2Manager : MonoBehaviour
 
     public GameObject HUD;
     //Game over variables
-    public GameObject gameOver;
+    public GameObject gameOverCanvas;
     public int goodScore = 100;
     public TextMeshProUGUI finalScore;
     public TextMeshProUGUI finalTime;
     public TextMeshProUGUI goodMsg;
     public TextMeshProUGUI badMsg;
+
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -50,8 +52,8 @@ public class Level2Manager : MonoBehaviour
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
-            //Max number of proteins to build
-        maxScore = (GMScript.GetLevel(0).Score / 10) + GMScript.GetLevel(0).Bonus;
+            //Max number of proteins to build (5 protiens per nano particle
+        maxScore = (GMScript.GetLevel(0).Score / 2) + GMScript.GetLevel(currLevel).Bonus;
         scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
 
@@ -59,32 +61,19 @@ public class Level2Manager : MonoBehaviour
     void Update()
     {
         updateTimer();
-
-        if (time <= 0 || score == maxScore)
+        //conditions for game over screen
+        if ((time <= 0 || score >= maxScore / 2) && gameOver)
             GameOver();
+        else if ((time <= 0 || score >= maxScore / 2) && !gameOver)
+            UpdateGameManager();
 
         OnSnapped();
     }
-
-    /*private void OnEnable()
-    {
-        redSnap.OnSnapped += OnSnapped;
-        greenSnap.OnSnapped += OnSnapped;
-        blueSnap.OnSnapped += OnSnapped;
-    }
-
-    private void OnDisable()
-    {
-        redSnap.OnSnapped -= OnSnapped;
-        greenSnap.OnSnapped -= OnSnapped;
-        blueSnap.OnSnapped -= OnSnapped;
-    }*/
 
     private void OnSnapped()
     {
         if (redSnap.Snapped && greenSnap.Snapped && blueSnap.Snapped)
         {
-            //Debug.Log("enter");
             ++score;
             scoreTxt.text = "Score: " + score + " / " + maxScore;
             
@@ -103,10 +92,10 @@ public class Level2Manager : MonoBehaviour
         //Disable in-game UI
         HUD.SetActive(false);
 
-        gameOver.SetActive(true);
+        gameOverCanvas.SetActive(true);
 
         finalScore.SetText("Final Score\n" + score);
-            //Final time for level
+        //Final time for level
         int d;
         if (time <= 0)
             d = (int)(timeGiven * 100.0f);
@@ -118,17 +107,13 @@ public class Level2Manager : MonoBehaviour
 
         finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
+        //Display success or failure message based on score
         if (score == maxScore)
             goodMsg.gameObject.SetActive(true);
         else
             badMsg.gameObject.SetActive(true);
 
-        //Update gameManager
-        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
-        //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = score;
-        //update completion time in game manager
-        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
         if (GMScript.GameOver == false)
@@ -138,6 +123,20 @@ public class Level2Manager : MonoBehaviour
         }
     }
 
+        //store end level values in game manager
+    private void UpdateGameManager()
+    {
+        //Update gameManager
+        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
+        //Update level score in game manager
+        GMScript.GetLevel(currLevel).Score = score;
+        //update completion time in game manager
+        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+
+        GMScript.LoadNextScene();
+    }
+
+    private float halfLife = 2;
     void updateTimer()
     {
         int d = (int)(time * 100.0f);
@@ -146,6 +145,12 @@ public class Level2Manager : MonoBehaviour
 
         timerTxt.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
+            //Reduce max score based on nano particle half life
+        if(time >= halfLife && maxScore > 0)
+        {
+            halfLife += halfLife*2 - halfLife;
+            --maxScore;
+        }
         time -= Time.deltaTime;
     }
 }

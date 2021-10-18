@@ -17,12 +17,13 @@ public class Level1Manager : MonoBehaviour
 
     public GameObject HUD;
     //Game over variables
-    public GameObject gameOver;
+    public GameObject gameOverCanvas;
     public int goodScore = 100;
     public TextMeshProUGUI finalScore;
     public TextMeshProUGUI goodMsg;
     public TextMeshProUGUI badMsg;
 
+    public bool gameOver = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,12 +36,14 @@ public class Level1Manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         updateTimer();
 
-        if (time <= 0)
+        if (time <= 0 && gameOver)
             GameOver();
+        else if (time <= 0 && !gameOver)
+            UpdateGameManager();
     }
 
     public void GameOver()
@@ -50,7 +53,7 @@ public class Level1Manager : MonoBehaviour
         HUD.SetActive(false);
 
         //Disable in-game UI
-        gameOver.SetActive(true);
+        gameOverCanvas.SetActive(true);
 
         finalScore.SetText("Final Score\n" + Score);
 
@@ -59,12 +62,7 @@ public class Level1Manager : MonoBehaviour
         else
             badMsg.gameObject.SetActive(true);
 
-        //Update gameManager
-        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
-        //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = Score;
-        //update completion time in game manager
-        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
         if (GMScript.GameOver == false)
@@ -72,6 +70,21 @@ public class Level1Manager : MonoBehaviour
             GMScript.GameOver = true;
             //GMScript.addToServer();
         }
+    }
+
+    //store end level values in game manager
+    private void UpdateGameManager()
+    {
+        Debug.Log("UPDATE MANAGER");
+        //Update gameManager
+        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
+        //Update level score in game manager
+        GMScript.GetLevel(currLevel).Score = Score + 10;
+        //update completion time in game manager
+        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        Debug.Log(GMScript.GetLevel(currLevel).Score);
+
+        GMScript.LoadNextScene();
     }
 
     void updateTimer()

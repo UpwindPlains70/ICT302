@@ -8,8 +8,7 @@ public class Level3Manager : MonoBehaviour
 {
 
     private float time;
-    private float timeTakenForPastLevels;
-    private int score = 0;
+    public int score = 0;
 
     private GameManager GMScript;
     private Level prevLevel;
@@ -17,59 +16,44 @@ public class Level3Manager : MonoBehaviour
 
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI currScoreTxt;
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //level 3 & 4 (zero base)
-        prevLevel = GMScript.GetLevel(2);
+        prevLevel = GMScript.GetLevel(1);
 
         //Get level time limit
         time = GMScript.GetLevel(currLevel).TimeLimit;
-        //Get time taken to reach current level
-        timeTakenForPastLevels = GMScript.totalTimeTaken();
 
             //store score from previous level
-        score = GMScript.GetLevel(1).Score;
+        score = prevLevel.Score;
             //Add bonus to score
-        score += GMScript.GetLevel(1).Bonus;
+        score += prevLevel.Bonus;
+
+            //Display starting score
+        currScoreTxt.text = "Score: " + score;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         updateTimer();
 
-        if (time <= 0)
+        if ((time <= 0 || score <= 0) && gameOver)
             GameOver();
+        else if ((time <= 0 || score <= 0) && !gameOver)
+            UpdateGameManager();
     }
 
-    //Spawn all protiens into maze, based on score (on Spawner)
-        //CODE...
-
-    //Move to bad holes **********************
-    public Level3Manager lvlManager;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("BadHole"))
-            --score;
-
-        lvlManager.currScoreTxt.text = "Score: " + score;
-    }
-        //****************************************
     public void GameOver()
     {
         //Disable in-game UI
         Debug.Log("Level Over");
 
-        //Update gameManager
-        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
-        //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = score;
-        //update completion time in game manager
-        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+        UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
         if (GMScript.GameOver == false)
@@ -77,6 +61,18 @@ public class Level3Manager : MonoBehaviour
             GMScript.GameOver = true;
             //GMScript.addToServer();
         }
+    }
+    //store end level values in game manager
+    private void UpdateGameManager()
+    {
+        //Update gameManager
+        float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
+        //Update level score in game manager
+        GMScript.GetLevel(currLevel).Score = score;
+        //update completion time in game manager
+        GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
+
+        GMScript.LoadNextScene();
     }
 
     void updateTimer()

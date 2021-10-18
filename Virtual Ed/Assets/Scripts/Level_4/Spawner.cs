@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
         B_Cell_Count = lvl4Manager.ammo;
 
-        //latePenalty = calcLatePenalty();
+        latePenalty = calcLatePenalty();
 
         //Assign size of spawner plane
         Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
