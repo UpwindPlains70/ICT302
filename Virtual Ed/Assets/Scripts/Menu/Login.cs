@@ -6,6 +6,7 @@ using UnityEngine;
 public class Login : MonoBehaviour
 {
     public TextMeshProUGUI studentNumber;
+    public TextMeshProUGUI userName;
     public int sizeLimit = 10;
     // Update is called once per frame
     void Update()
