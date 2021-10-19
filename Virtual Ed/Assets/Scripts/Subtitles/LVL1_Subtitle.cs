@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class poo: MonoBehaviour
+public class LVL1_Subtitle
+    : MonoBehaviour
 {
     public GameObject textBox;
 
