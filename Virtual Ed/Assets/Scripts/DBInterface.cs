@@ -7,10 +7,10 @@ public class DBInterface : MonoBehaviour
 {
     private MySqlConnectionStringBuilder stringBuilder;
 
-    public string Server;
-    public string Database;
-    public string UserID;
-    public string Password;
+    public string Server = "13.73.103.131";
+    public string Database= "sys";
+    public string UserID = "Remote_ICT302";
+    public string Password = "murdochuniversity";
     public ulong GameID;
     public string StudentNumber;
     public string UserName;
