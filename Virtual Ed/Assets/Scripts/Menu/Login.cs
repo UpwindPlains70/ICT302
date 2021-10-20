@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Login : MonoBehaviour
 {
-    public TextMeshProUGUI studentNumber;
-    public TextMeshProUGUI userName;
+    public TextMeshProUGUI inputField;
     public int sizeLimit = 10;
     // Update is called once per frame
     void Update()
@@ -16,12 +15,12 @@ public class Login : MonoBehaviour
 
     public void add(string s)
     {
-        if(studentNumber.text.Length < 10)
-            studentNumber.text += s;
+        if(inputField.text.Length < sizeLimit)
+            inputField.text += s;
     }
 
     public void Remove()
     {
-        studentNumber.text = studentNumber.text.Remove(studentNumber.text.Length - 1);
+        inputField.text = inputField.text.Remove(inputField.text.Length - 1);
     }
 }
