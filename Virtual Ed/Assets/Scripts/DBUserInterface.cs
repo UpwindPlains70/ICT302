@@ -84,7 +84,7 @@ public class DBUserInterface : MonoBehaviour
 
         clearScoreboard();
         List<System.Tuple<ulong, string, DateTime, string>> highscores = DBInterface.DisplayGameDataFromDB();
-       /* for (int i = 0; i < highscores.Count; i++)
+        for (int i = 0; i < highscores.Count; i++)
         {
 
             GameIDs[i].text = highscores[i].Item1.ToString();
@@ -92,7 +92,7 @@ public class DBUserInterface : MonoBehaviour
             DateAndTimes[i].text = highscores[i].Item3.ToString();
             UserNames[i].text = highscores[i].Item4.ToString();
 
-        }*/
+        }
 
 
     }
