@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6436642}
   - component: {fileID: 2381534}
   - component: {fileID: 7203424331103268009}
-  - component: {fileID: 2625180800161515958}
   m_Layer: 8
   m_Name: WallPrefab
   m_TagString: Untagged
@@ -108,22 +107,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!138 &2625180800161515958
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144206}
-  m_ConnectedBody: {fileID: 2676279081394214703, guid: e99da500a76bfe248a6bcc8ac79c6041,
-    type: 3}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_CollisionDetection: 3

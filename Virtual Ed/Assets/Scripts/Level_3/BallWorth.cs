@@ -6,18 +6,18 @@ public class BallWorth : MonoBehaviour
 {
     private Color myColor;
     private Renderer myRenderer;
-
+    private int _score;
         //Assigned on spawn
     public int score { 
         get 
         {
-            return score; 
+            return _score; 
         } 
         set 
-        { 
-            score = value;
-            //myColor = new Color(0, 0, score, 1);
-            //myRenderer.material.SetColor("_Color", myColor);
+        {
+            _score = value;
+            myColor = new Color(0, 0, _score, 1);
+            myRenderer.material.SetColor("_Color", myColor);
         } 
     }
 

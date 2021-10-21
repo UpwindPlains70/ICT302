@@ -22,7 +22,7 @@ public class BallMovement : MonoBehaviour
         //Check distance
         float DistancetoDest = Vector3.Distance(transform.position, target.position);
         // Move our position a step closer to the target.
-        if (DistancetoDest > stopRange && moveAllowed)
+        if (DistancetoDest > stopRange && moveAllowed && target.gameObject.activeInHierarchy)
         {
             float step = speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
@@ -35,6 +35,8 @@ public class BallMovement : MonoBehaviour
         {
             moveAllowed = false;
         }
+        else if (collision.gameObject.CompareTag("GoodGoal") == true)
+            Destroy(gameObject);
         else
             moveAllowed = true;
         

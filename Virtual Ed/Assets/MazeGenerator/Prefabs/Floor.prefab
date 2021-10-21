@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -9116542834292322208}
   - component: {fileID: 2383896}
   - component: {fileID: -5815406041095819761}
-  - component: {fileID: -2903507823853325769}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Floor
@@ -107,22 +106,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!138 &-2903507823853325769
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165842}
-  m_ConnectedBody: {fileID: 2676279081394214703, guid: e99da500a76bfe248a6bcc8ac79c6041,
-    type: 3}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_CollisionDetection: 3
