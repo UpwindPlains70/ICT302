@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 716226027518895478}
   - component: {fileID: 716226026947488693}
   - component: {fileID: 716226027524002935}
+  - component: {fileID: -2103009326293378152}
   m_Layer: 0
   m_Name: BallPrefab
   m_TagString: Ball
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716226027524002932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.74, y: 4.68, z: 0.13}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -223,3 +224,24 @@ MonoBehaviour:
   speed: 5
   stopRange: 0.9
   moveAllowed: 1
+  timer: 0
+--- !u!114 &-2103009326293378152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716226027524002932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6623ac78096827243af70e82c298be3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderer: {fileID: 716226027522085874}
+  _score: 5
+  matList:
+  - {fileID: 2100000, guid: 869d7d8b6a1d402418cd903dc76b7af7, type: 2}
+  - {fileID: 2100000, guid: 3d9866f7195e5234a801a1c1aba92753, type: 2}
+  - {fileID: 2100000, guid: 1e66f482d2c542843800586a8e9cea46, type: 2}
+  - {fileID: 2100000, guid: cff9c352a6e556d47bc605b44063785e, type: 2}
+  - {fileID: 2100000, guid: df5f7c3a952cccc47a70d2d36f210f80, type: 2}

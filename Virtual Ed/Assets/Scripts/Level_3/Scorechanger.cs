@@ -21,10 +21,10 @@ public class Scorechanger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.name);
-            //BallWorth currBallWorth = other.gameObject.GetComponent<BallWorth>();
+            BallWorth currBallWorth = other.gameObject.GetComponent<BallWorth>();
         //Debug.Log(currBallWorth.score);
                 //Reduce score and ball worth
-            //currBallWorth.score -= pointsBad;
+            currBallWorth.score -= pointsBad;
             lvlManager.score -= pointsBad;
 
             //Prevent negative score

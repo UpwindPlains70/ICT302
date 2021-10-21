@@ -10,8 +10,14 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 		//Ensures only one goal object is created
 	bool goalSet = false;
 
+
+	int maxBadGoals = 5;
+	int badGoalCount = 0;
 	public RecursiveMazeGenerator(int rows, int columns):base(rows,columns){
 
+	}
+	public RecursiveMazeGenerator(int rows, int columns, int newMaxBadGoals):base(rows,columns){
+		maxBadGoals = newMaxBadGoals;
 	}
 
 	public override void GenerateMaze ()
@@ -65,9 +71,10 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 				goalSet = true; //Sets unique goal
 			}
 			//if there are two moves available add a bad coin
-			if (movesAvailableCount == 2 && !GetMazeCell(row, column).IsVisited)
+			if (movesAvailableCount == 2 && !GetMazeCell(row, column).IsVisited && badGoalCount < maxBadGoals && adjacentCheck(row, column))
 			{
 				GetMazeCell(row, column).BadGoal = true;
+				++badGoalCount;
 			}
 			GetMazeCell(row,column).IsVisited = true;
 			//if there are multiple directions available randomly choose a direction based on the range of moves available.
@@ -92,4 +99,49 @@ public class RecursiveMazeGenerator : BasicMazeGenerator {
 
 		}while(movesAvailableCount > 0);
 	}
+
+	private bool adjacentCheck(int row, int column)
+    {
+		if (row - 1 >= 0)
+		{
+			if (GetMazeCell(row - 1, column).BadGoal)
+				return false;
+			
+			if (column - 1 >= 0)
+				if (GetMazeCell(row - 1, column - 1).BadGoal)
+					return false;
+
+			if(column + 1 < ColumnCount)
+				 if (GetMazeCell(row - 1, column + 1).BadGoal)
+					return false;
+		}
+		if(column - 1 >= 0 )
+        {
+			if (GetMazeCell(row, column - 1).BadGoal)
+				return false;
+
+			if (row + 1 < RowCount)
+				 if (GetMazeCell(row + 1, column - 1).BadGoal)
+					return false;
+		}
+			
+		if(row + 1 < RowCount && column + 1 < ColumnCount)
+        {
+			if (GetMazeCell(row + 1, column + 1).BadGoal)
+				return false;
+		}
+
+		if(column + 1 < ColumnCount)
+        {
+			if (GetMazeCell(row, column + 1).BadGoal)
+				return false;
+		}
+
+		if (row + 1 < RowCount)
+		{
+			if (GetMazeCell(row + 1, column).BadGoal)
+				return false;
+		}
+		return true;
+    }
 }

@@ -22,6 +22,7 @@ public class MazeSpawner : MonoBehaviour {
 	public float CellWidth = 5;
 	public float CellHeight = 5;
 	public bool AddGaps = false;
+	public int maxBadGoals = 5;
 	
 	private BasicMazeGenerator mMazeGenerator = null;
 
@@ -31,7 +32,7 @@ public class MazeSpawner : MonoBehaviour {
 		}
 		switch (Algorithm) {
 		case MazeGenerationAlgorithm.PureRecursive:
-			mMazeGenerator = new RecursiveMazeGenerator (Rows, Columns);
+			mMazeGenerator = new RecursiveMazeGenerator (Rows, Columns, maxBadGoals);
 			break;
 		}
 		mMazeGenerator.GenerateMaze ();
@@ -67,11 +68,6 @@ public class MazeSpawner : MonoBehaviour {
 				if (cell.IsGoal && GoalPrefab != null)
 				{
 					tmp = Instantiate(GoalPrefab, new Vector3(x, 1, z), Quaternion.Euler(0, 0, 0)) as GameObject;
-					tmp.transform.parent = transform;
-				}
-				if (cell.BadGoal && BadGoal != null)
-				{
-					tmp = Instantiate(BadGoal, new Vector3(x, 1, z), Quaternion.Euler(0, 0, 0)) as GameObject;
 					tmp.transform.parent = transform;
 				}
 				if (cell.BadGoal && BadGoal != null)

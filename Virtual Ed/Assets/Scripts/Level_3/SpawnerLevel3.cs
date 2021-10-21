@@ -23,17 +23,27 @@ public class SpawnerLevel3 : MonoBehaviour
     private int maxScore;
     public int maxWorth = 5;
 
+    public float positiveX = 1f;
+    public float negativeX = 1f;
+    public float positiveY = 1f;
+    public float negativeY = 1f;
+    public float positiveZ = 1f;
+    public float negativeZ = 1f;
     void Start()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //Number of game objects to spawn (based on game manager)
-        lvl3Manager = GameObject.FindGameObjectWithTag("Level3Manager").GetComponent<Level3Manager>();
+        lvl3Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level3Manager>();
 
         maxScore = lvl3Manager.score;
         //calc remainder
         proteinCount = maxScore % maxWorth;
         proteinCount += (maxScore - proteinCount) / maxWorth;
-
+        //Assign size of spawner plane
+        Mesh _mesh = transform.GetComponent<MeshFilter>().mesh;
+        dimX = _mesh.bounds.size.x;
+        dimY = _mesh.bounds.size.y;
+        dimZ = _mesh.bounds.size.z;
     }
     //to test purpose, attach to default plane and set a gameobject on spawntest variable
     void FixedUpdate()
@@ -73,14 +83,26 @@ public class SpawnerLevel3 : MonoBehaviour
     {
         Vector3 randpos = Vector3.zero;
 
-        Transform instance = Instantiate(spawnObject, transform).transform;
+        randpos.x = Random.Range(0, dimX);//assume mesh of the plane is centered, view mesh.bounds.min.x and mesh.bounds.max.x if not centered
+        randpos.z = Random.Range(0, dimZ); //"level" how much up to the plane spawn the objects
+        randpos.y = Random.Range(0, dimY); //"level" how much up to the plane spawn the objects
 
-        //Edit child scale to counter parents scale
-        resetScaleFactor = instance.localScale.y;
-        instance.localScale = new Vector3(instance.localScale.x / transform.localScale.x, instance.localScale.z / transform.localScale.z, instance.localScale.z / transform.localScale.z);
-        instance.localScale *= resetScaleFactor;    //Increase scale
+        /*Debug.Log("DX: " + randpos.x);
+        Debug.Log("DY: " + randpos.y);
+        Debug.Log("DZ: " + randpos.z);*/
+        Transform instance = Instantiate(spawnObject).transform;
 
+        instance.transform.position = transform.position;
+        //Allow for object to spawn worth less than others
+        Debug.Log(maxScore - maxWorth);
+        if(maxScore - maxWorth >= 0)
+            spawnObject.GetComponent<BallWorth>().score = maxWorth;
+        else
+            spawnObject.GetComponent<BallWorth>().score = maxScore;
+
+        maxScore -= maxWorth;
+        
             //Position object in random position with spawn plane
-        instance.localPosition = randpos;
+        instance.position = randpos;
     }
 }
