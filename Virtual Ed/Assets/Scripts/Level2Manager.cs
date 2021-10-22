@@ -40,15 +40,18 @@ public class Level2Manager : MonoBehaviour
 
     public bool gameOver = false;
 
+    //Real half life of ~4.8 minutes
+    private float halfLife;
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //level 3 & 4 (zero base)
         prevLevel = GMScript.GetLevel(2);
 
         //Get level time limit
-        timeGiven = time = GMScript.GetLevel(currLevel).TimeLimit;
+        halfLife = timeGiven = time = GMScript.GetLevel(currLevel).TimeLimit;
         //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
 
@@ -68,6 +71,7 @@ public class Level2Manager : MonoBehaviour
             UpdateGameManager();
 
         OnSnapped();
+        scoreTxt.text = "Score: " + score + " / " + maxScore;
     }
 
     private void OnSnapped()
@@ -76,7 +80,7 @@ public class Level2Manager : MonoBehaviour
         {
             ++score;
             scoreTxt.text = "Score: " + score + " / " + maxScore;
-            
+
             redSnap.DestroySnappedObject();
             greenSnap.DestroySnappedObject();
             blueSnap.DestroySnappedObject();
@@ -136,7 +140,6 @@ public class Level2Manager : MonoBehaviour
         GMScript.LoadNextScene();
     }
 
-    private float halfLife = 2;
     void updateTimer()
     {
         int d = (int)(time * 100.0f);
@@ -146,9 +149,9 @@ public class Level2Manager : MonoBehaviour
         timerTxt.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
             //Reduce max score based on nano particle half life
-        if(time >= halfLife && maxScore > 0)
+        if(time < halfLife && maxScore > score)
         {
-            halfLife += halfLife*2 - halfLife;
+            halfLife -= 0.5f;
             --maxScore;
         }
         time -= Time.deltaTime;

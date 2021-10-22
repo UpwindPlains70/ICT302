@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public void ReplayGame()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("Level_1");
+        //time scale reset on scene
     }
 
     public void QuitGame ()
@@ -18,8 +18,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ReplayLevel()
-    {
-        Time.timeScale = 1;
+    {        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

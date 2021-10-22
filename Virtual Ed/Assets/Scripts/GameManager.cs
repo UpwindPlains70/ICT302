@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
     public bool MainMenu = false;
 
     private Scene currScene;
-    public bool autoLoading = true;
+    public bool autoLoading { get; set; }
+    public bool singleplayer { get; set; }
+    public bool multiplayer { get; set; }
 
     private void Awake()
     {
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if(MainMenu && !loading)
         { 
-            StartCoroutine(LoadFirstLevelAsyncScene());
+            //StartCoroutine(LoadFirstLevelAsyncScene());
         }
         else if(autoLoading)
         {
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadFirstLevel()
     {
+        StartCoroutine(LoadFirstLevelAsyncScene());
         asyncLoad.allowSceneActivation = true;
         MainMenu = false;
         loading = false;

@@ -21,6 +21,7 @@ public class Level3Manager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //level 3 & 4 (zero base)
         prevLevel = GMScript.GetLevel(1);
