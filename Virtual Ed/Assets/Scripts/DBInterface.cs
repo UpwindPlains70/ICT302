@@ -64,6 +64,9 @@ public class DBInterface : MonoBehaviour
         }
     }
 
+
+
+
     // After student number is entered, the GameID, StudentNumber and DateAndTime is displayed with a welcome screen
     public List<System.Tuple<ulong, string, DateTime, string>> DisplayGameDataFromDB()
     {
@@ -237,11 +240,11 @@ public class DBInterface : MonoBehaviour
 
 
 
-        // not being used
-        /*
-        public List<System.Tuple<string, int>> RetrieveTopFiveFinalScores()
+        
+        
+        public List<System.Tuple<int, int, DateTime>> RetrieveTopFiveFinalScores(string StudentNumber)
         {
-            List<System.Tuple<string, int>> topFive = new List<System.Tuple<string, int>>();
+            List<System.Tuple<int, int, DateTime>> topFive = new List<System.Tuple<int, int, DateTime>>();
 
             using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
             {
@@ -250,16 +253,19 @@ public class DBInterface : MonoBehaviour
                     connection.Open();
 
                     MySqlCommand command = connection.CreateCommand();
-                    command.CommandText = "SELECT StudentNumber, FinalScore FROM scoring_details ORDER BY FinalScore DESC LIMIT 5";
+                    command.CommandText = "SELECT StudentNumber, FinalScore, FinalTimeTaken, DateAndTime FROM scoring_details WHERE StudentNumber = @StudentNumber ORDER BY FinalScore DESC LIMIT 5";
+                    command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        var ordinal = reader.GetOrdinal("StudentNumber");
-                        string StudentNumber = reader.GetString(ordinal);
-                        ordinal = reader.GetOrdinal("FinalScore");
+                        var ordinal = reader.GetOrdinal("FinalScore");
                         int FinalScore = reader.GetInt32(ordinal);
-                        System.Tuple<string, int> entry = new System.Tuple<string, int>(StudentNumber, FinalScore);
+                        ordinal = reader.GetOrdinal("FinalTimeTaken");
+                        int FinalTimeTaken = reader.IsDBNull(ordinal) ? 0 : reader.GetInt32(ordinal);
+                        ordinal = reader.GetOrdinal("DateAndTime");
+                        DateTime DateAndTime = reader.GetDateTime(ordinal);
+                        System.Tuple<int, int, DateTime> entry = new System.Tuple<int, int, DateTime>(FinalScore, FinalTimeTaken, DateAndTime);
                         topFive.Add(entry);
                     }
 
@@ -273,7 +279,7 @@ public class DBInterface : MonoBehaviour
 
             return topFive;
         }
-        */
+        
 
 
 

@@ -19,6 +19,11 @@ public class DBUserInterface : MonoBehaviour
     public List<Text> DateAndTimes = new List<Text>();
     public List<Text> FinalScores = new List<Text>();
     public List<Text> FinalTimeTakens = new List<Text>();
+
+    public List<Text> HighScoreFinalScores = new List<Text>();
+    public List<Text> HighScoreFinalTimeTakens = new List<Text>();
+    public List<Text> HighScoreDateAndTimes = new List<Text>();
+
     //public List<Text> Highscores = new List<Text>();
     DBInterface DBInterface;
 
@@ -124,7 +129,28 @@ public class DBUserInterface : MonoBehaviour
 
     }
 
-    
+    public void RetrieveTopFiveFinalScores()
+    {
+        if (DBInterface == null)
+        {
+            Debug.LogError("DBUserInterface: Could not retrieve data. DBIitefrace is not present.");
+            return;
+        }
+
+        clearScoreboard();
+        List<System.Tuple<int, int, DateTime>> highscores = DBInterface.RetrieveTopFiveFinalScores(StudentNumberDisplayText);
+
+        for (int i = 0; i < highscores.Count; i++)
+        {
+            HighScoreFinalScores[i].text = highscores[i].Item1.ToString();
+            HighScoreFinalTimeTakens[i].text = highscores[i].Item2.ToString();
+            HighScoreDateAndTimes[i].text = highscores[i].Item3.ToString();
+
+        }
+
+
+    }
+
 
 
 
