@@ -1728,10 +1728,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa46f204282e5614aad953ce71285339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 5
   stopRange: 0.9
   moveAllowed: 1
+  timer: 0
 --- !u!4 &803019549
 Transform:
   m_ObjectHideFlags: 0
@@ -3472,7 +3472,7 @@ MonoBehaviour:
   FixedSpeedSteps: 0
   HmdResetsY: 1
   HmdRotatesY: 1
-  GravityModifier: 0
+  GravityModifier: 1
   useProfileData: 1
   EnableLinearMovement: 1
   EnableRotation: 1
