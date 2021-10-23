@@ -7890,7 +7890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &529213537
 Transform:
   m_ObjectHideFlags: 0
@@ -11997,7 +11997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &836523084
 Transform:
   m_ObjectHideFlags: 0
@@ -15918,7 +15918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1182711417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23743,7 +23743,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 31
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1578747283
 RectTransform:
@@ -39890,7 +39890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15c78bb8ab8da42a94aa0bc3081814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
@@ -39899,15 +39899,14 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 5545354581220952743}
   networkAddress: localhost
-  maxConnections: 200
+  maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 3745392924739203606, guid: a1957f6f9df30914e800a729c6c278d4,
-    type: 3}
-  autoCreatePlayer: 0
-  playerSpawnMethod: 1
+  playerPrefab: {fileID: 0}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
   spawnPrefabs: []
-  canvas: {fileID: 8615778075651222002}
-  canvasController: {fileID: 8615778075651222013}
+  canvas: {fileID: 0}
+  canvasController: {fileID: 0}
 --- !u!114 &5545354581220952743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40501,7 +40500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5565681650828399921
 Transform:
   m_ObjectHideFlags: 0
@@ -44191,12 +44190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0f113afba9a074b9a3e4fb56f16abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerList: {fileID: 8615778075298606590}
-  playerPrefab: {fileID: 2742256683483721700, guid: 504f86497324bc040be44f6f88b6cc73,
-    type: 3}
-  cancelButton: {fileID: 8615778075251440158}
-  leaveButton: {fileID: 8615778075562049557}
-  startButton: {fileID: 8615778075753265213}
+  playerList: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  cancelButton: {fileID: 0}
+  leaveButton: {fileID: 0}
+  startButton: {fileID: 0}
   owner: 0
 --- !u!222 &8615778075446378251
 CanvasRenderer:
@@ -44607,17 +44605,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12d7cb6cdb799041927819f22a2c931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchList: {fileID: 8615778074973106979}
-  matchPrefab: {fileID: 3533216216399874123, guid: df3727c2222378b4ca786485a8b09981,
-    type: 3}
-  matchControllerPrefab: {fileID: 3745392924739203606, guid: a1957f6f9df30914e800a729c6c278d4,
-    type: 3}
-  createButton: {fileID: 8615778075225196556}
-  joinButton: {fileID: 8615778074135952755}
-  lobbyView: {fileID: 8615778073957079066}
-  roomView: {fileID: 8615778075402083753}
-  roomGUI: {fileID: 8615778075402083799}
-  toggleGroup: {fileID: 8615778074973106991}
+  matchList: {fileID: 0}
+  matchPrefab: {fileID: 0}
+  matchControllerPrefab: {fileID: 0}
+  createButton: {fileID: 0}
+  joinButton: {fileID: 0}
+  lobbyView: {fileID: 0}
+  roomView: {fileID: 0}
+  roomGUI: {fileID: 0}
+  toggleGroup: {fileID: 0}
 --- !u!224 &8615778075651222014
 RectTransform:
   m_ObjectHideFlags: 0
