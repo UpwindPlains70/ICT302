@@ -59,8 +59,8 @@ public class DBUserInterface : MonoBehaviour
                 //Display scoreboard canvas if player is logged in
             transform.GetChild(0).gameObject.SetActive(true);
 
-            StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
-            UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+            //StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
+            //UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -136,14 +136,10 @@ public class DBUserInterface : MonoBehaviour
         
         for (int i = 0; i < highscores.Count; i++)
         {
-
+            Debug.Log("Final Score: " + i + "  |  "+highscores[i].Item1);
             FinalScores[i].text = highscores[i].Item1.ToString();
             FinalTimeTakens[i].text = highscores[i].Item2.ToString();
-
-
         }
-        
-
     }
 
     public void RetrieveTopFiveFinalScores()

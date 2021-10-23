@@ -29,6 +29,7 @@ public class Level4Manager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             //level 3 & 4 (zero base)
         prevLevel = GMScript.GetLevel(2);
@@ -80,7 +81,7 @@ public class Level4Manager : MonoBehaviour
 
         //Display scoreboard
         gameOverCanvas.gameObject.SetActive(true);
-
+        score = 5;
         finalScore.SetText("Final Score\n" + score);
 
         UpdateGameManager();

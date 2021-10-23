@@ -27,6 +27,7 @@ public class Level1Manager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         //Get level time limit

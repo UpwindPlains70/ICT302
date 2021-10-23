@@ -87,7 +87,8 @@ public class DBInterface : MonoBehaviour
                 while (reader.Read())
                 {
                     var ordinal = reader.GetOrdinal("GameID");
-                    GameID = reader.GetUInt64(ordinal);
+                    ulong GameID = reader.GetUInt64(ordinal);
+                    Debug.Log("game ID: " + GameID);
                     ordinal = reader.GetOrdinal("StudentNumber");
                     string StudentNumber = reader.GetString(ordinal);
                     ordinal = reader.GetOrdinal("DateAndTime");
@@ -162,10 +163,11 @@ public class DBInterface : MonoBehaviour
     //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
     public void ReceiveScoreLvlOne()
     {
+        Debug.Log(stringBuilder.ConnectionString);
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
-            //try
-            //{
+            try
+            {
                 connection.Open();
 
                 MySqlCommand command = connection.CreateCommand(); //
@@ -181,24 +183,26 @@ public class DBInterface : MonoBehaviour
                 //Loop through all levels
                 for (int i = 0; i < GMScript.getTotalLevels(); ++i)
                 {
+                Debug.Log("Lvl Id: " + i + " score: " + GMScript.GetLevel(i).Score);
+                Debug.Log("Lvl Id: " + i + " compTime: " + GMScript.GetLevel(i).CompletionTime);
                     //Based on level assign values to database accordingly (level list is ZERO based)
                     switch (i)
                     {
                         case 0:
                             command.Parameters.AddWithValue("@ScoreLvlOne", GMScript.GetLevel(i).Score);
-                            command.Parameters.AddWithValue("@TimeTakenLvlOne", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlOne", GMScript.GetLevel(i).CompletionTime);
                             break;
                         case 1:
                             command.Parameters.AddWithValue("@ScoreLvlTwo", GMScript.GetLevel(i).Score);
-                            command.Parameters.AddWithValue("@TimeTakenLvlTwo", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlTwo", GMScript.GetLevel(i).CompletionTime);
                             break;
                         case 2:
                             command.Parameters.AddWithValue("@ScoreLvlThree", GMScript.GetLevel(i).Score);
-                            command.Parameters.AddWithValue("@TimeTakenLvlThree", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlThree", GMScript.GetLevel(i).CompletionTime);
                             break;
                         case 3:
                             command.Parameters.AddWithValue("@ScoreLvlFour", GMScript.GetLevel(i).Score);
-                            command.Parameters.AddWithValue("@TimeTakenLvlFour", GMScript.GetLevel(i).Score);
+                            command.Parameters.AddWithValue("@TimeTakenLvlFour", GMScript.GetLevel(i).CompletionTime);
                             break;
                     }
                 }
@@ -206,35 +210,13 @@ public class DBInterface : MonoBehaviour
                 command.ExecuteNonQuery();
 
                 connection.Close();
-            /*}
+            }
             catch (System.Exception ex)
             {
                 Debug.LogError("DBInterface error in public void ReceiveScoreLvlOne " + System.Environment.NewLine + ex.Message);
-            }*/
+            }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         
         public List<System.Tuple<int, int, DateTime>> RetrieveTopFiveFinalScores(string StudentNumber)
         {

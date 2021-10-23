@@ -8,18 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //public string StudentNumber;
+    public string StudentNumber { get; set; }
 
-    //public ulong GameID { get; set; }
+    public ulong GameID { get; set; }
 
     public int getTotalLevels() { return levels.Capacity; }
 
     private DBInterface DBScript;
 
+    private static GameManager comp;
     [SerializeField]
     private List<Level> levels = new List<Level>();
 
-    private static GameManager comp;
     public static GameManager _Components
     {
         get
@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
 
     private bool gameOver = false;
 
-    public bool GameOver { 
+    public bool GameOver
+    {
         get { return gameOver; }
         set { gameOver = value; }
     }
@@ -40,12 +41,14 @@ public class GameManager : MonoBehaviour
     private float time;
     private bool loading = false;
 
-        //Allows play button to access its properties (i.e. for activation)
+    //Allows play button to access its properties (i.e. for activation)
     public AsyncOperation asyncLoad { get; private set; }
     public bool MainMenu = false;
 
     private Scene currScene;
-    public bool autoLoading = true;
+    public bool autoLoading { get; set; }
+    public bool singleplayer { get; set; }
+    public bool multiplayer { get; set; }
 
     private void Awake()
     {
@@ -70,11 +73,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(MainMenu && !loading)
-        { 
-            StartCoroutine(LoadFirstLevelAsyncScene());
+        if (MainMenu && !loading)
+        {
+            //StartCoroutine(LoadFirstLevelAsyncScene());
         }
-        else if(autoLoading)
+        else if (autoLoading)
         {
             time += Time.deltaTime;
             if (time >= (currLevelTime / 3) && !loading)
@@ -94,7 +97,7 @@ public class GameManager : MonoBehaviour
     public float totalTimeTaken()
     {
         float totalTime = 0;
-            //negative 1 to exclude level 4
+        //negative 1 to exclude level 4
         for (int i = 0; i < levels.Count - 1; ++i)
         {
             totalTime += levels[i].TimeLimit;
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
     public float getFullCompletionTime()
     {
         float totalTime = 0;
-            //loop through all levels for grand total time
+        //loop through all levels for grand total time
         foreach (Level lvl in levels)
             totalTime += lvl.TimeLimit;
 
@@ -114,7 +117,7 @@ public class GameManager : MonoBehaviour
     public float totalGivenTime()
     {
         float totalTime = 0;
-        for(int i = 0; i < levels.Count-1; ++i)
+        for (int i = 0; i < levels.Count - 1; ++i)
         {
             totalTime += levels[i].TimeLimit;
         }
@@ -128,6 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadFirstLevel()
     {
+        StartCoroutine(LoadFirstLevelAsyncScene());
         asyncLoad.allowSceneActivation = true;
         MainMenu = false;
         loading = false;
@@ -154,7 +158,7 @@ public class GameManager : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
-            
+
             yield return null;
         }
 

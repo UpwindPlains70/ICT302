@@ -94,7 +94,6 @@ public class SpawnerLevel3 : MonoBehaviour
 
         instance.transform.position = transform.position;
         //Allow for object to spawn worth less than others
-        Debug.Log(maxScore - maxWorth);
         if(maxScore - maxWorth >= 0)
             spawnObject.GetComponent<BallWorth>().score = maxWorth;
         else
