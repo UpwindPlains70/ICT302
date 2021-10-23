@@ -53,7 +53,7 @@ public class DBInterface : MonoBehaviour
 
                 connection.Close();
 
-                ulong GameID = result;
+                GameID = result;
                 // GameID will be assigned as a global variable
 
 
@@ -161,7 +161,7 @@ public class DBInterface : MonoBehaviour
     //UPDATE: Call this function in GameManagers addToServer()
     //UPDATE: add "private DBInterface DBScript;" to GameManager
     //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
-    public void ReceiveScoreLvlOne(string StudentNumber, int GameID)
+    public void ReceiveScoreLvlOne()
     {
         Debug.Log(stringBuilder.ConnectionString);
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
@@ -171,11 +171,17 @@ public class DBInterface : MonoBehaviour
                 connection.Open();
 
                 MySqlCommand command = connection.CreateCommand(); //
-                command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND studentNumber = @StudentNumber";
+                command.CommandText = "UPDATE scoring_details SET " +
+                                        "TimeTakenLvlOne = @TimeTakenLvlOne, TimeTakenLvlTwo = @TimeTakenLvlTwo, " +
+                                        "TimeTakenLvlThree = @TimeTakenLvlThree, TimeTakenLvlFour = @TimeTakenLvlFour, " +
+                                        "ScorelvlOne = @ScoreLvlOne, ScoreLvlTwo = @ScoreLvlTwo, " +
+                                        "ScoreLvlThree = @ScoreLvlThree, ScoreLvlFour = @ScoreLvlFour, StudentNumber = @ScoreLvlTwo," +
+                                        " FinalScore = @FinalScore, FinalTimeTaken = @FinalTimeTaken, UserName = @UserName WHERE GameID = @GameID AND studentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@GameID", GameID);
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
-               // command.Parameters.AddWithValue("@UserName", userName);
-
+                command.Parameters.AddWithValue("@StudentNumber", studentNumber);
+                 command.Parameters.AddWithValue("@UserName", userName);
+                Debug.Log("Game Id: " + GameID);
+                Debug.Log("StudNum: " + studentNumber);
                 //Set final score values (lvl 4 vals for now)
                 command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
                 command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.getFullCompletionTime());
