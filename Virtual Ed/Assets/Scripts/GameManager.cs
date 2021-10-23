@@ -8,18 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public string StudentNumber { get; set; }
+    //public string StudentNumber;
 
-    public ulong GameID { get; set; }
+    //public ulong GameID { get; set; }
 
     public int getTotalLevels() { return levels.Capacity; }
 
     private DBInterface DBScript;
 
-    private static GameManager comp;
     [SerializeField]
     private List<Level> levels = new List<Level>();
 
+    private static GameManager comp;
     public static GameManager _Components
     {
         get

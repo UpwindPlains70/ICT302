@@ -12,8 +12,8 @@ public class DBInterface : MonoBehaviour
     public string UserID = "Remote_ICT302";
     public string Password = "murdochuniversity";
     public ulong GameID;
-    public string StudentNumber;
-    public string UserName;
+    public string studentNumber;
+    public string userName;
     public GameManager GMScript;
     //Place at top (replaces GameID -> GMScript.GameID & StudentNumber-> GMScript.StudentNumber)
 
@@ -33,6 +33,8 @@ public class DBInterface : MonoBehaviour
     // User enters student number which starts a new row into the mysql database, assigning a sequential 'GameID' and the entered 'StudentNumber', both of these values get assigned as GLOBAL VARIABLES for other scenes to use, to ensure correct records are being updated
     public void InsertStudentNumber(string StudentNumber, string UserName)
     {
+        studentNumber = StudentNumber;
+        userName = UserName;
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
             try
@@ -85,7 +87,7 @@ public class DBInterface : MonoBehaviour
                 while (reader.Read())
                 {
                     var ordinal = reader.GetOrdinal("GameID");
-                    ulong GameID = reader.GetUInt64(ordinal);
+                    GameID = reader.GetUInt64(ordinal);
                     ordinal = reader.GetOrdinal("StudentNumber");
                     string StudentNumber = reader.GetString(ordinal);
                     ordinal = reader.GetOrdinal("DateAndTime");
@@ -154,15 +156,6 @@ public class DBInterface : MonoBehaviour
         return topFive;
     }
 
-
-
-
-
-
-
-
-
-
     // ScoreLvlOne value is passed into this from another script/person in da group, HOPEFULLY which updates the existing rows 'ScoreLvlOne' which has the correct game ID and student number
     //UPDATE: Call this function in GameManagers addToServer()
     //UPDATE: add "private DBInterface DBScript;" to GameManager
@@ -171,14 +164,15 @@ public class DBInterface : MonoBehaviour
     {
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
-            try
-            {
+            //try
+            //{
                 connection.Open();
 
-                MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND StudentNumber = @StudentNumber";
+                MySqlCommand command = connection.CreateCommand(); //
+                command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND studentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@GameID", GameID);
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.Parameters.AddWithValue("@StudentNumber", studentNumber);
+                command.Parameters.AddWithValue("@UserName", userName);
 
                 //Set final score values (lvl 4 vals for now)
                 command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
@@ -212,11 +206,11 @@ public class DBInterface : MonoBehaviour
                 command.ExecuteNonQuery();
 
                 connection.Close();
-            }
+            /*}
             catch (System.Exception ex)
             {
                 Debug.LogError("DBInterface error in public void ReceiveScoreLvlOne " + System.Environment.NewLine + ex.Message);
-            }
+            }*/
         }
     }
 

@@ -26,12 +26,37 @@ public class DBUserInterface : MonoBehaviour
 
     //public List<Text> Highscores = new List<Text>();
     DBInterface DBInterface;
-
-    // Start is called before the first frame update
-
-    void Start()
+    private static DBUserInterface comp;
+    public static DBUserInterface _Components
     {
+        get
+        {
+            return comp;
+        }
+    }
+    // Start is called before the first frame update
+    void Awake()
+    {
+        if (comp == null)
+        {
+            comp = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (comp != this)
+                Destroy(gameObject);
+        }
         DBInterface = FindObjectOfType<DBInterface>();
+    }
+
+    public void ReloadScoreBoard()
+    {
+        if (!string.IsNullOrEmpty(StudentNumberDisplayText) & !string.IsNullOrWhiteSpace(UserNameDisplayText))
+        {
+            DisplayGameDataFromDB();
+            DisplayFinalScores();
+        }
     }
 
     public void InsertStudentNumber()
@@ -61,18 +86,9 @@ public class DBUserInterface : MonoBehaviour
         StudentNumberDisplayText = StudentNumber.text;
         UserNameDisplayText = UserName.text;
 
-
-
-
         // StudentNumber.text = "";
 
     }
-
-
-
-
-
-
 
     public void DisplayGameDataFromDB()
     {
@@ -95,15 +111,11 @@ public class DBUserInterface : MonoBehaviour
             GameIDs[i].text = highscores[i].Item1.ToString();
             PlayerNames[i].text = highscores[i].Item2;
             DateAndTimes[i].text = highscores[i].Item3.ToString();
-            UserNames[i].text = highscores[i].Item4.ToString();
-
+            UserNames[i].text = highscores[i].Item4;
         }
 
 
     }
-
-
-
 
     public void DisplayFinalScores()
     {
@@ -150,9 +162,6 @@ public class DBUserInterface : MonoBehaviour
 
 
     }
-
-
-
 
     private void clearScoreboard()
     {
