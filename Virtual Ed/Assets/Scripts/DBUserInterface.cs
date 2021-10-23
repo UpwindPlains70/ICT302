@@ -17,12 +17,17 @@ public class DBUserInterface : MonoBehaviour
 
     public List<Text> GameIDs = new List<Text>();
     public List<Text> DateAndTimes = new List<Text>();
-    public List<Text> FinalScores = new List<Text>();
-    public List<Text> FinalTimeTakens = new List<Text>();
+    //public List<Text> FinalScores = new List<Text>();
+    //public List<Text> FinalTimeTakens = new List<Text>();
 
     public List<Text> HighScoreFinalScores = new List<Text>();
     public List<Text> HighScoreFinalTimeTakens = new List<Text>();
     public List<Text> HighScoreDateAndTimes = new List<Text>();
+
+    public List<Text> GLOBALUserNames = new List<Text>();
+    public List<Text> GLOBALFinalScores = new List<Text>();
+    public List<Text> GLOBALFinalTimeTakens = new List<Text>();
+    public List<Text> GLOBALDateAndTimes = new List<Text>();
 
     //public List<Text> Highscores = new List<Text>();
     DBInterface DBInterface;
@@ -50,12 +55,13 @@ public class DBUserInterface : MonoBehaviour
         DBInterface = FindObjectOfType<DBInterface>();
     }
 
+    
     public void ReloadScoreBoard()
     {
         if (!string.IsNullOrEmpty(StudentNumberDisplayText) & !string.IsNullOrWhiteSpace(UserNameDisplayText))
         {
             DisplayGameDataFromDB();
-            DisplayFinalScores();
+            //DisplayFinalScores();
                 //Display scoreboard canvas if player is logged in
             transform.GetChild(0).gameObject.SetActive(true);
 
@@ -63,6 +69,8 @@ public class DBUserInterface : MonoBehaviour
             //UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
         }
     }
+
+    
 
     public void InsertStudentNumber()
     {
@@ -122,6 +130,9 @@ public class DBUserInterface : MonoBehaviour
 
     }
 
+
+
+    /*
     public void DisplayFinalScores()
     {
         if (DBInterface == null)
@@ -141,6 +152,11 @@ public class DBUserInterface : MonoBehaviour
             FinalTimeTakens[i].text = highscores[i].Item2.ToString();
         }
     }
+
+    */
+
+
+
 
     public void RetrieveTopFiveFinalScores()
     {
@@ -163,6 +179,31 @@ public class DBUserInterface : MonoBehaviour
 
 
     }
+
+
+    public void RetrieveTopGLOBALFinalScores()
+    {
+        if (DBInterface == null)
+        {
+            Debug.LogError("DBUserInterface: Could not retrieve data. DBIitefrace is not present.");
+            return;
+        }
+
+        clearScoreboard();
+        List<System.Tuple<string, int, int, DateTime>> highscores = DBInterface.RetrieveTopGLOBALFinalScores(StudentNumberDisplayText);
+
+        for (int i = 0; i < highscores.Count; i++)
+        {
+            GLOBALUserNames[i].text = highscores[i].Item1.ToString();
+            GLOBALFinalScores[i].text = highscores[i].Item2.ToString();
+            GLOBALFinalTimeTakens[i].text = highscores[i].Item3.ToString();
+            GLOBALDateAndTimes[i].text = highscores[i].Item4.ToString();
+
+        }
+
+    }
+
+
 
     private void clearScoreboard()
     {

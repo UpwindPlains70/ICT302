@@ -112,6 +112,8 @@ public class DBInterface : MonoBehaviour
 
 
 
+    /*
+
 
     // FinalScore and FinalTimeTaken to be displayed at the main menu
     public List<System.Tuple<int, int>> DisplayFinalScores(string StudentNumber)
@@ -156,6 +158,10 @@ public class DBInterface : MonoBehaviour
 
         return topFive;
     }
+
+
+    */
+
 
     // ScoreLvlOne value is passed into this from another script/person in da group, HOPEFULLY which updates the existing rows 'ScoreLvlOne' which has the correct game ID and student number
     //UPDATE: Call this function in GameManagers addToServer()
@@ -261,7 +267,47 @@ public class DBInterface : MonoBehaviour
 
             return topFive;
         }
-        
+
+    public List<System.Tuple<string, int, int, DateTime>> RetrieveTopGLOBALFinalScores(string StudentNumber)
+    {
+        List<System.Tuple<string, int, int, DateTime>> topFive = new List<System.Tuple<string, int, int, DateTime>>();
+
+        using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
+        {
+            try
+            {
+                connection.Open();
+
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT StudentNumber, UserName, FinalScore, FinalTimeTaken, DateAndTime FROM scoring_details ORDER BY FinalScore DESC LIMIT 10";
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    var ordinal = reader.GetOrdinal("UserName");
+                    string Username = reader.GetString(ordinal);
+                    ordinal = reader.GetOrdinal("FinalScore");
+                    int FinalScore = reader.GetInt32(ordinal);
+                    ordinal = reader.GetOrdinal("FinalTimeTaken");
+                    int FinalTimeTaken = reader.IsDBNull(ordinal) ? 0 : reader.GetInt32(ordinal);
+                    ordinal = reader.GetOrdinal("DateAndTime");
+                    DateTime DateAndTime = reader.GetDateTime(ordinal);
+                    System.Tuple<string, int, int, DateTime> entry = new System.Tuple<string, int, int, DateTime>(Username, FinalScore, FinalTimeTaken, DateAndTime);
+                    topFive.Add(entry);
+                }
+
+                connection.Close();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("DBInterface: Could not retrieve the topGLOBAL highscores! " + System.Environment.NewLine + ex.Message);
+            }
+        }
+
+        return topFive;
+    }
 
 
 
@@ -272,7 +318,7 @@ public class DBInterface : MonoBehaviour
 
 
 
-    
+
 }
 
 
