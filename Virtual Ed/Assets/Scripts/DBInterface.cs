@@ -161,7 +161,7 @@ public class DBInterface : MonoBehaviour
     //UPDATE: Call this function in GameManagers addToServer()
     //UPDATE: add "private DBInterface DBScript;" to GameManager
     //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
-    public void ReceiveScoreLvlOne()
+    public void ReceiveScoreLvlOne(string StudentNumber, int GameID)
     {
         Debug.Log(stringBuilder.ConnectionString);
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
@@ -174,7 +174,7 @@ public class DBInterface : MonoBehaviour
                 command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND studentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@GameID", GameID);
                 command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-                command.Parameters.AddWithValue("@UserName", userName);
+               // command.Parameters.AddWithValue("@UserName", userName);
 
                 //Set final score values (lvl 4 vals for now)
                 command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
