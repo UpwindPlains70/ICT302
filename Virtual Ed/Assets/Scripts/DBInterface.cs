@@ -173,7 +173,7 @@ public class DBInterface : MonoBehaviour
                 MySqlCommand command = connection.CreateCommand(); //
                 command.CommandText = "UPDATE scoring_details SET ScorelvlOne = @ScoreLvlOne WHERE GameID = @GameID AND studentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@GameID", GameID);
-                command.Parameters.AddWithValue("@StudentNumber", studentNumber);
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
                // command.Parameters.AddWithValue("@UserName", userName);
 
                 //Set final score values (lvl 4 vals for now)
