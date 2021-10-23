@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RefreshScoreBoard : MonoBehaviour
+public class setTimeScale : MonoBehaviour
 {
-    private DBUserInterface DB_UI;
     // Start is called before the first frame update
     void Start()
     {
-        DB_UI = FindObjectOfType<DBUserInterface>();
-        DB_UI.ReloadScoreBoard();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

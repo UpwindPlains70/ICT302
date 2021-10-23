@@ -56,6 +56,11 @@ public class DBUserInterface : MonoBehaviour
         {
             DisplayGameDataFromDB();
             DisplayFinalScores();
+                //Display scoreboard canvas if player is logged in
+            transform.GetChild(0).gameObject.SetActive(true);
+
+            StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
+            UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
         }
     }
 

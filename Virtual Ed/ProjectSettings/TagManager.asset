@@ -35,6 +35,8 @@ TagManager:
   - grab
   - badGoal
   - Score
+  - StudentNumber
+  - UserName
   layers:
   - Default
   - TransparentFX
