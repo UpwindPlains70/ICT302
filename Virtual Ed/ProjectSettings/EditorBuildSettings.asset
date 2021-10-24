@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DatabaseLogin.unity
     guid: e3396238836d6dd4fbec5fc34e422549
+  - enabled: 0
+    path: Assets/Mirror/Examples/MultipleMatches/Scenes/Main.unity
+    guid: aa1f875396fa7d348a782cebc2f75d7c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9465d3bfbe2e1534eb429c416f7740fb,
       type: 2}

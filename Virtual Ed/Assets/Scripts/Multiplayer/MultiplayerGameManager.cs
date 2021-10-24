@@ -5,8 +5,9 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class GameManager : MonoBehaviour
+public class MultiplayerGameManager : NetworkBehaviour
 {
     public string StudentNumber { get; set; }
 
@@ -14,13 +15,15 @@ public class GameManager : MonoBehaviour
 
     public int getTotalLevels() { return levels.Capacity; }
 
+    
     private DBInterface DBScript;
 
-    private static GameManager comp;
+    private static MultiplayerGameManager comp;
     [SerializeField]
     private List<Level> levels = new List<Level>();
 
-    public static GameManager _Components
+
+    public static MultiplayerGameManager _Components
     {
         get
         {
@@ -136,6 +139,16 @@ public class GameManager : MonoBehaviour
         return levels[n];
     }
 
+    [SyncVar]
+    public int levelScore;
+
+    [Client]
+    public void LevelScore(int index)
+    {
+        levelScore = levels[index].Score;  
+    }
+
+    [Command]
     public void LoadFirstLevel()
     {
         StartCoroutine(LoadFirstLevelAsyncScene());

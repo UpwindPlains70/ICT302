@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Mirror;
+using Mirror.Examples.MultipleMatch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Mirror.Examples.MultipleMatch
-{
-    public class CanvasController : MonoBehaviour
+    public class MyCanvasController : MonoBehaviour
     {
         /// <summary>
         /// Match Controllers listen for this to terminate their match and clean up
@@ -490,7 +490,7 @@ namespace Mirror.Examples.MultipleMatch
                 //NetworkServer.Spawn(matchControllerObject);
 
                 NetworkManager.singleton.ServerChangeScene("Level_1");
-                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
+                MyMatchController matchController = matchControllerObject.GetComponent<MyMatchController>();
 
                 Debug.Log(matchId);
                 foreach (NetworkConnection playerConn in matchConnections[matchId])
@@ -517,8 +517,8 @@ namespace Mirror.Examples.MultipleMatch
                     playerInfos[playerConn] = playerInfo;
                 }
 
-                matchController.startingPlayer = matchController.player1;
-                matchController.currentPlayer = matchController.player1;
+                //matchController.startingPlayer = matchController.player1;
+                //matchController.currentPlayer = matchController.player1;
 
                 playerMatches.Remove(conn);
                 openMatches.Remove(matchId);
@@ -629,7 +629,7 @@ namespace Mirror.Examples.MultipleMatch
 
             foreach (Transform child in matchList.transform)
             {
-                if (child.gameObject.GetComponent<MatchGUI>().GetMatchId() == selectedMatch)
+                if (child.gameObject.GetComponent<MyMatchGUI>().GetMatchId() == selectedMatch)
                 {
                     Toggle toggle = child.gameObject.GetComponent<Toggle>();
                     toggle.isOn = true;
@@ -657,7 +657,7 @@ namespace Mirror.Examples.MultipleMatch
             {
                 GameObject newMatch = Instantiate(matchPrefab, Vector3.zero, Quaternion.identity);
                 newMatch.transform.SetParent(matchList.transform, false);
-                newMatch.GetComponent<MatchGUI>().SetMatchInfo(matchInfo);
+                newMatch.GetComponent<MyMatchGUI>().SetMatchInfo(matchInfo);
                 newMatch.GetComponent<Toggle>().group = toggleGroup;
                 if (matchInfo.matchId == selectedMatch)
                 {
@@ -669,4 +669,4 @@ namespace Mirror.Examples.MultipleMatch
         #endregion
 
     }
-}
+

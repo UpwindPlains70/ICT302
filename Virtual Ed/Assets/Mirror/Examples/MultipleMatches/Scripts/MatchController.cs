@@ -13,6 +13,7 @@ namespace Mirror.Examples.MultipleMatch
 
         CellValue boardScore = CellValue.None;
         bool playAgain = false;
+        
 
         [Header("GUI References")]
         public CanvasGroup canvasGroup;
@@ -28,7 +29,7 @@ namespace Mirror.Examples.MultipleMatch
         public NetworkIdentity player2;
         public NetworkIdentity startingPlayer;
 
-        [SyncVar(hook = nameof(UpdateGameUI))]
+        //[SyncVar(hook = nameof(UpdateGameUI))]
         public NetworkIdentity currentPlayer;
 
         void Awake()
@@ -64,7 +65,7 @@ namespace Mirror.Examples.MultipleMatch
             playAgainButton.gameObject.SetActive(false);
         }
 
-        public void UpdateGameUI(NetworkIdentity _, NetworkIdentity newPlayerTurn)
+        /*public void UpdateGameUI(NetworkIdentity _, NetworkIdentity newPlayerTurn)
         {
             if (!newPlayerTurn) return;
 
@@ -78,7 +79,7 @@ namespace Mirror.Examples.MultipleMatch
                 gameText.text = "Their Turn";
                 gameText.color = Color.red;
             }
-        }
+        }*/
 
         public void UpdateWins(SyncDictionary<NetworkIdentity, MatchPlayerData>.Operation op, NetworkIdentity key, MatchPlayerData matchPlayerData)
         {
