@@ -240,7 +240,7 @@ using UnityEngine.UI;
             if (!NetworkServer.active || SceneManager.GetActiveScene().buildIndex != 0) return;
 
             waitingConnections.Add(conn);
-            playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
+            playerInfos.Add(conn, new PlayerInfo {playerName = "nn", playerIndex = this.playerIndex, ready = false });
             playerIndex++;
 
             SendMatchList();
@@ -487,14 +487,17 @@ using UnityEngine.UI;
             {
                 GameObject matchControllerObject = Instantiate(matchControllerPrefab);
                 matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
-                //NetworkServer.Spawn(matchControllerObject);
+            MyMatchController matchController = matchControllerObject.GetComponent<MyMatchController>();
+            NetworkServer.Spawn(matchControllerObject);
 
+            //matchControllerObject.GetComponent<GameManager>().MainMenu = false;
+            //matchController.setupGMClientRpc();
                 NetworkManager.singleton.ServerChangeScene("Level_1");
-                MyMatchController matchController = matchControllerObject.GetComponent<MyMatchController>();
-
+            //Debug.Log(matchController.playersGameManager.userName);
                 Debug.Log(matchId);
                 foreach (NetworkConnection playerConn in matchConnections[matchId])
                 {
+
                     Debug.Log(playerConn);
                     playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Started });
 
@@ -614,7 +617,10 @@ using UnityEngine.UI;
                     }
                 case ClientMatchOperation.Started:
                     {//Server forces all clients to load scene (level 1)
-                        gameObject.SetActive(false);
+                    //MyMatchController matchController = FindObjectOfType<MyMatchController>();
+
+                    //matchController.setupGMClientRpc();
+                    gameObject.SetActive(false);
                         //lobbyView.SetActive(false);
                         //roomView.SetActive(false);
                         break;

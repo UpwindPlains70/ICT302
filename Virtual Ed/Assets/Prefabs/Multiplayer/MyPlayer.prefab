@@ -354,3 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496347c9300fd7248a977190d99e92b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  myGM: {fileID: 0}

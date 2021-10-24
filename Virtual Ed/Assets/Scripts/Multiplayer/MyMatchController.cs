@@ -3,6 +3,7 @@ using Mirror.Examples.MultipleMatch;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
     [RequireComponent(typeof(NetworkMatch))]
@@ -10,38 +11,62 @@ using UnityEngine.UI;
     {
         internal readonly SyncDictionary<NetworkIdentity, MatchPlayerData> matchPlayerData = new SyncDictionary<NetworkIdentity, MatchPlayerData>();
         internal readonly Dictionary<CellValue, CellGUI> MatchCells = new Dictionary<CellValue, CellGUI>();
-
-    /* bool playAgain = false;
-
-     public Button exitButton;
-     public Button playAgainButton;
-    */
-
     
+    [SyncVar]
+    int winOrder;
+    public Text gameText;
+
+    bool playAgain = false;
+
+        public Button exitButton;
+        public Button playAgainButton;
+        int finalLevelSceneID = 4;
+
+
         [Header("Diagnostics - Do Not Modify")]
         public MyCanvasController canvasController;
         public NetworkIdentity player1;
         public NetworkIdentity player2;
-        public NetworkIdentity startingPlayer;
-        public GameObject[] allPlayersGameManagers;
+        public NetworkIdentity player3;
+        public NetworkIdentity player4;
+        //public NetworkIdentity startingPlayer;
+        public GameManager playersGameManager;
     
         public NetworkIdentity currentPlayer;
 
         void Awake()
         {
             canvasController = FindObjectOfType<MyCanvasController>();
+            playersGameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            setupGM();
+        }
+
+        public void setupGM()
+        {
+            playersGameManager.GameOver = true;
+            playersGameManager.MainMenu = false;
         }
 
         public override void OnStartServer()
         {
-        Debug.Log("Start serv");
+            Debug.Log("Start serv");
             StartCoroutine(AddPlayersToMatchController());
-        allPlayersGameManagers = GameObject.FindGameObjectsWithTag("GameManager");
+        }
+
+    [Command(requiresAuthority = false)]
+    public void CmdMakePlay(NetworkConnectionToClient sender = null)
+    {        
+        if (SceneManager.GetActiveScene().buildIndex != finalLevelSceneID)
+        {
+            RpcShowWinner(currentPlayer);
+            ++winOrder;
+        }
+
     }
 
-        // For the SyncDictionary to properly fire the update callback, we must
-        // wait a frame before adding the players to the already spawned MatchController
-        IEnumerator AddPlayersToMatchController()
+    // For the SyncDictionary to properly fire the update callback, we must
+    // wait a frame before adding the players to the already spawned MatchController
+    IEnumerator AddPlayersToMatchController()
         {
             yield return null;
 
@@ -55,8 +80,31 @@ using UnityEngine.UI;
         //Maybe read database username
         }
 
-        // Assigned in inspector to ReplayButton::OnClick
-        /*[Client]
+
+        [ClientRpc]
+        public void RpcShowWinner(NetworkIdentity winner)
+        {
+
+        foreach (CellGUI cellGUI in MatchCells.Values)
+            cellGUI.GetComponent<Button>().interactable = false;
+
+        
+        if (winner.gameObject.GetComponent<NetworkIdentity>().isLocalPlayer)
+        {
+            gameText.text = "" + winOrder;
+            gameText.color = Color.blue;
+        }
+        else
+        {
+            gameText.text = "Loser!";
+            gameText.color = Color.red;
+        }
+        exitButton.gameObject.SetActive(true);
+        playAgainButton.gameObject.SetActive(true);
+    }
+
+    // Assigned in inspector to ReplayButton::OnClick
+    [Client]
         public void RequestPlayAgain()
         {
             playAgainButton.gameObject.SetActive(false);
@@ -76,9 +124,9 @@ using UnityEngine.UI;
                 RestartGame();
             }
         }
-        */
+        
 
-        /*[ClientRpc]
+        [ClientRpc]
         public void RpcRestartGame()
         {
             foreach (CellGUI cellGUI in MatchCells.Values)
@@ -95,7 +143,7 @@ using UnityEngine.UI;
             exitButton.gameObject.SetActive(false);
             playAgainButton.gameObject.SetActive(false);
             CmdRequestExitGame();
-        }*/
+        }
 
         [Server]
         public void RestartGame()

@@ -690,6 +690,8 @@ MonoBehaviour:
     score: 0
     bonus: 5
   currLevelIndex: 0
+  mainmenu: 0
+  _autoLoad: 0
 --- !u!4 &434349440
 Transform:
   m_ObjectHideFlags: 0

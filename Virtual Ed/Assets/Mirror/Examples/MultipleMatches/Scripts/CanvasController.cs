@@ -206,7 +206,7 @@ namespace Mirror.Examples.MultipleMatch
         /// <param name="conn"></param>
         internal void SendMatchList(NetworkConnection conn = null)
         {
-            if (!NetworkServer.active || SceneManager.GetActiveScene().buildIndex != 0) return;
+            if (!NetworkServer.active) return;
 
             if (conn != null)
             {
@@ -237,7 +237,7 @@ namespace Mirror.Examples.MultipleMatch
 
         internal void OnServerReady(NetworkConnection conn)
         {
-            if (!NetworkServer.active || SceneManager.GetActiveScene().buildIndex != 0) return;
+            if (!NetworkServer.active) return;
 
             waitingConnections.Add(conn);
             playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
@@ -487,15 +487,12 @@ namespace Mirror.Examples.MultipleMatch
             {
                 GameObject matchControllerObject = Instantiate(matchControllerPrefab);
                 matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
-                //NetworkServer.Spawn(matchControllerObject);
-
-                NetworkManager.singleton.ServerChangeScene("Level_1");
                 MatchController matchController = matchControllerObject.GetComponent<MatchController>();
 
-                Debug.Log(matchId);
+                NetworkServer.Spawn(matchControllerObject);
+
                 foreach (NetworkConnection playerConn in matchConnections[matchId])
                 {
-                    Debug.Log(playerConn);
                     playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Started });
 
                     GameObject player = Instantiate(NetworkManager.singleton.playerPrefab);
@@ -613,10 +610,9 @@ namespace Mirror.Examples.MultipleMatch
                         break;
                     }
                 case ClientMatchOperation.Started:
-                    {//Server forces all clients to load scene (level 1)
-                        gameObject.SetActive(false);
-                        //lobbyView.SetActive(false);
-                        //roomView.SetActive(false);
+                    {
+                        lobbyView.SetActive(false);
+                        roomView.SetActive(false);
                         break;
                     }
             }

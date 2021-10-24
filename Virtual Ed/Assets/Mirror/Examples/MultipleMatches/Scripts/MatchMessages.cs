@@ -39,6 +39,7 @@ namespace Mirror.Examples.MultipleMatch
     [Serializable]
     public struct PlayerInfo
     {
+        public string playerName;
         public int playerIndex;
         public bool ready;
         public Guid matchId;
