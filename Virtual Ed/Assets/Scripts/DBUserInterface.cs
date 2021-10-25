@@ -61,16 +61,19 @@ public class DBUserInterface : MonoBehaviour
         if (!string.IsNullOrEmpty(StudentNumberDisplayText) & !string.IsNullOrWhiteSpace(UserNameDisplayText))
         {
             DisplayGameDataFromDB();
-            //DisplayFinalScores();
-                //Display scoreboard canvas if player is logged in
+            RetrieveTopFiveFinalScores();
+            RetrieveTopGLOBALFinalScores();
+            
+            //Display scoreboard canvas if player is logged in
             transform.GetChild(0).gameObject.SetActive(true);
 
-            //StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
-            //UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+            StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
+            UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+
+            StudentNumber.text = StudentNumberDisplayText;
+            UserName.text = UserNameDisplayText;
         }
     }
-
-    
 
     public void InsertStudentNumber()
     {

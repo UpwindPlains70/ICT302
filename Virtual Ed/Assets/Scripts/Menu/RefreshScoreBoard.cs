@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RefreshScoreBoard : MonoBehaviour
 {
-    private DBUserInterface DB_UI;
+    public DBUserInterface DB_UI;
     // Start is called before the first frame update
     void Start()
     {

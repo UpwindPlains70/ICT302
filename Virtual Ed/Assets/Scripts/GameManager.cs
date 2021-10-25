@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
 
     public void addToServer()
     {
+        currLevelIndex = 0;
+        MainMenu = true;
         //add all level information to server
         DBScript.ReceiveScoreLvlOne();
         Debug.Log("Level data Saved");
