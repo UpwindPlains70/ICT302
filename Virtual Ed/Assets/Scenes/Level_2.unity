@@ -1830,6 +1830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: inkSplatObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 4946100847027376170, guid: 0d864940b3beb7748afcb3ead82b313d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8556625152391146267, guid: 0d864940b3beb7748afcb3ead82b313d,
         type: 3}
       propertyPath: m_RootOrder
