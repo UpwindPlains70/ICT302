@@ -5,13 +5,11 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
-using Mirror;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
     public string StudentNumber { get; set; }
 
-    public string userName;
     public ulong GameID { get; set; }
 
     public int getTotalLevels() { return levels.Capacity; }
@@ -45,53 +43,36 @@ public class GameManager : NetworkBehaviour
 
     //Allows play button to access its properties (i.e. for activation)
     public AsyncOperation asyncLoad { get; private set; }
-    public bool mainmenu = false;
-    public bool MainMenu
-    {
-        get { return mainmenu; }
-        set { mainmenu = value; }
-    }
+    public bool MainMenu = false;
 
-    public bool _autoLoad;
-    public bool autoLoading { get { return _autoLoad; } set { _autoLoad = value; } }
+    private Scene currScene;
+    public bool autoLoading { get; set; }
     public bool singleplayer { get; set; }
     public bool multiplayer { get; set; }
 
-    public bool destroyOnLoad { get; set; }
-
-    public MyMatchController matchController;
     private void Awake()
     {
-            //Find and store match controller if multiplayer
-        if (multiplayer && matchController == null)
-            matchController = FindObjectOfType<MyMatchController>();
-
+        currScene = SceneManager.GetActiveScene();
         currLevelTime = levels[currLevelIndex].TimeLimit;
         loading = false;
         if (comp == null)
         {
             comp = this;
-            if(!destroyOnLoad)
-                DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
-        /*else
+        else
         {
             if (comp != this)
-            {
                 Destroy(gameObject);
-            }
-        }*/
+        }
 
         DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>();
+
+
     }
 
     private void Update()
     {
-        if (destroyOnLoad)
-        {
-            Debug.Log("Destory");
-            Destroy(gameObject);
-        }
         if (MainMenu && !loading)
         {
             //StartCoroutine(LoadFirstLevelAsyncScene());
@@ -190,8 +171,6 @@ public class GameManager : NetworkBehaviour
             loading = false;
             currLevelTime = levels[currLevelIndex].TimeLimit;
             asyncLoad.allowSceneActivation = true;
-            if (matchController != null)
-                matchController.CmdMakePlay();
         }
     }
 }

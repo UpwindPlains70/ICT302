@@ -76,14 +76,14 @@ public class Level1Manager : MonoBehaviour
     //store end level values in game manager
     private void UpdateGameManager()
     {
-        //Debug.Log("UPDATE MANAGER");
+        Debug.Log("UPDATE MANAGER");
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
         //Update level score in game manager
         GMScript.GetLevel(currLevel).Score = Score + 10;
         //update completion time in game manager
         GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
-        //Debug.Log(GMScript.GetLevel(currLevel).Score);
+        Debug.Log(GMScript.GetLevel(currLevel).Score);
 
         GMScript.LoadNextScene();
     }

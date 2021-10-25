@@ -13,7 +13,7 @@ namespace Mirror.Examples.MultipleMatch
         [Header("Match GUI")]
         public GameObject canvas;
         public CanvasController canvasController;
-        
+
         #region Unity Callbacks
 
         /// <summary>

@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
     public float negativeZ = 2f;
 
     private float resetScaleFactor;
-    private bool detached = false;
+
     void Start()
     {
         GMScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -72,23 +72,11 @@ public class Spawner : MonoBehaviour
                 g.GetComponent<Rigidbody>().isKinematic = true;
             setKinematic = false;
         }
-        else if(detached == false)
-        {
-            detached = true;
+        else
             this.transform.DetachChildren();
-            if(dimension3 == false)
-                scaleBcells();
-        }
         
     }
     
-    private void scaleBcells()
-    {
-        b_Cell_List = GameObject.FindGameObjectsWithTag(b_Cell_Tag);
-        foreach (GameObject g in b_Cell_List)
-            g.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
-    }
-
     private void generateCells()
     {
         //Populate if not enough

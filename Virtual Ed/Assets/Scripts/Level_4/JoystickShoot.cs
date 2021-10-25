@@ -120,13 +120,11 @@ public class JoystickShoot : MonoBehaviour
         Debug.Log("bound Y: " + screenBounds.y);
         //curr.x = Mathf.Clamp(curr.x, screenBounds.x, screenBounds.x * -1);
         //curr.y = Mathf.Clamp(curr.y, screenBounds.y, screenBounds.y * -1);
-        //curr.x = Mathf.Clamp(curr.x, -12.6f, 12.4f);
-        //curr.y = Mathf.Clamp(curr.y, -1.5f, 8.8f);
-        curr.x = Mathf.Clamp(curr.x, -9.99f, 14.1f);
-        curr.y = Mathf.Clamp(curr.y, 5f, 13.9f);
+        curr.x = Mathf.Clamp(curr.x, -12.6f, 12.4f);
+        curr.y = Mathf.Clamp(curr.y, -1.5f, 8.8f);
         //curr.x = Mathf.Clamp(curr.x, minX, maxX);
         //curr.y = Mathf.Clamp(curr.y, minY, maxY);
-        Debug.Log(curr.x);
+
         player.position = curr;
         //if not clamped
         if ((curr.x >= -9.2f && curr.x <= 8.9f) || (curr.y >= -1 && curr.y <= 7)) 

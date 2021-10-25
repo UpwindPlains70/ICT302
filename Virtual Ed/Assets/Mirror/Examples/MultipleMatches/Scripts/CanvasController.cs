@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Mirror.Examples.MultipleMatch
@@ -487,9 +486,10 @@ namespace Mirror.Examples.MultipleMatch
             {
                 GameObject matchControllerObject = Instantiate(matchControllerPrefab);
                 matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
-                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
-
+                NetworkManager.singleton.ServerChangeScene("Level_1");
                 NetworkServer.Spawn(matchControllerObject);
+
+                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
 
                 foreach (NetworkConnection playerConn in matchConnections[matchId])
                 {
@@ -499,23 +499,23 @@ namespace Mirror.Examples.MultipleMatch
                     player.GetComponent<NetworkMatch>().matchId = matchId;
                     NetworkServer.AddPlayerForConnection(playerConn, player);
 
-                    if (matchController.player1 == null)
+                    /*if (matchController.player1 == null)
                     {
                         matchController.player1 = playerConn.identity;
                     }
                     else
                     {
                         matchController.player2 = playerConn.identity;
-                    }
+                    }*/
 
-                    // Reset ready state for after the match.
+                    /* Reset ready state for after the match. */
                     PlayerInfo playerInfo = playerInfos[playerConn];
                     playerInfo.ready = false;
                     playerInfos[playerConn] = playerInfo;
                 }
 
-                matchController.startingPlayer = matchController.player1;
-                matchController.currentPlayer = matchController.player1;
+                //matchController.startingPlayer = matchController.player1;
+                //matchController.currentPlayer = matchController.player1;
 
                 playerMatches.Remove(conn);
                 openMatches.Remove(matchId);
