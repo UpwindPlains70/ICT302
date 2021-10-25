@@ -49,11 +49,11 @@ public class LVL1_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Which in this game, is directly dependant on the number of nanoparticles you absorb";
         yield return new WaitForSeconds(6);
         FindObjectOfType<AudioManagerNarration>().Play("#1#11");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Absorbing nanoparticles is easy, just point the controller towards the nanoparticle";
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Absorbing nanoparticles is easy, just point the controller towards the nanoparticles";
         yield return new WaitForSeconds(6);
         FindObjectOfType<AudioManagerNarration>().Play("#1#13");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable absorbing the correct nanoparticles";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(70);
         FindObjectOfType<AudioManagerNarration>().Play("#1#14");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "See it’s not that hard";
         yield return new WaitForSeconds(2);
