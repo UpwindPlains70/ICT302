@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Mirror;
+using Mirror.Examples.MultipleMatch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Mirror.Examples.MultipleMatch
-{
-    public class CanvasController : MonoBehaviour
+    public class MyCanvasController : MonoBehaviour
     {
         /// <summary>
         /// Match Controllers listen for this to terminate their match and clean up
@@ -206,7 +206,7 @@ namespace Mirror.Examples.MultipleMatch
         /// <param name="conn"></param>
         internal void SendMatchList(NetworkConnection conn = null)
         {
-            if (!NetworkServer.active) return;
+            if (!NetworkServer.active || SceneManager.GetActiveScene().buildIndex != 0) return;
 
             if (conn != null)
             {
@@ -237,10 +237,10 @@ namespace Mirror.Examples.MultipleMatch
 
         internal void OnServerReady(NetworkConnection conn)
         {
-            if (!NetworkServer.active) return;
+            if (!NetworkServer.active || SceneManager.GetActiveScene().buildIndex != 0) return;
 
             waitingConnections.Add(conn);
-            playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
+            playerInfos.Add(conn, new PlayerInfo {playerName = "nn", playerIndex = this.playerIndex, ready = false });
             playerIndex++;
 
             SendMatchList();
@@ -487,12 +487,18 @@ namespace Mirror.Examples.MultipleMatch
             {
                 GameObject matchControllerObject = Instantiate(matchControllerPrefab);
                 matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
-                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
+            MyMatchController matchController = matchControllerObject.GetComponent<MyMatchController>();
+            NetworkServer.Spawn(matchControllerObject);
 
-                NetworkServer.Spawn(matchControllerObject);
-
+            //matchControllerObject.GetComponent<GameManager>().MainMenu = false;
+            //matchController.setupGMClientRpc();
+                NetworkManager.singleton.ServerChangeScene("Level_1");
+            //Debug.Log(matchController.playersGameManager.userName);
+                Debug.Log(matchId);
                 foreach (NetworkConnection playerConn in matchConnections[matchId])
                 {
+
+                    Debug.Log(playerConn);
                     playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Started });
 
                     GameObject player = Instantiate(NetworkManager.singleton.playerPrefab);
@@ -514,8 +520,8 @@ namespace Mirror.Examples.MultipleMatch
                     playerInfos[playerConn] = playerInfo;
                 }
 
-                matchController.startingPlayer = matchController.player1;
-                matchController.currentPlayer = matchController.player1;
+                //matchController.startingPlayer = matchController.player1;
+                //matchController.currentPlayer = matchController.player1;
 
                 playerMatches.Remove(conn);
                 openMatches.Remove(matchId);
@@ -610,9 +616,13 @@ namespace Mirror.Examples.MultipleMatch
                         break;
                     }
                 case ClientMatchOperation.Started:
-                    {
-                        lobbyView.SetActive(false);
-                        roomView.SetActive(false);
+                    {//Server forces all clients to load scene (level 1)
+                    //MyMatchController matchController = FindObjectOfType<MyMatchController>();
+
+                    //matchController.setupGMClientRpc();
+                    gameObject.SetActive(false);
+                        //lobbyView.SetActive(false);
+                        //roomView.SetActive(false);
                         break;
                     }
             }
@@ -625,7 +635,7 @@ namespace Mirror.Examples.MultipleMatch
 
             foreach (Transform child in matchList.transform)
             {
-                if (child.gameObject.GetComponent<MatchGUI>().GetMatchId() == selectedMatch)
+                if (child.gameObject.GetComponent<MyMatchGUI>().GetMatchId() == selectedMatch)
                 {
                     Toggle toggle = child.gameObject.GetComponent<Toggle>();
                     toggle.isOn = true;
@@ -653,7 +663,7 @@ namespace Mirror.Examples.MultipleMatch
             {
                 GameObject newMatch = Instantiate(matchPrefab, Vector3.zero, Quaternion.identity);
                 newMatch.transform.SetParent(matchList.transform, false);
-                newMatch.GetComponent<MatchGUI>().SetMatchInfo(matchInfo);
+                newMatch.GetComponent<MyMatchGUI>().SetMatchInfo(matchInfo);
                 newMatch.GetComponent<Toggle>().group = toggleGroup;
                 if (matchInfo.matchId == selectedMatch)
                 {
@@ -665,4 +675,4 @@ namespace Mirror.Examples.MultipleMatch
         #endregion
 
     }
-}
+

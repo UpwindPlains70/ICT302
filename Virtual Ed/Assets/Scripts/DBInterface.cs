@@ -33,8 +33,8 @@ public class DBInterface : MonoBehaviour
     // User enters student number which starts a new row into the mysql database, assigning a sequential 'GameID' and the entered 'StudentNumber', both of these values get assigned as GLOBAL VARIABLES for other scenes to use, to ensure correct records are being updated
     public void InsertStudentNumber(string StudentNumber, string UserName)
     {
-        studentNumber = StudentNumber;
-        userName = UserName;
+        GMScript.StudentNumber = studentNumber = StudentNumber;
+        GMScript.userName = userName = UserName;
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
             try

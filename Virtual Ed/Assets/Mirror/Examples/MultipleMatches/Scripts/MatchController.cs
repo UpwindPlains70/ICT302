@@ -13,6 +13,7 @@ namespace Mirror.Examples.MultipleMatch
 
         CellValue boardScore = CellValue.None;
         bool playAgain = false;
+        
 
         [Header("GUI References")]
         public CanvasGroup canvasGroup;

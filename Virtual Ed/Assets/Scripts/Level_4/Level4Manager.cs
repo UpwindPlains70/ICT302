@@ -82,7 +82,7 @@ public class Level4Manager : MonoBehaviour
         //Display scoreboard
         gameOverCanvas.gameObject.SetActive(true);
         score = 5;
-        finalScore.SetText("Final Score\n" + score);
+        finalScore.SetText("Final Score:\n" + score);
 
         UpdateGameManager();
 
@@ -91,7 +91,7 @@ public class Level4Manager : MonoBehaviour
         int minutes = d / (60 * 100);
         int seconds = (d % (60 * 100)) / 100;
 
-        finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+        finalTime.text = string.Format("Time:\n {0:00}:{1:00}", minutes, seconds);
 
         int prevLevelScore = GMScript.GetLevel(currLevel - 1).Score + GMScript.GetLevel(currLevel - 1).Bonus;
 

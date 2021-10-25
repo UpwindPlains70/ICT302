@@ -1,18 +1,17 @@
-﻿using UnityEngine;
+﻿using Mirror;
+using UnityEngine;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
 */
 
-namespace Mirror.Examples.MultipleMatch
-{
     [AddComponentMenu("")]
-    public class MatchNetworkManager : NetworkManager
+    public class MyMatchNetworkManager : NetworkManager
     {
         [Header("Match GUI")]
         public GameObject canvas;
-        public CanvasController canvasController;
+        public MyCanvasController canvasController;
         
         #region Unity Callbacks
 
@@ -122,4 +121,3 @@ namespace Mirror.Examples.MultipleMatch
 
         #endregion
     }
-}
