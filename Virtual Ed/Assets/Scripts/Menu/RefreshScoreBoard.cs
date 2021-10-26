@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RefreshScoreBoard : MonoBehaviour
 {
-    public DBUserInterface DB_UI;
+    private DBUserInterface DB_UI;
+    private GameObject MainMenu_UI;
     // Start is called before the first frame update
     void Start()
     {
+        MainMenu_UI = GameObject.FindGameObjectWithTag("UI");
+        MainMenu_UI.SetActive(true);
+
         DB_UI = FindObjectOfType<DBUserInterface>();
         DB_UI.ReloadScoreBoard();
     }

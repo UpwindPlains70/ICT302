@@ -37,6 +37,7 @@ TagManager:
   - Score
   - StudentNumber
   - UserName
+  - UI
   layers:
   - Default
   - TransparentFX
