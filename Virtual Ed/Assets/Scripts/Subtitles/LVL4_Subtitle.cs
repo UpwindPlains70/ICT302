@@ -43,11 +43,15 @@ public class LVL4_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Point your controller to aim, and press the trigger button which is the same button for Level 2 on the controller to fire ";
         yield return new WaitForSeconds(8);
         FindObjectOfType<AudioManagerNarration>().Play("#4#8");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Have a go, get comfortable shooting spikes at B cells";
-        yield return new WaitForSeconds(70);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Have a go, you have a minute to get comfortable shooting spikes at B cells";
+        yield return new WaitForSeconds(5);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(60);
         FindObjectOfType<AudioManagerNarration>().Play("#4#10");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Any spiking attempts that miss are also a waste of time";
         yield return new WaitForSeconds(4);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(60);
         FindObjectOfType<AudioManagerNarration>().Play("#4#11");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You will only have 1 minute and 30 seconds to spike as many B cells as possible in multiplayer mode, so be quick!";
         yield return new WaitForSeconds(9);

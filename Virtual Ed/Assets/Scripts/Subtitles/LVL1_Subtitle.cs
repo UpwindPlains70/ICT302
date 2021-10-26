@@ -53,7 +53,11 @@ public class LVL1_Subtitle
         yield return new WaitForSeconds(6);
         FindObjectOfType<AudioManagerNarration>().Play("#1#13");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable absorbing the correct nanoparticles";
-        yield return new WaitForSeconds(70);
+        yield return new WaitForSeconds(7);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You will now have a minute to yourself to get comfortable playing Level 1";
+        yield return new WaitForSeconds(7);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(60);
         FindObjectOfType<AudioManagerNarration>().Play("#1#14");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "See it’s not that hard";
         yield return new WaitForSeconds(2);

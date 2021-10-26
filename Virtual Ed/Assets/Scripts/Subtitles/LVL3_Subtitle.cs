@@ -47,9 +47,11 @@ public class LVL3_Subtitle
         yield return new WaitForSeconds(6);
         FindObjectOfType<AudioManagerNarration>().Play("#3#10");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable leading the spike proteins through the maze for a minute ";
-        yield return new WaitForSeconds(70);
-        FindObjectOfType<AudioManagerNarration>().Play("#3#11");
+        yield return new WaitForSeconds(7);
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(60);
+        FindObjectOfType<AudioManagerNarration>().Play("#3#11");
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Remember: you will only have a 1 minute and 30 second time limit, so time is of the essence in multiplayer mode";
         yield return new WaitForSeconds(8);
         FindObjectOfType<AudioManagerNarration>().Play("#3#12");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Be careful, there are holes in the maze that when hit by a spike protein, will cause your score to decrease by 1";
@@ -57,7 +59,6 @@ public class LVL3_Subtitle
         FindObjectOfType<AudioManagerNarration>().Play("#3#13");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "The goal is to get as many spike proteins as possible through the maze and deliver them to the cell membrane";
         yield return new WaitForSeconds(6);
-        FindObjectOfType<AudioManagerNarration>().Play("#3#");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
 
 

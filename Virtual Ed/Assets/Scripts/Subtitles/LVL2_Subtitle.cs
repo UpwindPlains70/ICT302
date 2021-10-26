@@ -53,7 +53,11 @@ public class LVL2_Subtitle
         yield return new WaitForSeconds(7);
         FindObjectOfType<AudioManagerNarration>().Play("#2#12");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable placing the spike protein components in their correct boxes to make maximum use of the 1 minute and 30 second multiplayer mode time limit";
-        yield return new WaitForSeconds(70);
+        yield return new WaitForSeconds(8);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You will now have a minute to yourself to get comfortable playing Level 2";
+        yield return new WaitForSeconds(7);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        yield return new WaitForSeconds(60);
         FindObjectOfType<AudioManagerNarration>().Play("#2#13");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Be careful to grab the correct components, as these will not snap to an incorrect box which wastes your precious time so use your time wisely when playing competitively";
         yield return new WaitForSeconds(11);
