@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Virtual Ed/Assets/Extra sfx.meta
+guid: baecc4b4d5378654e81f5de724d48232
+=======
 guid: 9aa56f0c8bca30b46946a9ffb89e0a5f
+>>>>>>> 32ea198b009c8632dece5364d3bf9c408125fb6d:Virtual Ed/Assets/Scenes/Tutorial.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
