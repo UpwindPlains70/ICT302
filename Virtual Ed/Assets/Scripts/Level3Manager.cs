@@ -18,6 +18,18 @@ public class Level3Manager : MonoBehaviour
     public TextMeshProUGUI currScoreTxt;
     public bool gameOver = false;
 
+    public GameObject HUD;
+    //Game over variables
+    public GameObject gameOverCanvas;
+    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI finalTime;
+    public TextMeshProUGUI goodMsg;
+    public TextMeshProUGUI badMsg;
+
+    private float timeGiven;
+
+    int ballCount;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,7 +39,7 @@ public class Level3Manager : MonoBehaviour
         prevLevel = GMScript.GetLevel(1);
 
         //Get level time limit
-        time = GMScript.GetLevel(currLevel).TimeLimit;
+        timeGiven = time = GMScript.GetLevel(currLevel).TimeLimit;
 
             //store score from previous level
         score = prevLevel.Score;
@@ -41,18 +53,43 @@ public class Level3Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ballCount = GameObject.FindGameObjectsWithTag("Ball").Length;
+
         updateTimer();
 
-        if ((time <= 0 || score <= 0) && gameOver)
+        if ((time <= 0 || ballCount <= 0) && gameOver)
             GameOver();
-        else if ((time <= 0 || score <= 0) && !gameOver)
+        else if ((time <= 0 || ballCount <= 0) && !gameOver)
             UpdateGameManager();
     }
 
     public void GameOver()
     {
+
         //Disable in-game UI
-        Debug.Log("Level Over");
+        HUD.SetActive(false);
+        //Disable in-game UI
+
+        gameOverCanvas.SetActive(true);
+
+        finalScore.SetText("Final Score\n" + score);
+        //Final time for level
+        int d;
+        if (time <= 0)
+            d = (int)(timeGiven * 100.0f);
+        else
+            d = (int)((timeGiven - time) * 100.0f);
+
+        int minutes = d / (60 * 100);
+        int seconds = (d % (60 * 100)) / 100;
+
+        finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+
+        //Display success or failure message based on score
+        if (score >= 5)
+            goodMsg.gameObject.SetActive(true);
+        else
+            badMsg.gameObject.SetActive(true);
 
         UpdateGameManager();
 

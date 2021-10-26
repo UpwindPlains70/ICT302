@@ -41,7 +41,7 @@ public class Level1Manager : MonoBehaviour
     {
         updateTimer();
 
-        if (time <= 0 && gameOver)
+        if (time <= 0 || (gameOver && Score >= 400))
             GameOver();
         else if (time <= 0 && !gameOver)
             UpdateGameManager();

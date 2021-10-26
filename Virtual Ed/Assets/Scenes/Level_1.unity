@@ -657,6 +657,8 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 0
   MainMenu: 0
+  tutorialTimeLimit: 300
+  competitiveTimeLimit: 90
 --- !u!4 &434349440
 Transform:
   m_ObjectHideFlags: 0
@@ -2124,7 +2126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1798055910}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:

@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1798055910}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sorry. You need to reach 100 points, try again.
+  m_text: Sorry. You need to reach 400 points, try again.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -12346,7 +12346,7 @@ MonoBehaviour:
   finalScore: {fileID: 833771565671679572}
   goodMsg: {fileID: 833771565220150200}
   badMsg: {fileID: 833771565556908102}
-  gameOver: 0
+  gameOver: 1
 --- !u!33 &7859623873489664895
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -6832,7 +6832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 333171301}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -12407,7 +12407,7 @@ MonoBehaviour:
   - _sceneName: Level_1
     timeLimit: 60
     completionTime: 0
-    score: 50
+    score: 1000
     bonus: 5
   - _sceneName: Level_2
     timeLimit: 200
@@ -14824,7 +14824,7 @@ MonoBehaviour:
   finalTime: {fileID: 459554976586036226}
   goodMsg: {fileID: 459554975883055721}
   badMsg: {fileID: 459554975011711383}
-  gameOver: 0
+  gameOver: 1
 --- !u!1 &3267626244698601977
 GameObject:
   m_ObjectHideFlags: 0
@@ -20026,6 +20026,12 @@ MonoBehaviour:
   timerTxt: {fileID: 4040194875052014098}
   currScoreTxt: {fileID: 4040194876023017824}
   gameOver: 0
+  HUD: {fileID: 0}
+  gameOverCanvas: {fileID: 0}
+  finalScore: {fileID: 0}
+  finalTime: {fileID: 0}
+  goodMsg: {fileID: 0}
+  badMsg: {fileID: 0}
 --- !u!23 &6410612931479509411
 MeshRenderer:
   m_ObjectHideFlags: 0
