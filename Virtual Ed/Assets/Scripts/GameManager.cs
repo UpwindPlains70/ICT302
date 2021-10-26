@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     public bool singleplayer { get; set; }
     public bool multiplayer { get; set; }
 
+    public float tutorialTimeLimit = 300;
+    public float competitiveTimeLimit = 90;
+
     private void Awake()
     {
         currScene = SceneManager.GetActiveScene();
@@ -87,8 +90,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void setLevelTimesForTutorial()
+    {
+        foreach(Level l in levels)
+            l.TimeLimit = tutorialTimeLimit;
+    }
+
+    public void setLevelTimesForCompetitivePlay()
+    {
+        foreach (Level l in levels)
+            l.TimeLimit = competitiveTimeLimit;
+    }
+
     public void addToServer()
     {
+        currLevelIndex = 0;
+        MainMenu = true;
         //add all level information to server
         DBScript.ReceiveScoreLvlOne();
         Debug.Log("Level data Saved");

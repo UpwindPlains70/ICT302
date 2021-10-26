@@ -4405,7 +4405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1940439976406971303
 Transform:
   m_ObjectHideFlags: 0
@@ -9645,7 +9645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &4464550141670285475
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11968,6 +11968,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: inkSplatObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 4946100847027376170, guid: 0d864940b3beb7748afcb3ead82b313d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8556625152391146267, guid: 0d864940b3beb7748afcb3ead82b313d,
         type: 3}

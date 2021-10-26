@@ -181,11 +181,11 @@ public class DBInterface : MonoBehaviour
                                         "TimeTakenLvlOne = @TimeTakenLvlOne, TimeTakenLvlTwo = @TimeTakenLvlTwo, " +
                                         "TimeTakenLvlThree = @TimeTakenLvlThree, TimeTakenLvlFour = @TimeTakenLvlFour, " +
                                         "ScorelvlOne = @ScoreLvlOne, ScoreLvlTwo = @ScoreLvlTwo, " +
-                                        "ScoreLvlThree = @ScoreLvlThree, ScoreLvlFour = @ScoreLvlFour, StudentNumber = @ScoreLvlTwo," +
+                                        "ScoreLvlThree = @ScoreLvlThree, ScoreLvlFour = @ScoreLvlFour, " +
                                         " FinalScore = @FinalScore, FinalTimeTaken = @FinalTimeTaken, UserName = @UserName WHERE GameID = @GameID AND studentNumber = @StudentNumber";
                 command.Parameters.AddWithValue("@GameID", GameID);
                 command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-                 command.Parameters.AddWithValue("@UserName", userName);
+                command.Parameters.AddWithValue("@UserName", userName);
                 Debug.Log("Game Id: " + GameID);
                 Debug.Log("StudNum: " + studentNumber);
                 //Set final score values (lvl 4 vals for now)

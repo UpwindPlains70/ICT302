@@ -61,16 +61,19 @@ public class DBUserInterface : MonoBehaviour
         if (!string.IsNullOrEmpty(StudentNumberDisplayText) & !string.IsNullOrWhiteSpace(UserNameDisplayText))
         {
             DisplayGameDataFromDB();
-            //DisplayFinalScores();
-                //Display scoreboard canvas if player is logged in
+            RetrieveTopFiveFinalScores();
+            RetrieveTopGLOBALFinalScores();
+            
+            //Display scoreboard canvas if player is logged in
             transform.GetChild(0).gameObject.SetActive(true);
 
-            //StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
-            //UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+            StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
+            UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+
+            StudentNumber.text = StudentNumberDisplayText;
+            UserName.text = UserNameDisplayText;
         }
     }
-
-    
 
     public void InsertStudentNumber()
     {
@@ -116,7 +119,6 @@ public class DBUserInterface : MonoBehaviour
             return;
         }
 
-        clearScoreboard();
         List<System.Tuple<ulong, string, DateTime, string>> highscores = DBInterface.DisplayGameDataFromDB();
         for (int i = 0; i < highscores.Count; i++)
         {
@@ -166,7 +168,6 @@ public class DBUserInterface : MonoBehaviour
             return;
         }
 
-        clearScoreboard();
         List<System.Tuple<int, int, DateTime>> highscores = DBInterface.RetrieveTopFiveFinalScores(StudentNumberDisplayText);
 
         for (int i = 0; i < highscores.Count; i++)
@@ -189,7 +190,6 @@ public class DBUserInterface : MonoBehaviour
             return;
         }
 
-        clearScoreboard();
         List<System.Tuple<string, int, int, DateTime>> highscores = DBInterface.RetrieveTopGLOBALFinalScores(StudentNumberDisplayText);
 
         for (int i = 0; i < highscores.Count; i++)
@@ -207,11 +207,11 @@ public class DBUserInterface : MonoBehaviour
 
     private void clearScoreboard()
     {
-        foreach (Text StudentNumber in PlayerNames)
+        /*foreach (Text StudentNumber in PlayerNames)
         {
             StudentNumber.text = "";
         }
-        /*
+        
         foreach (Text highscore in Highscores)
         {
             highscore.text = "";

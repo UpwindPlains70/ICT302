@@ -81,7 +81,7 @@ public class Level4Manager : MonoBehaviour
 
         //Display scoreboard
         gameOverCanvas.gameObject.SetActive(true);
-        score = 5;
+
         finalScore.SetText("Final Score\n" + score);
 
         UpdateGameManager();
