@@ -42,6 +42,8 @@ public class Level2Manager : MonoBehaviour
     //Real half life of ~4.8 minutes
     private float halfLife;
 
+    public AudioSource myAudio;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -79,6 +81,7 @@ public class Level2Manager : MonoBehaviour
     {
         if (redSnap.Snapped && greenSnap.Snapped && blueSnap.Snapped)
         {
+            myAudio.Play();
             ++score;
             scoreTxt.text = "Score: " + score + " / " + maxScore;
             

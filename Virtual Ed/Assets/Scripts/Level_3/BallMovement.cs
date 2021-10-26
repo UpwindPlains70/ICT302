@@ -9,8 +9,12 @@ public class BallMovement : MonoBehaviour
     public float speed = 10;
     public float stopRange = 1;
     public bool moveAllowed = true;
-    public float timer = 0;
-    float delay = 1.0f;
+
+    public AudioSource myAudio;
+    
+    public AudioClip goalReached;
+    public AudioClip movingSound;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +35,8 @@ public class BallMovement : MonoBehaviour
             float step = speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         }
+        else
+            myAudio.Stop();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,10 +46,22 @@ public class BallMovement : MonoBehaviour
            // moveAllowed = false;
             //timer = Time.time + delay;
         }
-        else */if (collision.gameObject.CompareTag("Coin") == true)
+        else */
+        if (collision.gameObject.CompareTag("Coin") == true)
+        {
+            myAudio.clip = goalReached;
+            myAudio.Play();
             Destroy(gameObject);
+        }
         else
+        {
+            if (!myAudio.isPlaying)
+                myAudio.Play();
+            
+            if(myAudio.clip != movingSound)
+                myAudio.clip = movingSound;
+            
             moveAllowed = true;
-        
+        }
     }
 }

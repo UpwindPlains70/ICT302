@@ -122,12 +122,13 @@ AudioSource:
   m_GameObject: {fileID: 716226027524002932}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a0dd397fceb1b274bb02e7eae726d9f4,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -224,7 +225,9 @@ MonoBehaviour:
   speed: 10
   stopRange: 0.9
   moveAllowed: 1
-  timer: 0
+  myAudio: {fileID: 716226026947488693}
+  goalReached: {fileID: 8300000, guid: 3442b79e0bddd474c8d231076328b21a, type: 3}
+  movingSound: {fileID: 0}
 --- !u!114 &-2103009326293378152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRenderer: {fileID: 716226027522085874}
-  _score: 5
+  _score: 1
   matList:
   - {fileID: 2100000, guid: 869d7d8b6a1d402418cd903dc76b7af7, type: 2}
   - {fileID: 2100000, guid: 3d9866f7195e5234a801a1c1aba92753, type: 2}

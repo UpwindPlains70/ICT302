@@ -26,6 +26,7 @@ public class SnapToLocation : MonoBehaviour
         if (other.gameObject.CompareTag(rocketTag))
         {
             insideSnapZone = true;
+            other.GetComponent<AudioSource>().Play();
             snappedObject = other.gameObject;
         }
     }

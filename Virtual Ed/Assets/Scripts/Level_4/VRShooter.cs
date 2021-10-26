@@ -14,11 +14,14 @@ public class VRShooter : MonoBehaviour
     public Text ammoTxt;
 
     private Level4Manager lvl4Manager;
+    public AudioSource myAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         lvl4Manager = GameObject.FindGameObjectWithTag("Level4Manager").GetComponent<Level4Manager>();
-        //ammo = ;
+
+        ammoTxt.text = "" + lvl4Manager.ammo;
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class VRShooter : MonoBehaviour
 
     void shootBullet()
     {
+        myAudio.Play();
         //instantiate bullet
         Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         --lvl4Manager.ammo;

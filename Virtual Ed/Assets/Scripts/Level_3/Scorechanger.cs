@@ -7,6 +7,8 @@ public class Scorechanger : MonoBehaviour
     private Level3Manager lvlManager;
 
     public int pointsBad = 1;
+    public AudioSource myAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class Scorechanger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        myAudio.Play();
         //Debug.Log(other.gameObject.name);
             BallWorth currBallWorth = other.gameObject.GetComponent<BallWorth>();
         //Debug.Log(currBallWorth.score);
