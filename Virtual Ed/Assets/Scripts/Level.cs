@@ -45,6 +45,7 @@ public class Level
     public float TimeLimit
     { 
         get { return timeLimit; } 
+        set { timeLimit = value; }
     }
 
     public float CompletionTime
