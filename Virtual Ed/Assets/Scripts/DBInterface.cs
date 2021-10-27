@@ -110,6 +110,72 @@ public class DBInterface : MonoBehaviour
         return topFive;
     }
 
+    public void CheckTutorialProgress(string StudentNumber)
+    {
+        studentNumber = StudentNumber;
+        using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
+        {
+            try
+            {
+                connection.Open();
+
+                MySqlCommand command = connection.CreateCommand();
+
+                command.CommandText = "SELECT ScoreLvlOne AS tutorialchecklvlone FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlOne IS NOT NULL ORDER BY ScoreLvlOne DESC LIMIT 1";        //checks, and unlocks level two tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                int tutorialchecklvlone = (int)command.ExecuteScalar();
+
+                command.CommandText = "SELECT ScoreLvlTwo AS tutorialchecklvltwo FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlTwo IS NOT NULL ORDER BY ScoreLvlTwo DESC LIMIT 1";       //checks, and unlocks level three tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                int tutorialchecklvltwo = (int)command.ExecuteScalar();
+
+                command.CommandText = "SELECT ScoreLvlThree AS tutorialchecklvlthree FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlThree IS NOT NULL ORDER BY ScoreLvlThree DESC LIMIT 1";  //checks, and unlocks level four tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                int tutorialchecklvlthree = (int)command.ExecuteScalar();
+
+                command.CommandText = "SELECT ScoreLvlFour AS tutorialchecklvlfour FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlFour IS NOT NULL ORDER BY ScoreLvlFour DESC LIMIT 1;";      //checks, unlocks multiplayer if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                int tutorialchecklvlfour = (int)command.ExecuteScalar();
+
+                connection.Close();
+
+                if (tutorialchecklvlone > 0)
+                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL TWO BUTTON GAME OBJECT at myGameObject
+                if (tutorialchecklvltwo > 0)
+                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL THREE BUTTON GAME OBJECT at myGameObject
+                if (tutorialchecklvlthree > 0)
+                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL FOUR BUTTON GAME OBJECT at myGameObject
+                if (tutorialchecklvlfour > 0)
+                    myGameObject.SetActive(false); //PUT MULTIPLAYER BUTTON GAME OBJECT at myGameObject
+
+            }
+            catch (System.Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.LogError("DBInterface error in public void CheckTutorialProgress " + System.Environment.NewLine + ex.Message);
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /*
+             command.CommandText = "SELECT StudentNumber, ScoreLvlOne AS tutorialchecklvlone FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlOne IS NOT NULL ORDER BY ScoreLvlOne DESC LIMIT 1;" +        //checks, and unlocks level two tutorial if NOT NULL
+                                   "SELECT StudentNumber, ScoreLvlTwo AS tutorialchecklvltwo FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlTwo IS NOT NULL ORDER BY ScoreLvlTwo DESC LIMIT 1;" +        //checks, and unlocks level three tutorial if NOT NULL
+                                   "SELECT StudentNumber, ScoreLvlThree AS tutorialchecklvlthree FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlThree IS NOT NULL ORDER BY ScoreLvlThree DESC LIMIT 1;" +  //checks, and unlocks level four tutorial if NOT NULL
+                                   "SELECT StudentNumber, ScoreLvlFour AS tutorialchecklvlfour FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlFour IS NOT NULL ORDER BY ScoreLvlFour DESC LIMIT 1;";      //checks, unlocks multiplayer if NOT NULL
+             command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+             */
+
+
+
 
 
     /*
