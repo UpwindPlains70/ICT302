@@ -1677,6 +1677,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1182017644463921189, guid: 338024265d7c8544fab027ae4b71b40f,
+        type: 3}
+      propertyPath: VoiceMixer
+      value: 
+      objectReference: {fileID: 24300002, guid: 3a07d2dc6f3858c4b8d3dc8503ddb692,
+        type: 2}
     - target: {fileID: 1182017644463921211, guid: 338024265d7c8544fab027ae4b71b40f,
         type: 3}
       propertyPath: m_Name

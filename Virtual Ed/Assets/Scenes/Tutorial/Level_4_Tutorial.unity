@@ -2315,6 +2315,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 331975284562776517, guid: 86c1c6f93c3ff264cb1ec2383df1e45b,
+        type: 3}
+      propertyPath: VoiceMixer
+      value: 
+      objectReference: {fileID: 24300002, guid: 3a07d2dc6f3858c4b8d3dc8503ddb692,
+        type: 2}
     - target: {fileID: 331975284562776539, guid: 86c1c6f93c3ff264cb1ec2383df1e45b,
         type: 3}
       propertyPath: m_Name
@@ -4017,6 +4023,8 @@ MonoBehaviour:
   scoreTxt: {fileID: 928676185321302716}
   gameOver: 1
   tutorial: 1
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!4 &211377550876321795
 Transform:
   m_ObjectHideFlags: 0
@@ -9956,6 +9964,8 @@ MonoBehaviour:
   scoreTxt: {fileID: 2738375548186787256}
   gameOver: 1
   tutorial: 1
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!4 &2738375547837640395
 Transform:
   m_ObjectHideFlags: 0

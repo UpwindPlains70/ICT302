@@ -2761,6 +2761,8 @@ MonoBehaviour:
   finalTime: {fileID: 345937733488943195}
   goodMsg: {fileID: 345937733059511856}
   badMsg: {fileID: 345937734872432078}
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!4 &1497676675
 Transform:
   m_ObjectHideFlags: 0
@@ -3589,6 +3591,8 @@ MonoBehaviour:
   finalTime: {fileID: 7859374273751273949}
   goodMsg: {fileID: 7859374272612842495}
   badMsg: {fileID: 7859374273699975293}
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!1 &1815808130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4110,6 +4114,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3966532669098108699, guid: 1d2be77e040fc934a80a57cba1e8c607,
+        type: 3}
+      propertyPath: VoiceMixer
+      value: 
+      objectReference: {fileID: 24300002, guid: 3a07d2dc6f3858c4b8d3dc8503ddb692,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2be77e040fc934a80a57cba1e8c607, type: 3}
 --- !u!4 &1943197830 stripped

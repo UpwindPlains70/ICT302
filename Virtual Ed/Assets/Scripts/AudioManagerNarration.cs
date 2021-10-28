@@ -6,6 +6,7 @@ using UnityEngine;
 public class AudioManagerNarration : MonoBehaviour
 {
     public Sound[] sounds;
+    public AudioMixerGroup VoiceMixer;
 
     // Start is called before the first frame update
     void Awake()
@@ -13,6 +14,7 @@ public class AudioManagerNarration : MonoBehaviour
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
+            s.source.outputAudioMixerGroup = VoiceMixer;
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;

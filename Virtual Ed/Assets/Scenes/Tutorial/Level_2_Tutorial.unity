@@ -448,6 +448,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6182075550532893853, guid: 2f1e43c0105d3114888750997bab3e6c,
+        type: 3}
+      propertyPath: VoiceMixer
+      value: 
+      objectReference: {fileID: 24300002, guid: 3a07d2dc6f3858c4b8d3dc8503ddb692,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f1e43c0105d3114888750997bab3e6c, type: 3}
 --- !u!4 &278854577 stripped
@@ -19851,6 +19857,8 @@ MonoBehaviour:
   finalTime: {fileID: 0}
   goodMsg: {fileID: 0}
   badMsg: {fileID: 0}
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!23 &6410612931479509411
 MeshRenderer:
   m_ObjectHideFlags: 0
