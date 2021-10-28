@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class Level2Manager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Level2Manager : MonoBehaviour
     public TextMeshProUGUI scoreTxt;
 
 
+
     public GameObject HUD;
     //Game over variables
     public GameObject gameOverCanvas;
@@ -42,9 +44,15 @@ public class Level2Manager : MonoBehaviour
     public bool tutorial = false;
     //Real half life of ~4.8 minutes
     private float halfLife;
+    
 
     public AudioSource myAudio;
-
+    public AudioClip startingNarration;
+    public AudioClip coinSound;
+    public AudioMixerGroup mixerSE;
+    public AudioMixerGroup mixerV;
+    private float preLevelTimer;
+    public int delayGameStart;
     // Start is called before the first frame update
     void Awake()
     {
@@ -61,21 +69,43 @@ public class Level2Manager : MonoBehaviour
             //Max number of proteins to build (5 protiens per nano particle
         maxScore = (GMScript.GetLevel(0).Score / 2) + GMScript.GetLevel(currLevel).Bonus;
         scoreTxt.text = "Score: " + score + " / " + maxScore;
+       
+    }
+    
+    void Start()
+    {
+
+        if (tutorial == false)
+        {
+            myAudio.clip = startingNarration;
+            myAudio.outputAudioMixerGroup = mixerV;
+            myAudio.Play();
+            
+
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        updateTimer();
-        //conditions for game over screen
-        if ((time <= 0 || score >= maxScore / 2) && gameOver)
-            GameOver();
-        else if ((time <= 0 || score >= maxScore / 2) && !gameOver)
-            UpdateGameManager();
+        preLevelTimer += Time.deltaTime;
+        if (delayGameStart < preLevelTimer)
+        {
+            myAudio.clip = coinSound;
+            myAudio.outputAudioMixerGroup = mixerSE;
+            updateTimer();
+            //conditions for game over screen
+            if ((time <= 0 || score >= maxScore / 2) && gameOver)
+                GameOver();
+            else if ((time <= 0 || score >= maxScore / 2) && !gameOver)
+                UpdateGameManager();
 
-        OnSnapped();
+            OnSnapped();
             //Always update maxScore
-        scoreTxt.text = "Score: " + score + " / " + maxScore;
+            scoreTxt.text = "Score: " + score + " / " + maxScore;
+         } 
     }
 
     private void OnSnapped()
