@@ -7,6 +7,7 @@ public class LVL3_Subtitle
     : MonoBehaviour
 {
     public GameObject textBox;
+    public bool Android;
 
     // Start is called before the first frame update
     void Start()
@@ -31,20 +32,33 @@ public class LVL3_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You are now responsible to deliver the spike proteins you created in Level 2, that are traversing the Golgi Complex through a maze to the cell membrane";
         yield return new WaitForSeconds(10);
         FindObjectOfType<AudioManagerNarration>().Play("#3#5");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You control a single spike protein that cumulatively represents all the spike proteins you created in Level 2";
-        yield return new WaitForSeconds(8);
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You control balls that each represent 5 spike proteins from the amount you created in Level 2";
+        yield return new WaitForSeconds(7);
         FindObjectOfType<AudioManagerNarration>().Play("#3#6");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "The spike proteins will follow where you aim your pointer on the maze";
         yield return new WaitForSeconds(5);
-        FindObjectOfType<AudioManagerNarration>().Play("#3#7");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Just point your controller where you want the spike proteins to move towards";
-        yield return new WaitForSeconds(5);
-        FindObjectOfType<AudioManagerNarration>().Play("#3#8");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "A hint: to change your view of the maze, you can walk around by moving the left joystick in the direction you want to walk";
+       
+        if (Android == false)
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("#3#7");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Just point your controller where you want the spike proteins to move towards";
+            yield return new WaitForSeconds(5);
+            FindObjectOfType<AudioManagerNarration>().Play("#3#8");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "A hint: to change your view of the maze, you can walk around by moving the left joystick in the direction you want to walk";
+            yield return new WaitForSeconds(8);
+            FindObjectOfType<AudioManagerNarration>().Play("#3#9");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Additionally, you can snap your view to a direction by moving the right joystick in that direction";
+            yield return new WaitForSeconds(6);
+        }
+        else
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("3#9.5");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Use the joystick on screen to control the pointer which the balls will follow.";
+            yield return new WaitForSeconds(5);
+        }
+        FindObjectOfType<AudioManagerNarration>().Play("#3#9.6");
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "This tutorial level will finish when you safely lead your spike proteins through the maze, or you destroy all you spike proteins";
         yield return new WaitForSeconds(8);
-        FindObjectOfType<AudioManagerNarration>().Play("#3#9");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Additionally, you can snap your view to a direction by moving the right joystick in that direction";
-        yield return new WaitForSeconds(6);
         FindObjectOfType<AudioManagerNarration>().Play("#3#10");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable leading the spike proteins through the maze for a minute ";
         yield return new WaitForSeconds(7);

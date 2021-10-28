@@ -144,3 +144,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: '#1#13.5'
+    clip: {fileID: 8300000, guid: 4c66eac8c7a2594408b38273d296bba9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: '#1#11.5'
+    clip: {fileID: 8300000, guid: f02dc3361ce638d458626d6af3514f82, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

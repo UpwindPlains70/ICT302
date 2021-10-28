@@ -7,6 +7,7 @@ public class LVL2_Subtitle
     : MonoBehaviour
 {
     public GameObject textBox;
+    public bool Android;
 
     // Start is called before the first frame update
     void Start()
@@ -42,14 +43,26 @@ public class LVL2_Subtitle
         FindObjectOfType<AudioManagerNarration>().Play("#2#8");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You must grab some mRNA strands, tRNA molecules and some amino acids and place them into their designated boxes designated by matching colours.";
         yield return new WaitForSeconds(11);
-        FindObjectOfType<AudioManagerNarration>().Play("#2#9");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "To grab and release a particle, simply point at the object you want to grab and hold the button/trigger on the back of the controller, release the button when you want to release the object.";
-        yield return new WaitForSeconds(12);
+        if (Android == false)
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("#2#9");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "To grab and release a particle, simply point at the object you want to grab and hold the button/trigger on the back of the controller, release the button when you want to release the object.";
+            yield return new WaitForSeconds(12);
+        }
+        else
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("#2#9.5");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "To grab and release a particle, simply touch, and hold the object on screen to move it around, when you want to release the object, just stop touching the screen.";
+            yield return new WaitForSeconds(12);
+        }
         FindObjectOfType<AudioManagerNarration>().Play("#2#10");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "You can place or throw the component to its corresponding box";
         yield return new WaitForSeconds(5);
         FindObjectOfType<AudioManagerNarration>().Play("#2#11");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Once all three components have been placed in their boxes, your spike protein score will increase by 1";
+        yield return new WaitForSeconds(7);
+        FindObjectOfType<AudioManagerNarration>().Play("#2#11.5");
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "This tutorial level will finish when the timer reaches zero, or you create 10 spike proteins";
         yield return new WaitForSeconds(7);
         FindObjectOfType<AudioManagerNarration>().Play("#2#12");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Give it a go, get comfortable placing the spike protein components in their correct boxes to make maximum use of the 1 minute and 30 second multiplayer mode time limit";

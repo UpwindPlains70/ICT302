@@ -7,6 +7,7 @@ public class LVL4_Subtitle
     : MonoBehaviour
 {
     public GameObject textBox;
+    public bool Android;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +40,18 @@ public class LVL4_Subtitle
         FindObjectOfType<AudioManagerNarration>().Play("#4#9");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "If you hit anything other than a B cell it is a waste of spike proteins";
         yield return new WaitForSeconds(5);
-        FindObjectOfType<AudioManagerNarration>().Play("#4#7");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Point your controller to aim, and press the trigger button which is the same button for Level 2 on the controller to fire ";
-        yield return new WaitForSeconds(8);
+        if (Android == false)
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("#4#7");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Point your controller to aim, and press the trigger button which is the same button for Level 2 on the controller to fire ";
+            yield return new WaitForSeconds(8);
+        }
+        else
+        {
+            FindObjectOfType<AudioManagerNarration>().Play("#2#9.5");
+            textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Use the joystick on the bottom third of the screen to aim the gun, and press anywhere on the top 2 thirds of the screen to fire";
+            yield return new WaitForSeconds(8);
+        }
         FindObjectOfType<AudioManagerNarration>().Play("#4#8");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Have a go, you have a minute to get comfortable shooting spikes at B cells";
         yield return new WaitForSeconds(5);

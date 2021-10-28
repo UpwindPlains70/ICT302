@@ -74,7 +74,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: '#1#7'
+  - name: '#2#7'
     clip: {fileID: 8300000, guid: aef5bfa69aac3a548b31f12d51a3cacf, type: 3}
     volume: 1
     pitch: 1
@@ -111,6 +111,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: '#2#14'
     clip: {fileID: 8300000, guid: 66744dc570a549b46b1cf1665e97697e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: '#2#9.5'
+    clip: {fileID: 8300000, guid: f58e75292e5eafa4fb065d9cb8e13a29, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: '#2#11.5'
+    clip: {fileID: 8300000, guid: 53417644db0641b4bb18d77245ea8d49, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
