@@ -8,7 +8,7 @@ public class RefreshMainMenu : MonoBehaviour
     public DBUserInterface DB_UI;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mainMenuParent = GameObject.FindGameObjectWithTag("UI");
             //OVRPlayercontrol

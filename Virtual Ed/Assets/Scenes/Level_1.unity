@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2122160403}
-  m_IndirectSpecularColor: {r: 0.3517761, g: 0.57806706, b: 0.76798236, a: 1}
+  m_IndirectSpecularColor: {r: 0.35239303, g: 0.5784324, b: 0.76843244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1065,6 +1065,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 0
   MainMenu: 0
+  TutorialNameList: []
   tutorialTimeLimit: 300
   competitiveTimeLimit: 90
 --- !u!4 &434349440

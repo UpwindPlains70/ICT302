@@ -129,8 +129,9 @@ MonoBehaviour:
   speed: 5
   stopRange: 0.9
   moveAllowed: 1
-  timer: 0
   myAudio: {fileID: -3820367636277070245}
+  goalReached: {fileID: 8300000, guid: 3442b79e0bddd474c8d231076328b21a, type: 3}
+  movingSound: {fileID: 8300000, guid: 71151d4594ce9b94f84215087c8509d7, type: 3}
 --- !u!114 &-6286064961354189741
 MonoBehaviour:
   m_ObjectHideFlags: 0

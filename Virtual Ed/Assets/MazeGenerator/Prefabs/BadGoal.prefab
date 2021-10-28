@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsBad: 1
-  myAudio: {fileID: 0}
+  myAudio: {fileID: -7142153106597190799}
 --- !u!82 &-7142153106597190799
 AudioSource:
   m_ObjectHideFlags: 0

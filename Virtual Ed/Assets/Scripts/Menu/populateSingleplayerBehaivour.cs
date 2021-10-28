@@ -12,8 +12,8 @@ public class populateSingleplayerBehaivour : MonoBehaviour
     {
         GMScript = FindObjectOfType<GameManager>();
             //Does not show on button onClick() section
-        myButton.onClick.AddListener(delegate { GMScript.setLevelTimesForCompetitivePlay(); } );
-        myButton.onClick.AddListener(delegate { GMScript.singleplayer = true; } );
+        //myButton.onClick.AddListener(delegate { GMScript.setLevelTimesForCompetitivePlay(); } );
+        //myButton.onClick.AddListener(delegate { GMScript.singleplayer = true; } );
         myButton.onClick.AddListener(delegate { GMScript.autoLoading = true; } );
         myButton.onClick.AddListener(delegate { GMScript.GameOver = false; } );
         myButton.onClick.AddListener(delegate { GMScript.LoadFirstLevel(); } );
@@ -23,8 +23,7 @@ public class populateSingleplayerBehaivour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.P))
-            myButton.onClick.Invoke();
+     //   if (Input.GetKey(KeyCode.P))
+       //     myButton.onClick.Invoke();
     }
 }

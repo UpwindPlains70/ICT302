@@ -50,11 +50,16 @@ public class GameManager : MonoBehaviour
     public bool singleplayer { get; set; }
     public bool multiplayer { get; set; }
 
+    public bool loadTutorials { get; set; }
+    public int tuteIndex { get; set; }
+    public List<string> TutorialNameList = new List<string>();
     public float tutorialTimeLimit = 300;
     public float competitiveTimeLimit = 90;
 
     private void Awake()
     {
+        loadTutorials = false;
+        tuteIndex = 0;
         currScene = SceneManager.GetActiveScene();
         currLevelTime = levels[currLevelIndex].TimeLimit;
         loading = false;
@@ -166,7 +171,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadFirstLevelAsyncScene()
     {
         loading = true;
-        asyncLoad = SceneManager.LoadSceneAsync(levels[currLevelIndex].SceneName);
+        if(loadTutorials == true)
+            asyncLoad = SceneManager.LoadSceneAsync(TutorialNameList[tuteIndex]);
+        else
+            asyncLoad = SceneManager.LoadSceneAsync(levels[currLevelIndex].SceneName);
         asyncLoad.allowSceneActivation = false;
 
         while (!asyncLoad.isDone)

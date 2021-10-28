@@ -14,15 +14,15 @@ public class OVRHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            PlayerControl.SetActive(false);
-            UIHelp.SetActive(false);
-        }
-        else
+        if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             PlayerControl.SetActive(true);
             UIHelp.SetActive(true);
+        }
+        else
+        {
+            PlayerControl.SetActive(false);
+            UIHelp.SetActive(false);
         }
     }
 }
