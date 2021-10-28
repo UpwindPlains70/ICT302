@@ -25,6 +25,9 @@ public class Level1Manager : MonoBehaviour
 
     public bool gameOver = false;
     public bool tutorial = false;
+    public AudioSource myAudio;
+    public int delayGameStart;
+    private float preLevelTimer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,19 +38,31 @@ public class Level1Manager : MonoBehaviour
         time = GMScript.GetLevel(currLevel).TimeLimit;
 
         scoreTxt.text = "Score: " + Score;
+       
     }
-
     // Update is called once per frame
+    private void Start()
+    {
+        if (tutorial == false)
+        {
+            myAudio.Play();
+        }
+    }
     void Update()
     {
-        updateTimer();
+        preLevelTimer += Time.deltaTime;
+        if (delayGameStart < preLevelTimer)
+        {
+            updateTimer();
 
-        if (time <= 0 || (gameOver && Score >= goodScore))
-            GameOver();
-        else if (time <= 0 && !gameOver)
-            UpdateGameManager();
+            if (time <= 0 || (gameOver && Score >= goodScore))
+                GameOver();
+            else if (time <= 0 && !gameOver)
+                UpdateGameManager();
+
+        }
+
     }
-
     public void GameOver()
     {
         Time.timeScale = 0;

@@ -81,7 +81,7 @@ public class LVL1_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "However, If you absorb the empty brown nanoparticles, you will lose points and waste time.";
         yield return new WaitForSeconds(7);
         FindObjectOfType<AudioManagerNarration>().Play("#1#18");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Remember, in competitive mode you will only get 1 minute and 30 seconds to absorb nanoparticles";
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Remember, in multiplayer mode you will only get 1 minute and 30 seconds to absorb nanoparticles";
         yield return new WaitForSeconds(8);
         FindObjectOfType<AudioManagerNarration>().Play("#1#19");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Your score and time remaining can be seen in the background of the level you are playing";

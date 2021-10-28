@@ -69,21 +69,21 @@ public class Level2Manager : MonoBehaviour
             //Max number of proteins to build (5 protiens per nano particle
         maxScore = (GMScript.GetLevel(0).Score / 2) + GMScript.GetLevel(currLevel).Bonus;
         scoreTxt.text = "Score: " + score + " / " + maxScore;
-       
+        
+
+
     }
-    
+
     void Start()
     {
-
         if (tutorial == false)
         {
             myAudio.clip = startingNarration;
             myAudio.outputAudioMixerGroup = mixerV;
             myAudio.Play();
-            
 
         }
-
+        
 
     }
 

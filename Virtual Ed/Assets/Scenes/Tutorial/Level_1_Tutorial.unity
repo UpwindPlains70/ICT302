@@ -1744,6 +1744,8 @@ MonoBehaviour:
   badMsg: {fileID: 1940439976716761000}
   gameOver: 1
   tutorial: 1
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!1 &1713471724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7514,7 +7516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sdgfkhjafdgj,nvm,xhgdfkjg
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8043,7 +8045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 3598440552808219446}
-  Android: 1
+  Android: 0
 --- !u!1001 &3598440554373271326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14069,6 +14071,8 @@ MonoBehaviour:
   badMsg: {fileID: 833771565556908102}
   gameOver: 1
   tutorial: 1
+  myAudio: {fileID: 0}
+  delayGameStart: 0
 --- !u!33 &7859623873489664895
 MeshFilter:
   m_ObjectHideFlags: 0

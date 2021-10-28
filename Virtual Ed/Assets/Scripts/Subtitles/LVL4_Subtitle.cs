@@ -29,7 +29,7 @@ public class LVL4_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "This tutorial is designed to give you an understanding of your goals for Level 4, and how you can achieve these goals to best prepare you for multiplayer competition";
         yield return new WaitForSeconds(11);
         FindObjectOfType<AudioManagerNarration>().Play("#4#4");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Finally, you can now begin to fire spikes at neighbouring B cells which, in this game will activate them to start producing anti-viral antibodies to the spike";
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Finally, you can now begin to fire spikes at neighbouring B cells which, will activate them in this game to start producing anti-viral antibodies to the spike";
         yield return new WaitForSeconds(11);
         FindObjectOfType<AudioManagerNarration>().Play("#4#5");
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "These antibodies will either destroy the COVID-19 virus, or coat the virus particles, making them unable to bind to a cell";
@@ -38,7 +38,7 @@ public class LVL4_Subtitle
         textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "Try and activate as many B cells as possible by shooting them";
         yield return new WaitForSeconds(4);
         FindObjectOfType<AudioManagerNarration>().Play("#4#9");
-        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "If you hit anything other than a B cell it is a waste of spike proteins";
+        textBox.GetComponent<TMPro.TextMeshProUGUI>().text = "If you hit anything other than a B cell it is a waste of spikes";
         yield return new WaitForSeconds(5);
         if (Android == false)
         {

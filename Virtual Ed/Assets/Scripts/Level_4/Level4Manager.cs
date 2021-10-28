@@ -27,6 +27,9 @@ public class Level4Manager : MonoBehaviour
     public bool gameOver = false;
     public bool tutorial = false;
 
+    public AudioSource myAudio;
+    public int delayGameStart;
+    private float preLevelTimer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -42,15 +45,25 @@ public class Level4Manager : MonoBehaviour
             //Get time taken to reach current level
         timeTakenForPastLevels = GMScript.totalTimeTaken();
     }
-
+    private void Start()
+    {
+        if (tutorial == false)
+        {
+            myAudio.Play();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        updateTimer();
-        if ((time <= 0 || ammo <= 0) && gameOver)
-            GameOver();
+        preLevelTimer += Time.deltaTime;
+        if (delayGameStart < preLevelTimer)
+        {
+            updateTimer();
+            if ((time <= 0 || ammo <= 0) && gameOver)
+                GameOver();
 
-        scoreUpdate();
+            scoreUpdate();
+        }
     }
 
     void scoreUpdate()

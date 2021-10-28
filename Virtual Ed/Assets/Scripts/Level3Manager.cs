@@ -27,6 +27,9 @@ public class Level3Manager : MonoBehaviour
     public TextMeshProUGUI goodMsg;
     public TextMeshProUGUI badMsg;
 
+    public AudioSource myAudio;
+    public int delayGameStart;
+    private float preLevelTimer;
     private float timeGiven;
 
     int ballCount;
@@ -50,18 +53,28 @@ public class Level3Manager : MonoBehaviour
             //Display starting score
         currScoreTxt.text = "Score: " + score;
     }
-
+    private void Start()
+    {
+        if (tutorial == false)
+        {
+            myAudio.Play();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        ballCount = GameObject.FindGameObjectsWithTag("Ball").Length;
+        preLevelTimer += Time.deltaTime;
+        if (delayGameStart < preLevelTimer)
+        {
+            ballCount = GameObject.FindGameObjectsWithTag("Ball").Length;
 
-        updateTimer();
+            updateTimer();
 
-        if ((time <= 0 || ballCount <= 0) && gameOver)
-            GameOver();
-        else if ((time <= 0 || ballCount <= 0) && !gameOver)
-            UpdateGameManager();
+            if ((time <= 0 || ballCount <= 0) && gameOver)
+                GameOver();
+            else if ((time <= 0 || ballCount <= 0) && !gameOver)
+                UpdateGameManager();
+        }
     }
 
     public void GameOver()

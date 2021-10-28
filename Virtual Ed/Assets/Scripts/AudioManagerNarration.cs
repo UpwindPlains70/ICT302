@@ -7,7 +7,6 @@ public class AudioManagerNarration : MonoBehaviour
 {
     public Sound[] sounds;
 
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,6 +16,7 @@ public class AudioManagerNarration : MonoBehaviour
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+   
 
         }
     }

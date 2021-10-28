@@ -14536,6 +14536,11 @@ MonoBehaviour:
   gameOver: 1
   tutorial: 1
   myAudio: {fileID: 3267626244698601978}
+  startingNarration: {fileID: 0}
+  coinSound: {fileID: 0}
+  mixerSE: {fileID: 0}
+  mixerV: {fileID: 0}
+  delayGameStart: 0
 --- !u!1 &3267626244698601977
 GameObject:
   m_ObjectHideFlags: 0
