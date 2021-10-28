@@ -227,7 +227,7 @@ MonoBehaviour:
   moveAllowed: 1
   myAudio: {fileID: 716226026947488693}
   goalReached: {fileID: 8300000, guid: 3442b79e0bddd474c8d231076328b21a, type: 3}
-  movingSound: {fileID: 0}
+  movingSound: {fileID: 8300000, guid: 71151d4594ce9b94f84215087c8509d7, type: 3}
 --- !u!114 &-2103009326293378152
 MonoBehaviour:
   m_ObjectHideFlags: 0

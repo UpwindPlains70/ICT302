@@ -24,6 +24,7 @@ public class Level1Manager : MonoBehaviour
     public TextMeshProUGUI badMsg;
 
     public bool gameOver = false;
+    public bool tutorial = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,7 +42,7 @@ public class Level1Manager : MonoBehaviour
     {
         updateTimer();
 
-        if (time <= 0 || (gameOver && Score >= 400))
+        if (time <= 0 || (gameOver && Score >= goodScore))
             GameOver();
         else if (time <= 0 && !gameOver)
             UpdateGameManager();
@@ -66,10 +67,10 @@ public class Level1Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false)
+        if (GMScript.GameOver == false || tutorial == true)
         {
             GMScript.GameOver = true;
-            //GMScript.addToServer();
+            GMScript.addToServer(tutorial);
         }
     }
 

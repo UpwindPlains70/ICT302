@@ -17,6 +17,7 @@ public class Level3Manager : MonoBehaviour
     public TextMeshProUGUI timerTxt;
     public TextMeshProUGUI currScoreTxt;
     public bool gameOver = false;
+    public bool tutorial = false;
 
     public GameObject HUD;
     //Game over variables
@@ -94,10 +95,10 @@ public class Level3Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false)
+        if (GMScript.GameOver == false || tutorial == true)
         {
             GMScript.GameOver = true;
-            //GMScript.addToServer();
+            GMScript.addToServer(tutorial);
         }
     }
     //store end level values in game manager

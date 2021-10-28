@@ -11,27 +11,23 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer effectsAudioMixer;
     public AudioMixer voiceAudioMixer;
 
-    public Slider musicSlider;
-    public Slider effectsSlider;
-    public Slider voiceSlider;
-
     private void Start()
     {
         
     }
-    public void SetMusicVolume()
+    public void SetMusicVolume(float sliderVal)
     {
-        musicAudioMixer.SetFloat("volume", musicSlider.value);
+        musicAudioMixer.SetFloat("MainMixer", Mathf.Log10(sliderVal) * 20);
     }
     
-    public void SetEffectsVolume()
+    public void SetEffectsVolume(float sliderVal)
     {
-        musicAudioMixer.SetFloat("volume", effectsSlider.value);
+        musicAudioMixer.SetFloat("SoundEffectMixer", Mathf.Log10(sliderVal) * 20);
     }
 
-    public void SetVoiceVolume()
+    public void SetVoiceVolume(float sliderVal)
     {
-        voiceAudioMixer.SetFloat("volume", voiceSlider.value);
+        voiceAudioMixer.SetFloat("VoiceMixer", Mathf.Log10(sliderVal) * 20);
     }
 
     public void ExitGame()

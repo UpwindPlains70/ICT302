@@ -515,11 +515,10 @@ namespace UnityEngine.EventSystems
             @to.pointerEnter = @from.pointerEnter;
         }
 
-
         // In the following region we extend the PointerEventData system implemented in PointerInputModule
         // We define an additional dictionary for ray(e.g. gaze) based pointers. Mouse pointers still use the dictionary
         // in PointerInputModule
-#region PointerEventData pool
+        #region PointerEventData pool
 
         // Pool for OVRRayPointerEventData for ray based pointers
         protected Dictionary<int, OVRPointerEventData> m_VRRayPointerData = new Dictionary<int, OVRPointerEventData>();

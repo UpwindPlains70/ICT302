@@ -30,4 +30,21 @@ public class LevelSelector : MonoBehaviour
     {
         SceneManager.LoadScene(data.sceneName);
     }
+
+    public void LoadLevel1Tute()
+    {
+        SceneManager.LoadScene(levelButtons[0].sceneName);
+    }
+    public void LoadLevel2Tute()
+    {
+        SceneManager.LoadScene(levelButtons[1].sceneName);
+    }
+    public void LoadLevel3Tute()
+    {
+        SceneManager.LoadScene(levelButtons[2].sceneName);
+    }
+    public void LoadLevel4Tute()
+    {
+        SceneManager.LoadScene(levelButtons[3].sceneName);
+    }
 }

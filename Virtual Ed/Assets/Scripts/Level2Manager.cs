@@ -39,6 +39,7 @@ public class Level2Manager : MonoBehaviour
     public TextMeshProUGUI badMsg;
 
     public bool gameOver = false;
+    public bool tutorial = false;
     //Real half life of ~4.8 minutes
     private float halfLife;
 
@@ -124,10 +125,10 @@ public class Level2Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false)
+        if (GMScript.GameOver == false || tutorial == true)
         {
             GMScript.GameOver = true;
-            //GMScript.addToServer();
+            GMScript.addToServer(tutorial);
         }
     }
 

@@ -2,6 +2,7 @@
 using UnityEngine;
 using MySql.Data.MySqlClient;
 using System;
+using UnityEngine.UI;
 
 public class DBInterface : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class DBInterface : MonoBehaviour
     public string studentNumber;
     public string userName;
     public GameManager GMScript;
+
+    public Button level2Btn;
+    public Button level3Btn;
+    public Button level4Btn;
+    public Button SingleplayerBtn;
+
     //Place at top (replaces GameID -> GMScript.GameID & StudentNumber-> GMScript.StudentNumber)
 
     // Start is called before the first frame update
@@ -64,10 +71,8 @@ public class DBInterface : MonoBehaviour
                 Debug.LogError("DBInterface error in public void InsertStudentNumber " + System.Environment.NewLine + ex.Message);
             }
         }
+        CheckTutorialProgress(StudentNumber);
     }
-
-
-
 
     // After student number is entered, the GameID, StudentNumber and DateAndTime is displayed with a welcome screen
     public List<System.Tuple<ulong, string, DateTime, string>> DisplayGameDataFromDB()
@@ -121,32 +126,32 @@ public class DBInterface : MonoBehaviour
 
                 MySqlCommand command = connection.CreateCommand();
 
-                command.CommandText = "SELECT ScoreLvlOne AS tutorialchecklvlone FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlOne IS NOT NULL ORDER BY ScoreLvlOne DESC LIMIT 1";        //checks, and unlocks level two tutorial if NOT NULL
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.CommandText = "SELECT ScoreLvlOne AS tutorialchecklvlone FROM scoring_details WHERE StudentNumber = @StudentNumberA AND ScoreLvlOne IS NOT NULL ORDER BY ScoreLvlOne DESC LIMIT 1";        //checks, and unlocks level two tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumberA", StudentNumber);
                 int tutorialchecklvlone = (int)command.ExecuteScalar();
 
-                command.CommandText = "SELECT ScoreLvlTwo AS tutorialchecklvltwo FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlTwo IS NOT NULL ORDER BY ScoreLvlTwo DESC LIMIT 1";       //checks, and unlocks level three tutorial if NOT NULL
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.CommandText = "SELECT ScoreLvlTwo AS tutorialchecklvltwo FROM scoring_details WHERE StudentNumber = @StudentNumberB AND ScoreLvlTwo IS NOT NULL ORDER BY ScoreLvlTwo DESC LIMIT 1";       //checks, and unlocks level three tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumberB", StudentNumber);
                 int tutorialchecklvltwo = (int)command.ExecuteScalar();
 
-                command.CommandText = "SELECT ScoreLvlThree AS tutorialchecklvlthree FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlThree IS NOT NULL ORDER BY ScoreLvlThree DESC LIMIT 1";  //checks, and unlocks level four tutorial if NOT NULL
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.CommandText = "SELECT ScoreLvlThree AS tutorialchecklvlthree FROM scoring_details WHERE StudentNumber = @StudentNumberC AND ScoreLvlThree IS NOT NULL ORDER BY ScoreLvlThree DESC LIMIT 1";  //checks, and unlocks level four tutorial if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumberC", StudentNumber);
                 int tutorialchecklvlthree = (int)command.ExecuteScalar();
 
-                command.CommandText = "SELECT ScoreLvlFour AS tutorialchecklvlfour FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlFour IS NOT NULL ORDER BY ScoreLvlFour DESC LIMIT 1;";      //checks, unlocks multiplayer if NOT NULL
-                command.Parameters.AddWithValue("@StudentNumber", StudentNumber);
+                command.CommandText = "SELECT ScoreLvlFour AS tutorialchecklvlfour FROM scoring_details WHERE StudentNumber = @StudentNumberD AND ScoreLvlFour IS NOT NULL ORDER BY ScoreLvlFour DESC LIMIT 1;";      //checks, unlocks multiplayer if NOT NULL
+                command.Parameters.AddWithValue("@StudentNumberD", StudentNumber);
                 int tutorialchecklvlfour = (int)command.ExecuteScalar();
 
                 connection.Close();
 
                 if (tutorialchecklvlone > 0)
-                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL TWO BUTTON GAME OBJECT at myGameObject
+                    level2Btn.interactable = true; //PUT TUTORIAL LEVEL TWO BUTTON GAME OBJECT at myGameObject
                 if (tutorialchecklvltwo > 0)
-                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL THREE BUTTON GAME OBJECT at myGameObject
+                    level3Btn.interactable = true; //PUT TUTORIAL LEVEL THREE BUTTON GAME OBJECT at myGameObject
                 if (tutorialchecklvlthree > 0)
-                    myGameObject.SetActive(false); //PUT TUTORIAL LEVEL FOUR BUTTON GAME OBJECT at myGameObject
+                    level4Btn.interactable = true; //PUT TUTORIAL LEVEL FOUR BUTTON GAME OBJECT at myGameObject
                 if (tutorialchecklvlfour > 0)
-                    myGameObject.SetActive(false); //PUT MULTIPLAYER BUTTON GAME OBJECT at myGameObject
+                    SingleplayerBtn.interactable = true; //PUT MULTIPLAYER BUTTON GAME OBJECT at myGameObject
 
             }
             catch (System.Exception ex)
@@ -233,7 +238,7 @@ public class DBInterface : MonoBehaviour
     //UPDATE: Call this function in GameManagers addToServer()
     //UPDATE: add "private DBInterface DBScript;" to GameManager
     //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
-    public void ReceiveScoreLvlOne()
+    public void ReceiveScoreLvlOne(bool tute)
     {
         Debug.Log(stringBuilder.ConnectionString);
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
@@ -255,9 +260,11 @@ public class DBInterface : MonoBehaviour
                 Debug.Log("Game Id: " + GameID);
                 Debug.Log("StudNum: " + studentNumber);
                 //Set final score values (lvl 4 vals for now)
-                command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
-                command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.getFullCompletionTime());
-
+                if (tute == false)
+                {
+                    command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
+                    command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.getFullCompletionTime());
+                }
                 //Loop through all levels
                 for (int i = 0; i < GMScript.getTotalLevels(); ++i)
                 {

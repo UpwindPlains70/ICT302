@@ -6,6 +6,7 @@ using TMPro;
 
 public class DBUserInterface : MonoBehaviour
 {
+    public bool mobile = false;
     public TextMeshProUGUI StudentNumber;
     public TextMeshProUGUI UserName;
     public string StudentNumberDisplayText;
@@ -63,10 +64,13 @@ public class DBUserInterface : MonoBehaviour
             DisplayGameDataFromDB();
             RetrieveTopFiveFinalScores();
             RetrieveTopGLOBALFinalScores();
-            
-            //Display scoreboard canvas if player is logged in
-            transform.GetChild(0).gameObject.SetActive(true);
 
+            if (mobile == false)
+            {
+                //Display scoreboard canvas if player is logged in
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+            DBInterface.CheckTutorialProgress(StudentNumberDisplayText);
             StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
             UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
 
@@ -128,8 +132,6 @@ public class DBUserInterface : MonoBehaviour
             DateAndTimes[i].text = highscores[i].Item3.ToString();
             UserNames[i].text = highscores[i].Item4;
         }
-
-
     }
 
 
@@ -157,9 +159,6 @@ public class DBUserInterface : MonoBehaviour
 
     */
 
-
-
-
     public void RetrieveTopFiveFinalScores()
     {
         if (DBInterface == null)
@@ -177,10 +176,7 @@ public class DBUserInterface : MonoBehaviour
             HighScoreDateAndTimes[i].text = highscores[i].Item3.ToString();
 
         }
-
-
     }
-
 
     public void RetrieveTopGLOBALFinalScores()
     {
@@ -202,30 +198,6 @@ public class DBUserInterface : MonoBehaviour
         }
 
     }
-
-
-
-    private void clearScoreboard()
-    {
-        /*foreach (Text StudentNumber in PlayerNames)
-        {
-            StudentNumber.text = "";
-        }
-        
-        foreach (Text highscore in Highscores)
-        {
-            highscore.text = "";
-        }
-        */
-
-    }
-
-
-
-
-
-
-
 }
 
     

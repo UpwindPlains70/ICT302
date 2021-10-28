@@ -23,6 +23,8 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+       // if (Input.GetKey(KeyCode.Space))
+       //     LoadMenu();
     }
 
     public void Resume ()

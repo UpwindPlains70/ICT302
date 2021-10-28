@@ -16,7 +16,7 @@ public class Level4Manager : MonoBehaviour
     public int currLevel = 3;
 
     public Canvas gameOverCanvas;
-    public Canvas HUDCanvas;
+    public GameObject HUDCanvas;
     public TextMeshProUGUI finalScore;
     public TextMeshProUGUI finalTime;
     public TextMeshProUGUI victoryMessage;
@@ -25,6 +25,7 @@ public class Level4Manager : MonoBehaviour
     public TextMeshProUGUI scoreTxt;
 
     public bool gameOver = false;
+    public bool tutorial = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -77,7 +78,7 @@ public class Level4Manager : MonoBehaviour
         Time.timeScale = 0;
         //Destroy all bullets if any
 
-        HUDCanvas.gameObject.SetActive(false);
+        HUDCanvas.SetActive(false);
 
         //Display scoreboard
         gameOverCanvas.gameObject.SetActive(true);
@@ -104,7 +105,7 @@ public class Level4Manager : MonoBehaviour
         if (GMScript.GameOver == false)
         {
             GMScript.GameOver = true;
-            GMScript.addToServer();
+            GMScript.addToServer(tutorial);
         }
     }
 

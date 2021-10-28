@@ -99,46 +99,55 @@ public class GameManager : MonoBehaviour
     public void setLevelTimesForCompetitivePlay()
     {
         foreach (Level l in levels)
+        {
             l.TimeLimit = competitiveTimeLimit;
+            l.CompletionTime = 0;
+        }
     }
 
-    public void addToServer()
+    public void addToServer(bool tute)
     {
         currLevelIndex = 0;
         MainMenu = true;
         //add all level information to server
-        DBScript.ReceiveScoreLvlOne();
+        DBScript.ReceiveScoreLvlOne(tute);
         Debug.Log("Level data Saved");
     }
 
     public float totalTimeTaken()
     {
+        return totalTimeLimitCalc(levels.Count - 1);
+    }
+
+    public float timeLimitToReachLevel(int level)
+    {
+        return totalTimeLimitCalc(level);
+    }
+
+    private float totalTimeLimitCalc(int toLevel)
+    {
         float totalTime = 0;
-        //negative 1 to exclude level 4
-        for (int i = 0; i < levels.Count - 1; ++i)
+
+        for (int i = 0; i < toLevel; ++i)
         {
             totalTime += levels[i].TimeLimit;
         }
         return totalTime;
     }
+
     public float getFullCompletionTime()
     {
         float totalTime = 0;
         //loop through all levels for grand total time
         foreach (Level lvl in levels)
-            totalTime += lvl.TimeLimit;
+            totalTime += lvl.CompletionTime;
 
         return totalTime;
     }
 
     public float totalGivenTime()
     {
-        float totalTime = 0;
-        for (int i = 0; i < levels.Count - 1; ++i)
-        {
-            totalTime += levels[i].TimeLimit;
-        }
-        return totalTime;
+        return totalTimeLimitCalc(levels.Count - 1);
     }
 
     public Level GetLevel(int n)
