@@ -97,8 +97,25 @@ public class GameManager : MonoBehaviour
 
     public void setLevelTimesForTutorial()
     {
-        foreach(Level l in levels)
+        foreach (Level l in levels)
+        {
             l.TimeLimit = tutorialTimeLimit;
+            l.CompletionTime = 60;
+           
+        }
+    }
+
+    public void setLevel1Score()
+    {
+        levels[0].Score = 800;
+    }
+    public void setLevel2Score()
+    {
+        levels[0].Score = 15;
+    }
+    public void setLevel3Score()
+    {
+        levels[0].Score = 10;
     }
 
     public void setLevelTimesForCompetitivePlay()

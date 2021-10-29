@@ -97,12 +97,12 @@ public class Level2Manager : MonoBehaviour
             myAudio.outputAudioMixerGroup = mixerSE;
             updateTimer();
             //conditions for game over screen
-            if ((time <= 0 || score >= maxScore / 2) && gameOver)
+            if ((time <= 0 || score >= 10) && gameOver)
                 GameOver();
-            else if ((time <= 0 || score >= maxScore / 2) && !gameOver)
+            else if ((time <= 0 || score >= maxScore) && !gameOver)
                 UpdateGameManager();
-
-            OnSnapped();
+            else
+                OnSnapped();
             //Always update maxScore
             scoreTxt.text = "Score: " + score + " / " + maxScore;
          } 
@@ -147,7 +147,7 @@ public class Level2Manager : MonoBehaviour
         finalTime.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
         //Display success or failure message based on score
-        if (score == maxScore)
+        if (score >= 10)
             goodMsg.gameObject.SetActive(true);
         else
             badMsg.gameObject.SetActive(true);
@@ -155,9 +155,9 @@ public class Level2Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false || tutorial == true)
+        if (GMScript.GameOver == true && tutorial == true && score >= 10)
         {
-            GMScript.GameOver = true;
+            GMScript.GameOver = false;
             GMScript.addToServer(tutorial);
         }
     }

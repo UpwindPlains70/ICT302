@@ -5596,7 +5596,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 333171301}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -11858,6 +11858,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 1
   MainMenu: 0
+  TutorialNameList: []
   tutorialTimeLimit: 300
   competitiveTimeLimit: 90
 --- !u!23 &2755947160512204342
@@ -14808,8 +14809,8 @@ MonoBehaviour:
   tutorial: 1
   myAudio: {fileID: 3267626244698601978}
   startingNarration: {fileID: 0}
-  coinSound: {fileID: 0}
-  mixerSE: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: 50dee191f1af3994c99e69c8c4e2c104, type: 3}
+  mixerSE: {fileID: 24300002, guid: a0dd397fceb1b274bb02e7eae726d9f4, type: 2}
   mixerV: {fileID: 0}
   delayGameStart: 0
 --- !u!1 &3267626244698601977
@@ -19936,6 +19937,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4817863145551627710}
     m_Modifications:
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 722606249450312537, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
         type: 3}
       propertyPath: m_Name
@@ -19945,6 +19961,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 126133678403060962}
+    - target: {fileID: 1235191011742304172, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330783898935318323, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6186940230183586034, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
         type: 3}
@@ -20066,7 +20092,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742492240129929200}
-  m_Mesh: {fileID: 8347169400992360785, guid: bca3c93ff919c1148a97344475d3ac18, type: 3}
+  m_Mesh: {fileID: -3866368369213841902, guid: 3bf746683c3cd0744854af87d1976ec2, type: 3}
 --- !u!1 &6125947278363846566
 GameObject:
   m_ObjectHideFlags: 0
@@ -22212,8 +22238,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742492240129929200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4729972, y: 1.7859999, z: -2.761884}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 1.4729972, y: 1.761, z: -2.761884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1432827541}
   m_RootOrder: 5

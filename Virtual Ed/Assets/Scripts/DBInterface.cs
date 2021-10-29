@@ -22,10 +22,11 @@ public class DBInterface : MonoBehaviour
     public Button level4Btn;
     public Button SingleplayerBtn;
 
+    private bool newEntry = false;
     //Place at top (replaces GameID -> GMScript.GameID & StudentNumber-> GMScript.StudentNumber)
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         stringBuilder = new MySqlConnectionStringBuilder();
         stringBuilder.Server = Server;
@@ -35,11 +36,16 @@ public class DBInterface : MonoBehaviour
     }
     // everything needed to login into the MySQL database ^
 
-
+    public void addNewEntry()
+    {
+        if (newEntry == false)
+            InsertStudentNumber(studentNumber, userName);
+    }
 
     // User enters student number which starts a new row into the mysql database, assigning a sequential 'GameID' and the entered 'StudentNumber', both of these values get assigned as GLOBAL VARIABLES for other scenes to use, to ensure correct records are being updated
     public void InsertStudentNumber(string StudentNumber, string UserName)
     {
+        newEntry = true;
         studentNumber = StudentNumber;
         userName = UserName;
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
@@ -163,14 +169,6 @@ public class DBInterface : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
-
     /*
              command.CommandText = "SELECT StudentNumber, ScoreLvlOne AS tutorialchecklvlone FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlOne IS NOT NULL ORDER BY ScoreLvlOne DESC LIMIT 1;" +        //checks, and unlocks level two tutorial if NOT NULL
                                    "SELECT StudentNumber, ScoreLvlTwo AS tutorialchecklvltwo FROM scoring_details WHERE StudentNumber = @StudentNumber AND ScoreLvlTwo IS NOT NULL ORDER BY ScoreLvlTwo DESC LIMIT 1;" +        //checks, and unlocks level three tutorial if NOT NULL
@@ -240,6 +238,7 @@ public class DBInterface : MonoBehaviour
     //UPDATE: add "DBScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DBInterface>(); to GameManager start()
     public void ReceiveScoreLvlOne(bool tute)
     {
+        newEntry = false;
         Debug.Log(stringBuilder.ConnectionString);
         using (MySqlConnection connection = new MySqlConnection(stringBuilder.ConnectionString))
         {
@@ -264,6 +263,11 @@ public class DBInterface : MonoBehaviour
                 {
                     command.Parameters.AddWithValue("@FinalScore", GMScript.GetLevel(3).Score);
                     command.Parameters.AddWithValue("@FinalTimeTaken", GMScript.getFullCompletionTime());
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@FinalScore", 0);
+                    command.Parameters.AddWithValue("@FinalTimeTaken", 0);
                 }
                 //Loop through all levels
                 for (int i = 0; i < GMScript.getTotalLevels(); ++i)

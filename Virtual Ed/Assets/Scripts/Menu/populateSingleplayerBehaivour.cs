@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class populateSingleplayerBehaivour : MonoBehaviour
 {
     private GameManager GMScript;
+    private DBInterface DBIScript;
     public Button myButton;
     // Start is called before the first frame update
     void Start()
     {
         GMScript = FindObjectOfType<GameManager>();
+        DBIScript = FindObjectOfType<DBInterface>();
+
             //Does not show on button onClick() section
-        //myButton.onClick.AddListener(delegate { GMScript.setLevelTimesForCompetitivePlay(); } );
-        //myButton.onClick.AddListener(delegate { GMScript.singleplayer = true; } );
+        myButton.onClick.AddListener(delegate { DBIScript.addNewEntry(); } );
+        myButton.onClick.AddListener(delegate { GMScript.setLevelTimesForCompetitivePlay(); } );
+        myButton.onClick.AddListener(delegate { GMScript.singleplayer = true; } );
         myButton.onClick.AddListener(delegate { GMScript.autoLoading = true; } );
         myButton.onClick.AddListener(delegate { GMScript.GameOver = false; } );
         myButton.onClick.AddListener(delegate { GMScript.LoadFirstLevel(); } );

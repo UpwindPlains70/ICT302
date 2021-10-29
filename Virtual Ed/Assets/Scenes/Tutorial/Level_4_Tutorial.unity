@@ -423,6 +423,7 @@ MonoBehaviour:
     bonus: 5
   currLevelIndex: 0
   MainMenu: 0
+  TutorialNameList: []
   tutorialTimeLimit: 300
   competitiveTimeLimit: 90
 --- !u!4 &228081486
@@ -5353,7 +5354,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a0dd397fceb1b274bb02e7eae726d9f4,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0066f1ba6d988dc4fb53d8640e6633e3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -11128,6 +11129,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3354910779600523975}
     m_Modifications:
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 115152456618256049, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 722606249450312537, guid: ec7088c5ac916bc4d9c6a30b884d3df0,
         type: 3}
       propertyPath: m_Name
@@ -18250,7 +18266,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: a0dd397fceb1b274bb02e7eae726d9f4,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0066f1ba6d988dc4fb53d8640e6633e3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
