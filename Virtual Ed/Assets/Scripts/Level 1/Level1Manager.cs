@@ -74,7 +74,7 @@ public class Level1Manager : MonoBehaviour
 
         finalScore.SetText("Final Score\n" + Score);
 
-        if (Score > goodScore)
+        if (Score >= goodScore)
             goodMsg.gameObject.SetActive(true);
         else
             badMsg.gameObject.SetActive(true);
@@ -82,11 +82,12 @@ public class Level1Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false || tutorial == true)
+        if (GMScript.GameOver == true &&  tutorial == true && Score >= goodScore)
         {
-            GMScript.GameOver = true;
+            GMScript.GameOver = false;
             GMScript.addToServer(tutorial);
         }
+
     }
 
     //store end level values in game manager
@@ -96,7 +97,7 @@ public class Level1Manager : MonoBehaviour
         //Update gameManager
         float timeLimit = GMScript.GetLevel(currLevel).TimeLimit;
         //Update level score in game manager
-        GMScript.GetLevel(currLevel).Score = Score + 10;
+        GMScript.GetLevel(currLevel).Score = Score;
         //update completion time in game manager
         GMScript.GetLevel(currLevel).CompletionTime = (time > 0) ? timeLimit - time : timeLimit;
         Debug.Log(GMScript.GetLevel(currLevel).Score);

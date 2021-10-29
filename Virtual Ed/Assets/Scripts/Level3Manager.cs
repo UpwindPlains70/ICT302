@@ -79,7 +79,7 @@ public class Level3Manager : MonoBehaviour
 
     public void GameOver()
     {
-
+        Time.timeScale = 0;
         //Disable in-game UI
         HUD.SetActive(false);
         //Disable in-game UI
@@ -108,9 +108,9 @@ public class Level3Manager : MonoBehaviour
         UpdateGameManager();
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false || tutorial == true)
+        if (GMScript.GameOver == true && tutorial == true && score >= 5)
         {
-            GMScript.GameOver = true;
+            GMScript.GameOver = false;
             GMScript.addToServer(tutorial);
         }
     }

@@ -32,30 +32,28 @@ public class DBUserInterface : MonoBehaviour
 
     //public List<Text> Highscores = new List<Text>();
     DBInterface DBInterface;
-    private static DBUserInterface comp;
-    public static DBUserInterface _Components
-    {
-        get
-        {
-            return comp;
-        }
-    }
+
     // Start is called before the first frame update
-    void Awake()
-    {
-        if (comp == null)
-        {
-            comp = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (comp != this)
-                Destroy(gameObject);
-        }
+    void Start()
+    {        
         DBInterface = FindObjectOfType<DBInterface>();
+        StudentNumberDisplayText = DBInterface.studentNumber;
+        UserNameDisplayText = DBInterface.userName;
+        ReloadScoreBoard();
     }
 
+    public void populateStudentNumLogin()
+    {
+
+        StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
+        StudentNumber.text = StudentNumberDisplayText;
+    }
+
+    public void populateUsernameLogin()
+    {
+        UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
+        UserName.text = UserNameDisplayText;
+    }
     
     public void ReloadScoreBoard()
     {
@@ -67,15 +65,9 @@ public class DBUserInterface : MonoBehaviour
 
             if (mobile == false)
             {
-                //Display scoreboard canvas if player is logged in
-                transform.GetChild(0).gameObject.SetActive(true);
+            //Display scoreboard canvas if player is logged in
+            GameObject.FindGameObjectWithTag("UI").transform.GetChild(0).gameObject.SetActive(true);
             }
-            DBInterface.CheckTutorialProgress(StudentNumberDisplayText);
-            StudentNumber = GameObject.FindGameObjectWithTag("StudentNumber").GetComponent<TextMeshProUGUI>();
-            UserName = GameObject.FindGameObjectWithTag("UserName").GetComponent<TextMeshProUGUI>();
-
-            StudentNumber.text = StudentNumberDisplayText;
-            UserName.text = UserNameDisplayText;
         }
     }
 
@@ -171,10 +163,12 @@ public class DBUserInterface : MonoBehaviour
 
         for (int i = 0; i < highscores.Count; i++)
         {
-            HighScoreFinalScores[i].text = highscores[i].Item1.ToString();
-            HighScoreFinalTimeTakens[i].text = highscores[i].Item2.ToString();
-            HighScoreDateAndTimes[i].text = highscores[i].Item3.ToString();
-
+            if (highscores[i].Item2 > 0)
+            {
+                HighScoreFinalScores[i].text = highscores[i].Item1.ToString();
+                HighScoreFinalTimeTakens[i].text = highscores[i].Item2.ToString();
+                HighScoreDateAndTimes[i].text = highscores[i].Item3.ToString();
+            }
         }
     }
 
@@ -190,11 +184,13 @@ public class DBUserInterface : MonoBehaviour
 
         for (int i = 0; i < highscores.Count; i++)
         {
-            GLOBALUserNames[i].text = highscores[i].Item1.ToString();
-            GLOBALFinalScores[i].text = highscores[i].Item2.ToString();
-            GLOBALFinalTimeTakens[i].text = highscores[i].Item3.ToString();
-            GLOBALDateAndTimes[i].text = highscores[i].Item4.ToString();
-
+            if (highscores[i].Item2 > 0)
+            {
+                GLOBALUserNames[i].text = highscores[i].Item1.ToString();
+                GLOBALFinalScores[i].text = highscores[i].Item2.ToString();
+                GLOBALFinalTimeTakens[i].text = highscores[i].Item3.ToString();
+                GLOBALDateAndTimes[i].text = highscores[i].Item4.ToString();
+            }
         }
 
     }

@@ -30,6 +30,7 @@ public class Level4Manager : MonoBehaviour
     public AudioSource myAudio;
     public int delayGameStart;
     private float preLevelTimer;
+    private bool dataSaved = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -55,11 +56,12 @@ public class Level4Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
         preLevelTimer += Time.deltaTime;
         if (delayGameStart < preLevelTimer)
         {
             updateTimer();
-            if ((time <= 0 || ammo <= 0) && gameOver)
+            if ((time <= 0 || ammo <= 0) && gameOver && bullets.Length == 0)
                 GameOver();
 
             scoreUpdate();
@@ -109,16 +111,21 @@ public class Level4Manager : MonoBehaviour
 
         int prevLevelScore = GMScript.GetLevel(currLevel - 1).Score + GMScript.GetLevel(currLevel - 1).Bonus;
 
-        if (score > prevLevelScore / 2)
+        if (score >= prevLevelScore / 2)
             victoryMessage.gameObject.SetActive(true);
         else
             retryMessage.gameObject.SetActive(true);
 
         //Save data to server (can bo done in game manager)
-        if (GMScript.GameOver == false)
-        {
-            GMScript.GameOver = true;
-            GMScript.addToServer(tutorial);
+        if (dataSaved == false)
+        {            
+            dataSaved = true;
+                //only add to server if tutorial score is above / equal to required
+            if(tutorial == true && score >= prevLevelScore / 2)
+                GMScript.addToServer(tutorial);
+            else if(tutorial == false)  //add to server if not tutorial
+                GMScript.addToServer(tutorial);
+
         }
     }
 

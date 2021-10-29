@@ -13,8 +13,8 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-        
     }
+
     public void SetMusicVolume(float sliderVal)
     {
         musicAudioMixer.SetFloat("MainMixer", Mathf.Log10(sliderVal) * 20);

@@ -38,6 +38,8 @@ TagManager:
   - StudentNumber
   - UserName
   - UI
+  - TutorialBtn
+  - SingleplayerBtn
   layers:
   - Default
   - TransparentFX
